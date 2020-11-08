@@ -45,6 +45,8 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## TODOs
 
+- Que las categorias sean dinamicas (pensar el tema de los iconos)
+- Agregar swipe left y right, si estas en touch-screen, para recorrer las imagenes cuando estás en modo "image-viewer"
 - Obtener un favicon.ico mas lindo de alguna manera
 - Ver si me respondieron el issue en el repo de [react-slide-routes](https://github.com/nanxiaobei/react-slide-routes)
 - Borrar la carpeta features/counter cuando no la necesite más

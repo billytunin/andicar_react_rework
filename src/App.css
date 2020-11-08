@@ -5,5 +5,24 @@
 }
 
 .app-content {
-  padding: 0 5rem 3rem 5rem;
+  padding: 4vh 6vw 4vh 6vw;
+  height: 80vh;
+  overflow-y: scroll;
+}
+
+/* Change Autocomplete styles in Chrome*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid #0000;
+  -webkit-text-fill-color: black;
+  -webkit-box-shadow: 0 0 0px 1000px #0000 inset;
+  box-shadow: 0 0 0px 1000px #0000 inset;
+  transition: background-color 5000s ease-in-out 0s;
 }

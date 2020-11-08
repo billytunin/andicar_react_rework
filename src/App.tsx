@@ -6,6 +6,7 @@ import { AppHeader } from './components/app-header/AppHeader';
 import { Inicio } from './components/inicio/Inicio'
 import { Productos } from './components/productos/Productos'
 import { Contacto } from './components/contacto/Contacto'
+import { AppFooter } from './components/app-footer/AppFooter'
 
 function App() {
   const location = useLocation();
@@ -20,6 +21,7 @@ function App() {
           <Route path="/contacto" component={Contacto} />
         </SlideRoutes>
       </div>
+      <AppFooter />
     </div>
   );
 }
