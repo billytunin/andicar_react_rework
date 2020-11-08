@@ -1,56 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import SlideRoutes from 'react-slide-routes';
+import { Route, useLocation } from 'react-router-dom';
 import './App.css';
+import { AppHeader } from './components/app-header/AppHeader';
+import { Inicio } from './components/inicio/Inicio'
+import { Productos } from './components/productos/Productos'
+import { Contacto } from './components/contacto/Contacto'
 
 function App() {
+  const location = useLocation();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+    <div className="app">
+      <AppHeader />
+      <div className="app-content">
+        <SlideRoutes location={location} duration={500} pathList={['/', '/productos', '/contacto']}>
+          <Route path="/" component={Inicio} exact />
+          <Route path="/productos" component={Productos} />
+          <Route path="/contacto" component={Contacto} />
+        </SlideRoutes>
+      </div>
     </div>
   );
 }
