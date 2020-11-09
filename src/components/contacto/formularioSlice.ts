@@ -14,11 +14,12 @@ export const formularioSlice = createSlice({
   reducers: {
     setFieldValue: (state, action: PayloadAction<SetValueAction>) => {
       state[action.payload.field as keyof FormularioState] = action.payload.value
-    }
+    },
+    resetState: () => initialState
   }
 })
 
-export const { setFieldValue } = formularioSlice.actions
+export const { setFieldValue, resetState } = formularioSlice.actions
 
 export const selectFormularioData = (state: RootState) => state.formularioContacto
 
