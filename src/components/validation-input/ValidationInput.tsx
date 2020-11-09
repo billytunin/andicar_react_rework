@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { isEmpty } from 'lodash'
 import TextField from '@material-ui/core/TextField'
 import InputAdornment from '@material-ui/core/InputAdornment'
@@ -10,7 +10,7 @@ import {
   setFieldInvalid,
   setFieldValidationMessage,
   createValidationGroup,
-  createFieldOnValidationGroup
+  createFieldInValidationGroup
 } from './validationInputsSlice'
 
 interface ValidationInputProps {
@@ -18,6 +18,9 @@ interface ValidationInputProps {
   label: string
   fullWidth?: boolean
   multiline?: boolean
+  isEmail?: boolean
+  isPhone?: boolean
+  maxlength?: number
   rows?: number
   required?: boolean
   helperText?: string
@@ -55,22 +58,104 @@ export function ValidationInput(props: ValidationInputProps) {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value
     setCurrentValue(newValue)
-    runValidations(newValue)
     dispatch(
       setFieldDirty({ name: props.validationGroupName, field: props.id, value: true })
     )
     props.onChange({ field: props.id, value: newValue })
   }
 
-  const requiredValidation = (newValue: string) => {
-    if (props.required && !newValue) {
+  useEffect(() => {
+    runValidations()
+  })
+
+  /**
+   * Checks if current field value complies with the "Required" validation.
+   * If it doesn't, the validation field state in the validationInputSlice will be modified.
+   * Returns false if it complies with the validation, true otherwise
+   */
+  const requiredValidation = (): boolean => {
+    let hasError = false
+    if (props.required && !currentValue) {
+      hasError = true
       dispatch(
         setFieldInvalid({ name: props.validationGroupName, field: props.id, value: true })
       )
       dispatch(
         setFieldValidationMessage({ name: props.validationGroupName, field: props.id, value: 'Campo requerido' })
       )
-    } else {
+    }
+
+    return hasError
+  }
+
+  /**
+   * Checks if current field value complies with the "Email" validation.
+   * If it doesn't, the validation field state in the validationInputSlice will be modified.
+   * Returns false if it complies with the validation, true otherwise
+   */
+  const emailValidation = (): boolean => {
+    let hasError = false
+    const emailRegexp = new RegExp(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g)
+    if (props.isEmail && !emailRegexp.test(currentValue)) {
+      hasError = true
+      dispatch(
+        setFieldInvalid({ name: props.validationGroupName, field: props.id, value: true })
+      )
+      dispatch(
+        setFieldValidationMessage({ name: props.validationGroupName, field: props.id, value: 'Formato de e-mail incorrecto' })
+      )
+    }
+
+    return hasError
+  }
+
+  /**
+   * Checks if current field value complies with the "Phone" validation.
+   * If it doesn't, the validation field state in the validationInputSlice will be modified.
+   * Returns false if it complies with the validation, true otherwise
+   */
+  const phoneValidation = (): boolean => {
+    let hasError = false
+    const emailRegexp = new RegExp(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$/g)
+    if (props.isPhone && currentValue && !emailRegexp.test(currentValue)) {
+      hasError = true
+      dispatch(
+        setFieldInvalid({ name: props.validationGroupName, field: props.id, value: true })
+      )
+      dispatch(
+        setFieldValidationMessage({ name: props.validationGroupName, field: props.id, value: 'Formato de teléfono incorrecto' })
+      )
+    }
+
+    return hasError
+  }
+
+  /**
+   * Checks if current field value complies with the "Maxlength" validation.
+   * If it doesn't, the validation field state in the validationInputSlice will be modified.
+   * Returns false if it complies with the validation, true otherwise
+   */
+  const maxlengthValidation = (): boolean => {
+    let hasError = false
+    if (props.maxlength !== undefined && currentValue.length > props.maxlength) {
+      hasError = true
+      dispatch(
+        setFieldInvalid({ name: props.validationGroupName, field: props.id, value: true })
+      )
+      dispatch(
+        setFieldValidationMessage({
+          name: props.validationGroupName,
+          field: props.id, value: `La cantidad máxima de caracteres para este campo es ${props.maxlength}`
+        })
+      )
+    }
+
+    return hasError
+  }
+
+  const runValidations = () => {
+    const hasErrors = requiredValidation() || maxlengthValidation() || emailValidation() || phoneValidation()
+    if (!hasErrors) {
       dispatch(
         setFieldInvalid({ name: props.validationGroupName, field: props.id, value: false })
       )
@@ -80,29 +165,25 @@ export function ValidationInput(props: ValidationInputProps) {
     }
   }
 
-  const runValidations = (value: string) => {
-    requiredValidation(value)
-  }
-
-  const createFieldInValidationGroup = () => {
+  const setupFieldInValidationGroup = () => {
     dispatch(
-      createFieldOnValidationGroup({
+      createFieldInValidationGroup({
         validationGroupName: props.validationGroupName,
         name: props.id,
         isInvalid: false
       })
     )
-    runValidations(currentValue)
+    runValidations()
   }
 
   if (validationGroupDoesntExists) {
     dispatch(
       createValidationGroup({ name: props.validationGroupName })
     )
-    createFieldInValidationGroup()
+    setupFieldInValidationGroup()
   } else {
     if (validationGroups[props.validationGroupName][props.id] === undefined) {
-      createFieldInValidationGroup()
+      setupFieldInValidationGroup()
     }
   }
 

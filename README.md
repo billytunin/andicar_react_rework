@@ -52,5 +52,6 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 - Borrar la carpeta features/counter cuando no la necesite más
 
 - ¿Donde me quede?
+- - Meter validacion de email y telefono y maxlengths
 - - Limpiar el formularioContacto en el caso de "consulta enviada!"
 - - Hacer que los errores de ValidationInput hagan un shake cuando tocas "Enviar"

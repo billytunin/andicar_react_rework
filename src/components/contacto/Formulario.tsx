@@ -56,6 +56,7 @@ export function Formulario() {
         id="nombreCompleto"
         validationGroupName={VALIDATION_GROUP_NAME}
         required
+        maxlength={25}
         label="Nombre completo"
         icon={<AccountCircle />}
         fullWidth
@@ -65,6 +66,8 @@ export function Formulario() {
         id="email"
         validationGroupName={VALIDATION_GROUP_NAME}
         required
+        isEmail
+        maxlength={60}
         label="E-mail"
         icon={<Email />}
         fullWidth
@@ -73,8 +76,10 @@ export function Formulario() {
       />
       <ValidationInput
         id="telefono"
+        maxlength={20}
         validationGroupName={VALIDATION_GROUP_NAME}
         label="Teléfono"
+        isPhone
         icon={<Phone />}
         fullWidth
         onChange={dispatchSetFieldValue}
@@ -87,6 +92,7 @@ export function Formulario() {
         fullWidth
         onChange={dispatchSetFieldValue}
         multiline
+        maxlength={800}
         rows={6}
       />
       <Button

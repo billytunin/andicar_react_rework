@@ -13,7 +13,7 @@ export const validationInputsSlice = createSlice({
     createValidationGroup: (state, action: PayloadAction<CreateValidationGroupAction>) => {
       state.validationGroups[action.payload.name] = {}
     },
-    createFieldOnValidationGroup: (state, action: PayloadAction<CreateFieldAction>) => {
+    createFieldInValidationGroup: (state, action: PayloadAction<CreateFieldAction>) => {
       state.validationGroups[action.payload.validationGroupName][action.payload.name] = {
         isInvalid: action.payload.isInvalid,
         isDirty: false
@@ -40,7 +40,7 @@ export const validationInputsSlice = createSlice({
 
 export const {
   createValidationGroup,
-  createFieldOnValidationGroup,
+  createFieldInValidationGroup,
   setValidationGroupDirtyState,
   setFieldInvalid,
   setFieldDirty,
