@@ -1,8 +1,8 @@
 interface FormularioState {
-  nombreCompleto: string | null
-  email: string | null
-  telefono: string | null
-  consulta: string | null
+  nombreCompleto: string
+  email: string
+  telefono: string
+  consulta: string
 }
 
 interface SetValueAction {

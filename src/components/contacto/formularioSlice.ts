@@ -2,10 +2,10 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../../app/store'
 
 const initialState: FormularioState = {
-  nombreCompleto: null,
-  email: null,
-  telefono: null,
-  consulta: null
+  nombreCompleto: '',
+  email: '',
+  telefono: '',
+  consulta: ''
 }
 
 export const formularioSlice = createSlice({

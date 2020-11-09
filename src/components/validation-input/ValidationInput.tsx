@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { isEmpty } from 'lodash'
 import TextField from '@material-ui/core/TextField'
 import InputAdornment from '@material-ui/core/InputAdornment'
@@ -16,6 +16,7 @@ import {
 interface ValidationInputProps {
   id: string
   label: string
+  value: string // TODO: cambiar esto a any?
   fullWidth?: boolean
   multiline?: boolean
   isEmail?: boolean
@@ -31,8 +32,6 @@ interface ValidationInputProps {
 
 export function ValidationInput(props: ValidationInputProps) {
   const dispatch = useDispatch()
-
-  const [currentValue, setCurrentValue] = useState('')
 
   const validationGroups = useSelector(getValidationGroups)
   const validationGroupDoesntExists = isEmpty(validationGroups) || !validationGroups[props.validationGroupName]
@@ -56,12 +55,10 @@ export function ValidationInput(props: ValidationInputProps) {
   }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = event.target.value
-    setCurrentValue(newValue)
     dispatch(
       setFieldDirty({ name: props.validationGroupName, field: props.id, value: true })
     )
-    props.onChange({ field: props.id, value: newValue })
+    props.onChange({ field: props.id, value: event.target.value })
   }
 
   useEffect(() => {
@@ -75,7 +72,7 @@ export function ValidationInput(props: ValidationInputProps) {
    */
   const requiredValidation = (): boolean => {
     let hasError = false
-    if (props.required && !currentValue) {
+    if (props.required && !props.value) {
       hasError = true
       dispatch(
         setFieldInvalid({ name: props.validationGroupName, field: props.id, value: true })
@@ -96,7 +93,7 @@ export function ValidationInput(props: ValidationInputProps) {
   const emailValidation = (): boolean => {
     let hasError = false
     const emailRegexp = new RegExp(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g)
-    if (props.isEmail && !emailRegexp.test(currentValue)) {
+    if (props.isEmail && !emailRegexp.test(props.value)) {
       hasError = true
       dispatch(
         setFieldInvalid({ name: props.validationGroupName, field: props.id, value: true })
@@ -117,7 +114,7 @@ export function ValidationInput(props: ValidationInputProps) {
   const phoneValidation = (): boolean => {
     let hasError = false
     const emailRegexp = new RegExp(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$/g)
-    if (props.isPhone && currentValue && !emailRegexp.test(currentValue)) {
+    if (props.isPhone && props.value && !emailRegexp.test(props.value)) {
       hasError = true
       dispatch(
         setFieldInvalid({ name: props.validationGroupName, field: props.id, value: true })
@@ -137,7 +134,7 @@ export function ValidationInput(props: ValidationInputProps) {
    */
   const maxlengthValidation = (): boolean => {
     let hasError = false
-    if (props.maxlength !== undefined && currentValue.length > props.maxlength) {
+    if (props.maxlength !== undefined && props.value.length > props.maxlength) {
       hasError = true
       dispatch(
         setFieldInvalid({ name: props.validationGroupName, field: props.id, value: true })
@@ -194,7 +191,7 @@ export function ValidationInput(props: ValidationInputProps) {
       required={props.required}
       fullWidth={props.fullWidth}
       variant="outlined"
-      value={currentValue}
+      value={props.value}
       multiline={props.multiline}
       rows={props.rows}
       margin="normal"

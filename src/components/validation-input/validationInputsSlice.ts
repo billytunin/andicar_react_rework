@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../../app/store'
+import { isEmpty } from 'lodash'
 
 // TODO: Type-ear esto bien
 const initialState: any = {
@@ -34,7 +35,7 @@ export const validationInputsSlice = createSlice({
     },
     setFieldValidationMessage: (state, action: PayloadAction<SetFieldValidationMessageAction>) => {
       state.validationGroups[action.payload.name][action.payload.field].validationMessage = action.payload.value
-    },
+    }
   }
 })
 
@@ -48,5 +49,20 @@ export const {
 } = validationInputsSlice.actions
 
 export const getValidationGroups = (state: RootState) => state.validationInputs.validationGroups
+
+export const validationGroupHasErrors = (validationGroupName: string) => (state: RootState) => {
+  if(!isEmpty(state.validationInputs.validationGroups) && state.validationInputs.validationGroups[validationGroupName]) {
+    let foundError = false
+    for (let key in state.validationInputs.validationGroups[validationGroupName]) {
+      foundError = state.validationInputs.validationGroups[validationGroupName][key].isInvalid
+      if (foundError) {
+        break
+      }
+    }
+    return foundError
+  } else {
+    return false
+  }
+}
 
 export default validationInputsSlice.reducer

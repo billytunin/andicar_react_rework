@@ -1,11 +1,10 @@
 import React from 'react';
-import { isEmpty } from 'lodash'
 import { ValidationInput } from '../validation-input/ValidationInput'
 import Button from '@material-ui/core/Button'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { setFieldValue, selectFormularioData, resetState } from './formularioSlice'
-import { getValidationGroups, setValidationGroupDirtyState } from '../validation-input/validationInputsSlice'
+import { validationGroupHasErrors, setValidationGroupDirtyState } from '../validation-input/validationInputsSlice'
 
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import Email from '@material-ui/icons/Email'
@@ -17,28 +16,12 @@ export function Formulario() {
   const dispatch = useDispatch()
 
   const formularioData = useSelector(selectFormularioData)
-  const validationGroups = useSelector(getValidationGroups)
-
-  const validationGroupHasErrors = (): boolean => {
-    if(!isEmpty(validationGroups) && validationGroups[VALIDATION_GROUP_NAME]) {
-      let foundError = false
-      for (let key in validationGroups[VALIDATION_GROUP_NAME]) {
-        foundError = validationGroups[VALIDATION_GROUP_NAME][key].isInvalid
-        if (foundError) {
-          break
-        }
-      }
-      return foundError
-    } else {
-      return false
-    }
-  }
+  const formHasErrors = useSelector(validationGroupHasErrors(VALIDATION_GROUP_NAME))
 
   const enviarConsulta = () => {
     console.log(formularioData)
-    console.log(validationGroups)
     dispatch(setValidationGroupDirtyState({ validationGroupName: VALIDATION_GROUP_NAME, isDirty: true }))
-    if (validationGroupHasErrors()) {
+    if (formHasErrors) {
       console.log('consulta NO enviada!')
     } else {
       dispatch(resetState())
@@ -55,6 +38,7 @@ export function Formulario() {
     <div>
       <ValidationInput
         id="nombreCompleto"
+        value={formularioData.nombreCompleto}
         validationGroupName={VALIDATION_GROUP_NAME}
         required
         maxlength={25}
@@ -65,6 +49,7 @@ export function Formulario() {
       />
       <ValidationInput
         id="email"
+        value={formularioData.email}
         validationGroupName={VALIDATION_GROUP_NAME}
         required
         isEmail
@@ -77,6 +62,7 @@ export function Formulario() {
       />
       <ValidationInput
         id="telefono"
+        value={formularioData.telefono}
         maxlength={20}
         validationGroupName={VALIDATION_GROUP_NAME}
         label="Teléfono"
@@ -87,6 +73,7 @@ export function Formulario() {
       />
       <ValidationInput
         id="consulta"
+        value={formularioData.consulta}
         validationGroupName={VALIDATION_GROUP_NAME}
         required
         label="Consulta"
