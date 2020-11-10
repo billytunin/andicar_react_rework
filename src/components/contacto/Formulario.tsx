@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import request from 'request-promise-native'
 
-import { BASE_URL } from '../../utils/constants'
+import request from '../../utils/request'
 
 import { ValidationInput } from '../validation-input/ValidationInput'
 import Button from '@material-ui/core/Button'
@@ -37,16 +36,11 @@ export function Formulario() {
       dispatch(shakeInvalids(VALIDATION_GROUP_NAME))
     } else {
       try {
-        const resp = await request({
-          uri: `${BASE_URL}/nuevaConsulta`,
-          method: 'POST',
-          body: {
-            full_name: formularioData.nombreCompleto,
-            email: formularioData.email,
-            telefono: formularioData.telefono,
-            consulta: formularioData.consulta
-          },
-          json: true
+        const resp = await request.post('/nuevaConsulta', {
+          full_name: formularioData.nombreCompleto,
+          email: formularioData.email,
+          telefono: formularioData.telefono,
+          consulta: formularioData.consulta
         })
         console.log(resp)
         dispatch(setValidationGroupDirtyState({ validationGroupName: VALIDATION_GROUP_NAME, isDirty: false }))
