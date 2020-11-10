@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react'
 import { ValidationInput } from '../validation-input/ValidationInput'
 import Button from '@material-ui/core/Button'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { setFieldValue, selectFormularioData, resetState } from './formularioSlice'
 import {
   validationGroupHasErrors,
   setValidationGroupDirtyState,
@@ -18,8 +17,14 @@ const VALIDATION_GROUP_NAME = 'formularioContacto'
 
 export function Formulario() {
   const dispatch = useDispatch()
+  const initialState = {
+    nombreCompleto: '',
+    email: '',
+    telefono: '',
+    consulta: ''
+  }
 
-  const formularioData = useSelector(selectFormularioData)
+  const [formularioData, setFormularioData] = useState(initialState)
   const formHasErrors = useSelector(validationGroupHasErrors(VALIDATION_GROUP_NAME))
 
   const enviarConsulta = () => {
@@ -29,14 +34,10 @@ export function Formulario() {
       dispatch(shakeInvalids(VALIDATION_GROUP_NAME))
       console.log('consulta NO enviada!')
     } else {
-      dispatch(resetState())
       dispatch(setValidationGroupDirtyState({ validationGroupName: VALIDATION_GROUP_NAME, isDirty: false }))
+      setFormularioData(initialState)
       console.log('consulta enviada!')
     }
-  }
-
-  const dispatchSetFieldValue = ({ field, value }: SetValueAction) => {
-    dispatch(setFieldValue({ field, value }))
   }
 
   return (
@@ -50,7 +51,7 @@ export function Formulario() {
         label="Nombre completo"
         icon={<AccountCircle />}
         fullWidth
-        onChange={dispatchSetFieldValue}
+        onChange={(value) => setFormularioData({ ...formularioData, nombreCompleto: value })}
       />
       <ValidationInput
         id="email"
@@ -62,7 +63,7 @@ export function Formulario() {
         label="E-mail"
         icon={<Email />}
         fullWidth
-        onChange={dispatchSetFieldValue}
+        onChange={(value) => setFormularioData({ ...formularioData, email: value })}
         helperText="*De ser necesario, Andicar utilizará este medio para contactarlo."
       />
       <ValidationInput
@@ -74,7 +75,7 @@ export function Formulario() {
         isPhone
         icon={<Phone />}
         fullWidth
-        onChange={dispatchSetFieldValue}
+        onChange={(value) => setFormularioData({ ...formularioData, telefono: value })}
       />
       <ValidationInput
         id="consulta"
@@ -83,7 +84,7 @@ export function Formulario() {
         required
         label="Consulta"
         fullWidth
-        onChange={dispatchSetFieldValue}
+        onChange={(value) => setFormularioData({ ...formularioData, consulta: value })}
         multiline
         maxlength={800}
         rows={6}

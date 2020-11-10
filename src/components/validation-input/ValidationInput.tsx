@@ -27,7 +27,7 @@ interface ValidationInputProps {
   required?: boolean
   helperText?: string
   icon?: JSX.Element
-  onChange: ({ field, value }: SetValueAction) => void
+  onChange: (value: string) => void
   validationGroupName: string
 }
 
@@ -64,7 +64,7 @@ export function ValidationInput(props: ValidationInputProps) {
     dispatch(
       setFieldDirty({ name: props.validationGroupName, field: props.id, value: true })
     )
-    props.onChange({ field: props.id, value: event.target.value })
+    props.onChange(event.target.value)
   }
 
   useEffect(() => {
