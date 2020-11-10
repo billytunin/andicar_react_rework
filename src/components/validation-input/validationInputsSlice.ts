@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../../app/store'
-import { isEmpty } from 'lodash'
 
 // TODO: Type-ear esto bien
 const initialState: any = {
@@ -70,7 +69,7 @@ export const getValidationGroup = (validationGroupName: string) => (state: RootS
 }
 
 export const validationGroupHasErrors = (validationGroupName: string) => (state: RootState) => {
-  if(!isEmpty(state.validationInputs.validationGroups) && state.validationInputs.validationGroups[validationGroupName]) {
+  if(state.validationInputs.validationGroups[validationGroupName]) {
     let foundError = false
     for (let key in state.validationInputs.validationGroups[validationGroupName]) {
       foundError = state.validationInputs.validationGroups[validationGroupName][key].isInvalid
