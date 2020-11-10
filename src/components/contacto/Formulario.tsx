@@ -1,4 +1,8 @@
 import React, { useState } from 'react'
+import request from 'request-promise-native'
+
+import { BASE_URL } from '../../utils/constants'
+
 import { ValidationInput } from '../validation-input/ValidationInput'
 import Button from '@material-ui/core/Button'
 import { useSelector, useDispatch } from 'react-redux'
@@ -27,16 +31,29 @@ export function Formulario() {
   const [formularioData, setFormularioData] = useState(initialState)
   const formHasErrors = useSelector(validationGroupHasErrors(VALIDATION_GROUP_NAME))
 
-  const enviarConsulta = () => {
-    console.log(formularioData)
+  const enviarConsulta = async () => {
     dispatch(setValidationGroupDirtyState({ validationGroupName: VALIDATION_GROUP_NAME, isDirty: true }))
     if (formHasErrors) {
       dispatch(shakeInvalids(VALIDATION_GROUP_NAME))
-      console.log('consulta NO enviada!')
     } else {
-      dispatch(setValidationGroupDirtyState({ validationGroupName: VALIDATION_GROUP_NAME, isDirty: false }))
-      setFormularioData(initialState)
-      console.log('consulta enviada!')
+      try {
+        const resp = await request({
+          uri: `${BASE_URL}/nuevaConsulta`,
+          method: 'POST',
+          body: {
+            full_name: formularioData.nombreCompleto,
+            email: formularioData.email,
+            telefono: formularioData.telefono,
+            consulta: formularioData.consulta
+          },
+          json: true
+        })
+        console.log(resp)
+        dispatch(setValidationGroupDirtyState({ validationGroupName: VALIDATION_GROUP_NAME, isDirty: false }))
+        setFormularioData(initialState)
+      } catch(error) {
+        console.log('hubo un error')
+      }
     }
   }
 

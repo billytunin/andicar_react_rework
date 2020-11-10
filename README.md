@@ -52,4 +52,6 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 - Borrar la carpeta features/counter cuando no la necesite más
 
 - ¿Donde me quede?
-- - Hacer que los errores de ValidationInput hagan un shake cuando tocas "Enviar"
+- - Hacer un wrapper de request para que siempre tenga el "json: true" y etc
+- - Handle del error en la request de formulario de contacto
+- - Pensar en el loading spinner para el "enviar" del formulario de contacto
