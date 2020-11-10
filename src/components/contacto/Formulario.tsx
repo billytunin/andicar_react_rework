@@ -4,7 +4,11 @@ import Button from '@material-ui/core/Button'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { setFieldValue, selectFormularioData, resetState } from './formularioSlice'
-import { validationGroupHasErrors, setValidationGroupDirtyState } from '../validation-input/validationInputsSlice'
+import {
+  validationGroupHasErrors,
+  setValidationGroupDirtyState,
+  shakeInvalids
+} from '../validation-input/validationInputsSlice'
 
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import Email from '@material-ui/icons/Email'
@@ -22,6 +26,7 @@ export function Formulario() {
     console.log(formularioData)
     dispatch(setValidationGroupDirtyState({ validationGroupName: VALIDATION_GROUP_NAME, isDirty: true }))
     if (formHasErrors) {
+      dispatch(shakeInvalids(VALIDATION_GROUP_NAME))
       console.log('consulta NO enviada!')
     } else {
       dispatch(resetState())

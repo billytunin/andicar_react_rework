@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react'
-import { isEmpty } from 'lodash'
 import TextField from '@material-ui/core/TextField'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import { useSelector, useDispatch } from 'react-redux'
+import styles from './ValidationInput.module.css'
 
 import {
-  getValidationGroups,
+  getValidationGroup,
   setFieldDirty,
   setFieldInvalid,
   setFieldValidationMessage,
   createValidationGroup,
-  createFieldInValidationGroup
+  createFieldInValidationGroup,
+  resetShakeState
 } from './validationInputsSlice'
 
 interface ValidationInputProps {
@@ -33,24 +34,29 @@ interface ValidationInputProps {
 export function ValidationInput(props: ValidationInputProps) {
   const dispatch = useDispatch()
 
-  const validationGroups = useSelector(getValidationGroups)
-  const validationGroupDoesntExists = isEmpty(validationGroups) || !validationGroups[props.validationGroupName]
+  const validationGroup = useSelector(getValidationGroup(props.validationGroupName))
 
   const getValidationMessage = (): string | undefined => {
-    if (!validationGroupDoesntExists && validationGroups[props.validationGroupName][props.id]) {
-      return validationGroups[props.validationGroupName][props.id].validationMessage
+    if (validationGroup && validationGroup[props.id]) {
+      return validationGroup[props.id].validationMessage
     }
   }
 
   const getIsInvalid = (): boolean | undefined => {
-    if (!validationGroupDoesntExists && validationGroups[props.validationGroupName][props.id]) {
-      return validationGroups[props.validationGroupName][props.id].isInvalid
+    if (validationGroup && validationGroup[props.id]) {
+      return validationGroup[props.id].isInvalid
     }
   }
 
   const getIsDirty = (): boolean | undefined => {
-    if (!validationGroupDoesntExists && validationGroups[props.validationGroupName][props.id]) {
-      return validationGroups[props.validationGroupName][props.id].isDirty
+    if (validationGroup && validationGroup[props.id]) {
+      return validationGroup[props.id].isDirty
+    }
+  }
+
+  const getIsShaking = (): boolean | undefined => {
+    if (validationGroup && validationGroup[props.id]) {
+      return validationGroup[props.id].shakeState
     }
   }
 
@@ -173,13 +179,13 @@ export function ValidationInput(props: ValidationInputProps) {
     runValidations()
   }
 
-  if (validationGroupDoesntExists) {
+  if (!validationGroup) {
     dispatch(
       createValidationGroup({ name: props.validationGroupName })
     )
     setupFieldInValidationGroup()
   } else {
-    if (validationGroups[props.validationGroupName][props.id] === undefined) {
+    if (validationGroup[props.id] === undefined) {
       setupFieldInValidationGroup()
     }
   }
@@ -190,6 +196,8 @@ export function ValidationInput(props: ValidationInputProps) {
       label={props.label}
       required={props.required}
       fullWidth={props.fullWidth}
+      className={getIsShaking() ? styles.hasShakeAnimation : ''}
+      onAnimationEnd={() => dispatch(resetShakeState(props.validationGroupName))}
       variant="outlined"
       value={props.value}
       multiline={props.multiline}

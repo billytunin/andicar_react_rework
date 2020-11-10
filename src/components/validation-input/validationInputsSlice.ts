@@ -17,7 +17,8 @@ export const validationInputsSlice = createSlice({
     createFieldInValidationGroup: (state, action: PayloadAction<CreateFieldAction>) => {
       state.validationGroups[action.payload.validationGroupName][action.payload.name] = {
         isInvalid: action.payload.isInvalid,
-        isDirty: false
+        isDirty: false,
+        shakeState: false
       }
     },
     setValidationGroupDirtyState: (state, action: PayloadAction<SetValidationGroupDirtyStateAction>) => {
@@ -35,6 +36,20 @@ export const validationInputsSlice = createSlice({
     },
     setFieldValidationMessage: (state, action: PayloadAction<SetFieldValidationMessageAction>) => {
       state.validationGroups[action.payload.name][action.payload.field].validationMessage = action.payload.value
+    },
+    shakeInvalids: (state, action: PayloadAction<string>) => {
+      const validationGroup = state.validationGroups[action.payload]
+      for(let field in validationGroup) {
+        if (validationGroup[field].isInvalid) {
+          validationGroup[field].shakeState = true
+        }
+      }
+    },
+    resetShakeState: (state, action: PayloadAction<string>) => {
+      const validationGroup = state.validationGroups[action.payload]
+      for(let field in validationGroup) {
+        validationGroup[field].shakeState = false
+      }
     }
   }
 })
@@ -45,10 +60,14 @@ export const {
   setValidationGroupDirtyState,
   setFieldInvalid,
   setFieldDirty,
-  setFieldValidationMessage
+  setFieldValidationMessage,
+  shakeInvalids,
+  resetShakeState
 } = validationInputsSlice.actions
 
-export const getValidationGroups = (state: RootState) => state.validationInputs.validationGroups
+export const getValidationGroup = (validationGroupName: string) => (state: RootState) => {
+  return state.validationInputs.validationGroups[validationGroupName]
+}
 
 export const validationGroupHasErrors = (validationGroupName: string) => (state: RootState) => {
   if(!isEmpty(state.validationInputs.validationGroups) && state.validationInputs.validationGroups[validationGroupName]) {
