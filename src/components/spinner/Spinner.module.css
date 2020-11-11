@@ -1,0 +1,6 @@
+.spinner {
+  margin: auto;
+  background: rgba(255, 255, 255, 0);
+  display: block;
+  shape-rendering: auto;
+}
