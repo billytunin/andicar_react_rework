@@ -12,6 +12,8 @@ import {
   shakeInvalids
 } from '../validation-input/validationInputsSlice'
 
+import { openToast } from '../toast-alert/toastAlertSlice'
+
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import Email from '@material-ui/icons/Email'
 import Phone from '@material-ui/icons/Phone'
@@ -36,17 +38,17 @@ export function Formulario() {
       dispatch(shakeInvalids(VALIDATION_GROUP_NAME))
     } else {
       try {
-        const resp = await request.post('/nuevaConsulta', {
+        await request.post('/nuevaConsulta', {
           full_name: formularioData.nombreCompleto,
           email: formularioData.email,
           telefono: formularioData.telefono,
           consulta: formularioData.consulta
         })
-        console.log(resp)
+        dispatch(openToast({ severity: 'success', text: 'Consulta enviada exitosamente' }))
         dispatch(setValidationGroupDirtyState({ validationGroupName: VALIDATION_GROUP_NAME, isDirty: false }))
         setFormularioData(initialState)
       } catch(error) {
-        console.log('hubo un error')
+        dispatch(openToast({ severity: 'error', text: 'Hubo un problema al intentar enviar la consulta. Por favor intente nuevamente' }))
       }
     }
   }

@@ -7,6 +7,7 @@ import { Inicio } from './components/inicio/Inicio'
 import { Productos } from './components/productos/Productos'
 import { Contacto } from './components/contacto/Contacto'
 import { AppFooter } from './components/app-footer/AppFooter'
+import { ToastAlert } from './components/toast-alert/ToastAlert'
 
 function App() {
   const location = useLocation();
@@ -21,6 +22,7 @@ function App() {
           <Route path="/contacto" component={Contacto} />
         </SlideRoutes>
       </div>
+      <ToastAlert />
       <AppFooter />
     </div>
   );

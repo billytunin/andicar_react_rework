@@ -1,11 +1,13 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import counterReducer from '../features/counter/counterSlice';
 import validationInputsReducer from '../components/validation-input/validationInputsSlice'
+import toastAlertReducer from '../components/toast-alert/toastAlertSlice'
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
-    validationInputs: validationInputsReducer
+    validationInputs: validationInputsReducer,
+    toastAlert: toastAlertReducer
   }
 })
 
