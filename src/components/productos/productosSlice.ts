@@ -3,8 +3,9 @@ import { RootState } from '../../app/store'
 
 const initialState: ProductosState = {
   productos: [],
-  pagina: 0,
-  paginado: 10
+  pagina: 1,
+  paginado: 10,
+  currentTotal: 0
 }
 
 export const productosSlice = createSlice({
@@ -13,6 +14,9 @@ export const productosSlice = createSlice({
   reducers: {
     setProductos: (state, action: PayloadAction<Array<Producto>>) => {
       state.productos = action.payload
+    },
+    setCurrentTotal: (state, action: PayloadAction<number>) => {
+      state.currentTotal = action.payload
     },
     setPagina: (state, action: PayloadAction<number>) => {
       state.pagina = action.payload
@@ -23,10 +27,16 @@ export const productosSlice = createSlice({
   }
 })
 
-export const { setProductos, setPagina, setPaginado } = productosSlice.actions
+export const {
+  setProductos,
+  setPagina,
+  setPaginado,
+  setCurrentTotal
+} = productosSlice.actions
 
 export const getProductsFromState = (state: RootState) => state.productos.productos
 export const getPaginaFromState = (state: RootState) => state.productos.pagina
 export const getPaginadoFromState = (state: RootState) => state.productos.paginado
+export const getCurrentTotalFromState = (state: RootState) => state.productos.currentTotal
 
 export default productosSlice.reducer

@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { setProductos, getProductsFromState } from './productosSlice'
+import {
+  setProductos,
+  setCurrentTotal,
+  getProductsFromState,
+  getPaginaFromState,
+  getPaginadoFromState
+} from './productosSlice'
 
 import request from '../../utils/request'
 
@@ -22,27 +28,46 @@ export function Productos() {
   const dispatch = useDispatch()
   const classes = useStyles()
 
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoadingProducts, setIsLoadingProducts] = useState(true)
+  const [isLoadingTotal, setIsLoadingTotal] = useState(true)
   const [errorLoadingProducts, setErrorLoadingProducts] = useState(false)
 
   const productos = useSelector(getProductsFromState)
+  const pagina = useSelector(getPaginaFromState)
+  const paginado = useSelector(getPaginadoFromState)
 
   useEffect(() => {
     const getProducts = async () => {
+      const limitStart = (pagina - 1) * paginado
       try {
-        const resp: ProductosBackendResponse = await request.get('/getProducts')
+        const resp: ProductosBackendResponse = await request.get(`/getProducts?limitStart=${limitStart}&limitCount=${paginado}`)
         dispatch(setProductos(resp.data))
       } catch (error) {
         setErrorLoadingProducts(true)
       } finally {
-        setIsLoading(false)
+        setIsLoadingProducts(false)
       }
     }
 
     getProducts()
+  }, [dispatch, pagina, paginado])
+
+  useEffect(() => {
+    const getTotal = async () => {
+      try {
+        const resp: GetTotalBackendResponse = await request.get(`/getTotal`)
+        dispatch(setCurrentTotal(resp.data))
+      } catch (error) {
+        setErrorLoadingProducts(true)
+      } finally {
+        setIsLoadingTotal(false)
+      }
+    }
+
+    getTotal()
   }, [dispatch])
 
-  if (isLoading) {
+  if (isLoadingProducts || isLoadingTotal) {
     return <Spinner />
   }
   if (errorLoadingProducts) {
