@@ -52,9 +52,9 @@ export function ToastAlert() {
     <div className={classes.root}>
       <Snackbar
         open={currentToastState.open}
-        autoHideDuration={currentToastState.severity === 'error' ? 6000 : 2000}
+        autoHideDuration={currentToastState.severity === 'error' ? 10000 : 6000}
         onClose={handleClose}
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       >
         <Alert onClose={handleClose} severity={currentToastState.severity} className={alertClasses.root}>
           {currentToastState.text}
