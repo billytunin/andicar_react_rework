@@ -50,6 +50,6 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 - Obtener un favicon.ico mas lindo de alguna manera
 - Ver si me respondieron el issue en el repo de [react-slide-routes](https://github.com/nanxiaobei/react-slide-routes)
 - Borrar la carpeta features/counter cuando no la necesite más
+- Pensar que hacer con el "deprecated findDOMNode" warning
 
 - ¿Donde me quede?
-- - Pensar en el loading spinner para el "enviar" del formulario de contacto
