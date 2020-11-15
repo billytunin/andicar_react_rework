@@ -1,0 +1,9 @@
+.productoContainer {
+  width: 20vw;
+}
+.productoContainer img {
+  width: 100%;
+}
+.lineInfo {
+  background-color: rgba(200, 200, 255, 0.8);
+}

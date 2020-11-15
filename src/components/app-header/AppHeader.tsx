@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink, useRouteMatch } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
+import Paginador from '../productos/tools/Paginador'
 import styles from './AppHeader.module.css';
 
 export function AppHeader() {
@@ -21,6 +22,7 @@ export function AppHeader() {
           CONTACTO
         </Button>
       </NavLink>
+      <Paginador />
     </div>
   )
 }
