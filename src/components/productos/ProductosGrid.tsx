@@ -6,7 +6,8 @@ import {
   setCurrentTotal,
   getProductsFromState,
   getPaginaFromState,
-  getPaginadoFromState
+  getPaginadoFromState,
+  getCurrentCategoriaFromState
 } from './productosSlice'
 
 import request from '../../utils/request'
@@ -37,13 +38,17 @@ export default function ProductosGrid() {
   const productos = useSelector(getProductsFromState)
   const pagina = useSelector(getPaginaFromState)
   const paginado = useSelector(getPaginadoFromState)
+  const categoria = useSelector(getCurrentCategoriaFromState)
 
   useEffect(() => {
     const getProducts = async () => {
       setIsLoadingProducts(true)
       const limitStart = (pagina - 1) * paginado
+      const categoriaParam = categoria ? `&categoria=${categoria}` : ''
       try {
-        const resp: ProductosBackendResponse = await request.get(`/getProducts?limitStart=${limitStart}&limitCount=${paginado}`)
+        const resp: ProductosBackendResponse = await request.get(
+          `/getProducts?limitStart=${limitStart}&limitCount=${paginado}${categoriaParam}`
+        )
         dispatch(setProductos(resp.data))
       } catch (error) {
         setErrorLoadingProducts(true)
@@ -53,12 +58,13 @@ export default function ProductosGrid() {
     }
 
     getProducts()
-  }, [dispatch, pagina, paginado])
+  }, [dispatch, pagina, paginado, categoria])
 
   useEffect(() => {
     const getTotal = async () => {
+      const categoriaParam = categoria ? `?categoria=${categoria}` : ''
       try {
-        const resp: GetTotalBackendResponse = await request.get(`/getTotal`)
+        const resp: GetTotalBackendResponse = await request.get(`/getTotal${categoriaParam}`)
         dispatch(setCurrentTotal(resp.data))
       } catch (error) {
         setErrorLoadingProducts(true)
@@ -68,7 +74,7 @@ export default function ProductosGrid() {
     }
 
     getTotal()
-  }, [dispatch])
+  }, [dispatch, categoria])
 
   if (isLoadingProducts || isLoadingTotal) {
     return <Spinner />

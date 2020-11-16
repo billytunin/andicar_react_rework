@@ -15,6 +15,7 @@ interface ProductosState {
   pagina: number
   paginado: number
   currentTotal: number
+  categoria: string
 }
 
 interface ProductosBackendResponse {
