@@ -24,8 +24,3 @@ interface ProductosBackendResponse {
 interface GetTotalBackendResponse {
   data: number
 }
-
-interface GoToPageButtonProps {
-  handleClick: () => void
-  errorOnGoToPage: boolean
-}
