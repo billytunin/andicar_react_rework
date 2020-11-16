@@ -1,8 +1,8 @@
-import React from 'react';
-import SlideRoutes from 'react-slide-routes';
-import { Route, useLocation } from 'react-router-dom';
-import './App.css';
-import { AppHeader } from './components/app-header/AppHeader';
+import React from 'react'
+import SlideRoutes from 'react-slide-routes'
+import { Route, useLocation } from 'react-router-dom'
+import './App.css'
+import { AppHeader } from './components/app-header/AppHeader'
 import { Inicio } from './components/inicio/Inicio'
 import { Productos } from './components/productos/Productos'
 import { Contacto } from './components/contacto/Contacto'
@@ -10,7 +10,7 @@ import { AppFooter } from './components/app-footer/AppFooter'
 import { ToastAlert } from './components/toast-alert/ToastAlert'
 
 function App() {
-  const location = useLocation();
+  const location = useLocation()
 
   return (
     <div className="app">
@@ -28,4 +28,4 @@ function App() {
   );
 }
 
-export default App;
+export default App
