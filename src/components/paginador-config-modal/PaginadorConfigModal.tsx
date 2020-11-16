@@ -13,6 +13,7 @@ import Modal from '@material-ui/core/Modal'
 import Backdrop from '@material-ui/core/Backdrop'
 import Fade from '@material-ui/core/Fade'
 import IconButton from '@material-ui/core/IconButton'
+import Alert from '@material-ui/lab/Alert'
 import SettingsIcon from '@material-ui/icons/Settings'
 import ValidatedNumberField from '../validated-number-field/ValidatedNumberField'
 
@@ -31,7 +32,8 @@ const useStyles = makeStyles((theme: Theme) =>
       border: '2px solid #000',
       boxShadow: theme.shadows[5],
       padding: theme.spacing(2, 4, 3),
-      outline: 0
+      outline: 0,
+      width: '300px'
     }
   })
 )
@@ -85,6 +87,9 @@ export default function PaginadorConfigModal() {
               maxNumber={currentTotal}
               handleClick={handleCallToAction}
             />
+            <Alert severity="warning">
+              Si utiliza un número muy alto, los tiempos de carga podrian extenderse y el consumo de datos podría ser mayor
+            </Alert>
           </div>
         </Fade>
       </Modal>

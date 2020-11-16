@@ -38,6 +38,7 @@ export function Productos() {
 
   useEffect(() => {
     const getProducts = async () => {
+      setIsLoadingProducts(true)
       const limitStart = (pagina - 1) * paginado
       try {
         const resp: ProductosBackendResponse = await request.get(`/getProducts?limitStart=${limitStart}&limitCount=${paginado}`)

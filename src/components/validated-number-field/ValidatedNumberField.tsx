@@ -3,9 +3,23 @@ import React, { useEffect, useState } from 'react'
 import CallToActionButton from './CallToActionButton'
 
 import styles from './ValidatedNumberField.module.css'
+import { createStyles, makeStyles } from '@material-ui/core/styles'
 
 import InputAdornment from '@material-ui/core/InputAdornment'
 import TextField from '@material-ui/core/TextField'
+
+const useStyles = makeStyles(() =>
+  createStyles({
+    textField: {
+      '& .MuiInputBase-input': {
+        width: '40px'
+      }
+    },
+    inputAdornment: {
+      opacity: 0.4
+    }
+  })
+)
 
 /**
  * This component controls a call to action based on an input. Call to action will be
@@ -15,6 +29,8 @@ import TextField from '@material-ui/core/TextField'
  * @param props - as specified by ValidatedNumberFieldProps interface
  */
 export default function ValidatedNumberField(props: ValidatedNumberFieldProps) {
+  const classes = useStyles()
+
   const [internalValue, setInternalValue] = useState(props.bindedValue)
   const [errorOnInternalValue, setErrorOnInternalValue] = useState(false)
 
@@ -41,12 +57,12 @@ export default function ValidatedNumberField(props: ValidatedNumberFieldProps) {
   return (
     <div className={styles.root}>
       <TextField
-        id="internalValue"
         onChange={handleInputChange}
         error={errorOnInternalValue}
+        className={classes.textField}
         value={internalValue}
         InputProps={{
-          endAdornment: <InputAdornment position="end">/ {props.maxNumber}</InputAdornment>
+          endAdornment: <InputAdornment position="end" className={classes.inputAdornment}>/ {props.maxNumber}</InputAdornment>
         }}
       />
       <CallToActionButton
