@@ -1,6 +1,10 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
+
 import { CDNEdgeUrl } from '../../utils/constants'
 import styles from './Producto.module.css'
+
+import { getCategoriaById } from './productosSlice'
 
 export function Producto(props: Producto) {
   return (
@@ -12,7 +16,7 @@ export function Producto(props: Producto) {
       </div>
       <div className={styles.lineInfo}>
         <span>Categoría:</span>
-        <span className="float-right">{props.categoria}</span>
+        <span className="float-right">{useSelector(getCategoriaById(props.categoriaId))}</span>
       </div>
       <div className={styles.lineInfo}>
         <span>Ancho:</span>

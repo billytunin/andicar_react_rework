@@ -44,7 +44,7 @@ export default function ProductosGrid() {
     const getProducts = async () => {
       setIsLoadingProducts(true)
       const limitStart = (pagina - 1) * paginado
-      const categoriaParam = categoria ? `&categoria=${categoria}` : ''
+      const categoriaParam = categoria ? `&categoriaId=${categoria}` : ''
       try {
         const resp: ProductosBackendResponse = await request.get(
           `/getProducts?limitStart=${limitStart}&limitCount=${paginado}${categoriaParam}`
@@ -62,7 +62,7 @@ export default function ProductosGrid() {
 
   useEffect(() => {
     const getTotal = async () => {
-      const categoriaParam = categoria ? `?categoria=${categoria}` : ''
+      const categoriaParam = categoria ? `?categoriaId=${categoria}` : ''
       try {
         const resp: GetTotalBackendResponse = await request.get(`/getTotal${categoriaParam}`)
         dispatch(setCurrentTotal(resp.data))

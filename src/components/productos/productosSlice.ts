@@ -7,7 +7,8 @@ const initialState: ProductosState = {
   pagina: 1,
   paginado: DEFAULT_PAGINADO,
   currentTotal: 0,
-  categoria: ''
+  categoria: '',
+  categorias: []
 }
 
 export const productosSlice = createSlice({
@@ -28,6 +29,9 @@ export const productosSlice = createSlice({
     },
     setCategoria: (state, action: PayloadAction<string>) => {
       state.categoria = action.payload
+    },
+    setCategorias: (state, action: PayloadAction<Array<Categoria>>) => {
+      state.categorias = action.payload
     }
   }
 })
@@ -37,7 +41,8 @@ export const {
   setPagina,
   setPaginado,
   setCurrentTotal,
-  setCategoria
+  setCategoria,
+  setCategorias
 } = productosSlice.actions
 
 export const getProductsFromState = (state: RootState) => state.productos.productos
@@ -45,5 +50,10 @@ export const getPaginaFromState = (state: RootState) => state.productos.pagina
 export const getPaginadoFromState = (state: RootState) => state.productos.paginado
 export const getCurrentTotalFromState = (state: RootState) => state.productos.currentTotal
 export const getCurrentCategoriaFromState = (state: RootState) => state.productos.categoria
+export const getCurrentCategoriasFromState = (state: RootState) => state.productos.categorias
+export const getCategoriaById = (id: string) => (state: RootState) => {
+  const foundCategoria = state.productos.categorias.find(categoria => categoria.id === id)
+  return foundCategoria ? foundCategoria.titulo : ''
+}
 
 export default productosSlice.reducer

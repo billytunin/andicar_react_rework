@@ -3,7 +3,7 @@ interface Producto {
   ancho: number
   largo: number
   archivado: boolean
-  categoria: string
+  categoriaId: string
   codigo: string
   en_oferta: boolean
   id: number
@@ -15,7 +15,8 @@ interface ProductosState {
   pagina: number
   paginado: number
   currentTotal: number
-  categoria: string
+  categoria: string,
+  categorias: Array<Categoria>
 }
 
 interface ProductosBackendResponse {
