@@ -1,0 +1,14 @@
+.fancyLines {
+  height: 5px;
+  width: 15vw;
+  border-top: 1px solid blue;
+  border-bottom: 1px solid blue;
+  display: inline-block;
+  vertical-align: text-top;
+}
+.fancyLines.left {
+  margin-right: 1vw;
+}
+.fancyLines.right {
+  margin-left: 1vw;
+}

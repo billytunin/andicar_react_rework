@@ -24,7 +24,7 @@ export function Contacto() {
           <ContactoBox />
         </Grid>
         <Grid item xs={6}>
-        <ContactoBox id="formulario" />
+          <ContactoBox id="formulario" />
         </Grid>
       </Grid>
     </div>

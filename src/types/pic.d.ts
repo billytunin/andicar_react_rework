@@ -1,0 +1,3 @@
+interface PicProps {
+  picNumber: number
+}

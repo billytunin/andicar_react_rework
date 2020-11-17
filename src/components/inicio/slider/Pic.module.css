@@ -1,0 +1,17 @@
+.image {
+  position: absolute;
+  left: 0;
+  animation: floatBubble 25s infinite  normal ease-out;
+}
+
+@keyframes floatBubble {
+  0% {
+    top: 0px;
+  }
+  50% {
+    top: -300px;
+  }
+  100% {
+    top: 0px;
+  }
+}
