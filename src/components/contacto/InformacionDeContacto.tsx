@@ -2,7 +2,7 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import styles from './InformacionDeContacto.module.css'
 
-export function InformacionDeContacto() {
+export default function InformacionDeContacto() {
   return (
     <div>
       <Grid container>

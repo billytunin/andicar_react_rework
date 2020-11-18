@@ -33,7 +33,7 @@ const alertStyles = makeStyles((theme: Theme) => ({
   }
 }))
 
-export function ToastAlert() {
+export default function ToastAlert() {
   const classes = useStyles()
   const alertClasses = alertStyles()
   const dispatch = useDispatch()

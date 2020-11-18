@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid'
 import ProductosGrid from './ProductosGrid'
 import CategoriaSelector from './CategoriaSelector'
 
-export function Productos() {
+export default function Productos() {
   return (
     <Grid container spacing={0}>
       <Grid item xs={1}>

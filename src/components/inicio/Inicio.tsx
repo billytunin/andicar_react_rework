@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 )
 
-export function Inicio() {
+export default function Inicio() {
   const classes = useStyles()
 
   return (

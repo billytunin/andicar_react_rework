@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button'
 import Paginador from '../productos/tools/Paginador'
 import styles from './AppHeader.module.css'
 
-export function AppHeader() {
+export default function AppHeader() {
   return (
     <div className={styles.headerContainer}>
       <NavLink to="/" exact>

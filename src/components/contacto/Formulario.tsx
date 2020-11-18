@@ -23,7 +23,7 @@ import Spinner from '../spinner/Spinner'
 
 const VALIDATION_GROUP_NAME = 'formularioContacto'
 
-export function Formulario() {
+export default function Formulario() {
   const dispatch = useDispatch()
   const initialState = {
     nombreCompleto: '',
