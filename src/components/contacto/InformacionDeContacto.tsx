@@ -12,16 +12,12 @@ export default function InformacionDeContacto() {
         <Grid item xs={6}>
           <span className={styles.rightAligned}>(011)4583-3740</span>
         </Grid>
-      </Grid>
-      <Grid container>
         <Grid item xs={6}>
           <span>Fax</span>
         </Grid>
         <Grid item xs={6}>
           <span className={styles.rightAligned}>(011)4583-3740</span>
         </Grid>
-      </Grid>
-      <Grid container>
         <Grid item xs={6}>
           <span>E-mail</span>
         </Grid>

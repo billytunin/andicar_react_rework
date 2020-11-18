@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './AppFooter.module.css';
 import moment from 'moment'
-import { AndicarSpan } from '../andicar-span/AndicarSpan'
+import AndicarSpan from '../andicar-span/AndicarSpan'
 
 export default function AppFooter() {
   return (

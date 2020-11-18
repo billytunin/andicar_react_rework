@@ -12,7 +12,7 @@ const useStyles = makeStyles(() =>
   createStyles({
     root: {
       width: `${picContainerWidth}px`,
-      height: `${picContainerWidth + 30}px`,
+      height: `${picContainerHeight + 30}px`,
       margin: 'auto',
       '& .picContainer': {
         position: 'relative',
@@ -31,7 +31,7 @@ export default function Slider() {
 
   return (
     <div className={classes.root}>
-      <Carousel autoPlay={false}>
+      <Carousel>
         {picNumbers.map(
           picNumber => isMobile ? <MobilePic key={picNumber} picNumber={picNumber} /> : <Pic key={picNumber} picNumber={picNumber} />
         )}
