@@ -31,7 +31,7 @@ export default function Slider() {
 
   return (
     <div className={classes.root}>
-      <Carousel>
+      <Carousel interval={8000}>
         {picNumbers.map(
           picNumber => isMobile ? <MobilePic key={picNumber} picNumber={picNumber} /> : <Pic key={picNumber} picNumber={picNumber} />
         )}
