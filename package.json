@@ -25,6 +25,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.0",
     "react-slide-routes": "^0.13.0",
+    "react-spring": "^9.0.0-rc.3",
     "react-use-gesture": "^8.0.1",
     "request-promise-native": "^1.0.9",
     "typescript": "~3.8.2"

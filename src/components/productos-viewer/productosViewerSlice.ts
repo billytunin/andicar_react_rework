@@ -12,7 +12,9 @@ export const productosViewerSlice = createSlice({
   reducers: {
     toggleProductosViewer: (state, action: PayloadAction<OpenProductosViewerAction>) => {
       state.isOpen = action.payload.isOpen
-      state.productoIndex = action.payload.productoIndex || 0
+      if (action.payload.productoIndex) {
+        state.productoIndex = action.payload.productoIndex
+      }
     },
     next: (state) => {
       state.productoIndex++

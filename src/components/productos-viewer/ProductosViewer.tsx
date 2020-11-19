@@ -1,5 +1,6 @@
 import React, { useEffect, useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { useSpring, animated } from 'react-spring'
 import { getProductsFromState } from '../productos/productosSlice'
 import { toggleProductosViewer, productosViewerState, next, prev } from './productosViewerSlice'
 
@@ -64,6 +65,8 @@ export default function ProductosViewer() {
   const classes = useStyles()
   const dispatch = useDispatch()
 
+  const [{ x }, setSpringObj] = useSpring(() => ({ x: 0 }))
+
   const productos = useSelector(getProductsFromState)
   const { isOpen, productoIndex } = useSelector(productosViewerState)
 
@@ -79,6 +82,7 @@ export default function ProductosViewer() {
   }, [productoIndex, productos])
 
   const dragBinding = useDrag(({ down, movement: [mx, my] }) => {
+    setSpringObj({ x: down ? mx : 0 })
     if (!down && mx < -8 && !isLastProducto()) {
       dispatch(next())
     }
@@ -106,7 +110,6 @@ export default function ProductosViewer() {
 
   return (
     <Modal
-      {...dragBinding()}
       open={isOpen}
       onClose={handleClose}
       closeAfterTransition
@@ -131,14 +134,16 @@ export default function ProductosViewer() {
                 </IconButton>
               </Grid>
               <Grid item xs className={classes.imgGrid}>
-                <img src={CDNEdgeUrl + productos[productoIndex].imagen} alt='juguete' />
-                <IconButton
-                  className={classes.closeButton}
-                  aria-label="close-productos-viewer"
-                  onClick={handleClose}
-                >
-                  <CancelIcon />
-                </IconButton>
+                <animated.div {...dragBinding()} style={{ touchAction: 'none', x }}>
+                  <img src={CDNEdgeUrl + productos[productoIndex].imagen} alt='juguete' />
+                  <IconButton
+                    className={classes.closeButton}
+                    aria-label="close-productos-viewer"
+                    onClick={handleClose}
+                  >
+                    <CancelIcon />
+                  </IconButton>
+                </animated.div>
               </Grid>
               <Grid item xs={1}>
                 <IconButton
