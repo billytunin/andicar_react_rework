@@ -5,6 +5,8 @@ import { toggleProductosViewer, productosViewerState, next, prev } from './produ
 
 import { CDNEdgeUrl } from '../../utils/constants'
 
+import { useDrag } from 'react-use-gesture'
+
 import Modal from '@material-ui/core/Modal'
 import Grid from '@material-ui/core/Grid'
 import IconButton from '@material-ui/core/IconButton'
@@ -76,6 +78,15 @@ export default function ProductosViewer() {
     return productoIndex === productos.length - 1
   }, [productoIndex, productos])
 
+  const dragBinding = useDrag(({ down, movement: [mx, my] }) => {
+    if (!down && mx < -8 && !isLastProducto()) {
+      dispatch(next())
+    }
+    if (!down && mx > 8 && !isFirstProducto()) {
+      dispatch(prev())
+    }
+  })
+
   const eventHandler = useCallback((event) => {
     if (event.code === 'ArrowLeft' && !isFirstProducto()) {
       dispatch(prev())
@@ -95,6 +106,7 @@ export default function ProductosViewer() {
 
   return (
     <Modal
+      {...dragBinding()}
       open={isOpen}
       onClose={handleClose}
       closeAfterTransition
