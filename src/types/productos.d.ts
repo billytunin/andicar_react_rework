@@ -10,6 +10,10 @@ interface Producto {
   imagen: string
 }
 
+interface ProductoProps extends Producto {
+  productIndex: number
+}
+
 interface ProductosState {
   productos: Array<Producto>
   pagina: number

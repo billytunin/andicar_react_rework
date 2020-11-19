@@ -15,7 +15,8 @@ import request from '../../utils/request'
 import { makeStyles, createStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import Spinner from '../spinner/Spinner'
-import { Producto } from './Producto'
+import Producto from './Producto'
+import ProductosViewer from '../productos-viewer/ProductosViewer'
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -86,14 +87,15 @@ export default function ProductosGrid() {
   return (
     <div className={classes.productosGrid}>
       <Grid container spacing={0}>
-        {productos.map(producto => {
+        {productos.map((producto, index) => {
           return (
             <Grid item xs={4} key={producto.id}>
-              <Producto {...producto} />
+              <Producto {...producto} productIndex={index} />
             </Grid>
           )
         })}
       </Grid>
+      <ProductosViewer />
     </div>
   )
 }

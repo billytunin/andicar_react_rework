@@ -1,15 +1,26 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { toggleProductosViewer } from '../productos-viewer/productosViewerSlice'
 
 import { CDNEdgeUrl } from '../../utils/constants'
 import styles from './Producto.module.css'
 
 import { getCategoriaById } from './productosSlice'
 
-export function Producto(props: Producto) {
+export default function Producto(props: ProductoProps) {
+  const dispatch = useDispatch()
+
   return (
     <div className={styles.productoContainer}>
-      <img src={CDNEdgeUrl + props.imagen} alt={`Articulo ${props.codigo}`} />
+      <img
+        src={CDNEdgeUrl + props.imagen}
+        alt={`Articulo ${props.codigo}`}
+        onClick={
+          () => dispatch(
+              toggleProductosViewer({ isOpen: true, productoIndex: props.productIndex })
+            )
+        }
+      />
       <div className={styles.lineInfo}>
         <span>Código:</span>
         <span className="float-right">{props.codigo}</span>

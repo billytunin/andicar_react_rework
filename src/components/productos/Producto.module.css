@@ -3,6 +3,7 @@
 }
 .productoContainer img {
   width: 100%;
+  cursor: pointer;
 }
 .lineInfo {
   background-color: rgba(200, 200, 255, 0.8);
