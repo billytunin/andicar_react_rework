@@ -48,7 +48,7 @@ export default function ProductosGrid() {
       const categoriaParam = categoria ? `&categoriaId=${categoria}` : ''
       try {
         const resp: ProductosBackendResponse = await request.get(
-          `/getProducts?limitStart=${limitStart}&limitCount=${paginado}${categoriaParam}`
+          `/auth/getProducts?limitStart=${limitStart}&limitCount=${paginado}${categoriaParam}`
         )
         dispatch(setProductos(resp.data))
       } catch (error) {
@@ -65,7 +65,7 @@ export default function ProductosGrid() {
     const getTotal = async () => {
       const categoriaParam = categoria ? `?categoriaId=${categoria}` : ''
       try {
-        const resp: GetTotalBackendResponse = await request.get(`/getTotal${categoriaParam}`)
+        const resp: GetTotalBackendResponse = await request.get(`/auth/getTotal${categoriaParam}`)
         dispatch(setCurrentTotal(resp.data))
       } catch (error) {
         setErrorLoadingProducts(true)

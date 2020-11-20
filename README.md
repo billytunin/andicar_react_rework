@@ -46,13 +46,15 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 ## TODOs
 
 - ¿Pensar el tema de los iconos para las categorias?
-- Agregar swipe left y right, si estas en touch-screen, para recorrer las imagenes cuando estás en modo "image-viewer"
 - Obtener un favicon.ico mas lindo de alguna manera
 - Cuando haga el admin de modificacion de productos, acordarse de la validacion de maxlength de Categoria
 - Que las imagenes que se vayan a subir, sean en un nuevo bucket de AWS con permisos puestos
-- Ver como se ve el sitio en mobile
+- Ver como se ve el sitio en mobile/ipad
 - Borrar la carpeta features/counter cuando no la necesite más
 - Pensar que hacer con el "deprecated findDOMNode" warning (mas info [aca](https://github.com/nanxiaobei/react-slide-routes))
 
 - ¿Donde me quede?
+- - agregar el /nuevaConsulta en andicar DEV
+- - manejar los errores de falta de autenticación y sesion expirada en el FE
+- - probar como responden los endpoints /auth si mando authToken inexistente en headers? usar postman
 

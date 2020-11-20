@@ -1,12 +1,21 @@
 import request from 'request-promise-native'
 import { BASE_URL } from './constants'
 
+const setupHeaders = () => {
+  const authToken = sessionStorage.getItem('authToken')
+  return authToken ? { authToken } : {}
+}
+
 const wrapper = {
+  setAuthToken: (token: string) => {
+    sessionStorage.setItem('authToken', token)
+  },
   get: (endpoint: string) => {
     return request({
       uri: `${BASE_URL}${endpoint}`,
       method: 'GET',
-      json: true
+      json: true,
+      headers: setupHeaders()
     })
   },
   post: (endpoint: string, body: any) => {
@@ -14,7 +23,8 @@ const wrapper = {
       uri: `${BASE_URL}${endpoint}`,
       method: 'POST',
       body,
-      json: true
+      json: true,
+      headers: setupHeaders()
     })
   }
 }

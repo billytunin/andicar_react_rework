@@ -22,6 +22,11 @@ export default function AppHeader() {
           CONTACTO
         </Button>
       </NavLink>
+      <NavLink to="/login">
+        <Button variant="contained" color={useRouteMatch({ path: '/login' }) ? 'primary' : 'default'}>
+          INGRESAR
+        </Button>
+      </NavLink>
       {useRouteMatch({ path: '/productos' }) ? <Paginador /> : ''}
     </div>
   )

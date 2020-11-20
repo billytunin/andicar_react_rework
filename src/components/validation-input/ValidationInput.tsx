@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react'
 import TextField from '@material-ui/core/TextField'
 import InputAdornment from '@material-ui/core/InputAdornment'
+import Visibility from '@material-ui/icons/Visibility'
+import VisibilityOff from '@material-ui/icons/VisibilityOff'
+import IconButton from '@material-ui/core/IconButton'
 import { useSelector, useDispatch } from 'react-redux'
 import styles from './ValidationInput.module.css'
 
@@ -26,12 +29,16 @@ interface ValidationInputProps {
   rows?: number
   required?: boolean
   helperText?: string
+  type?: string
+  handleClickShowPassword?: () => void
+  showPassword?: boolean
+  useShowPasswordAdornment?: boolean
   icon?: JSX.Element
   onChange: (value: string) => void
   validationGroupName: string
 }
 
-export function ValidationInput(props: ValidationInputProps) {
+export default function ValidationInput(props: ValidationInputProps) {
   const dispatch = useDispatch()
 
   const validationGroup = useSelector(getValidationGroup(props.validationGroupName))
@@ -201,6 +208,7 @@ export function ValidationInput(props: ValidationInputProps) {
       variant="outlined"
       value={props.value}
       multiline={props.multiline}
+      type={props.type}
       rows={props.rows}
       margin="normal"
       onChange={handleChange}
@@ -209,13 +217,24 @@ export function ValidationInput(props: ValidationInputProps) {
       InputLabelProps={{
         shrink: true
       }}
-      InputProps={props.icon ? {
-        startAdornment: (
+      InputProps={{
+        startAdornment: props.icon ? (
           <InputAdornment position="start">
             {props.icon}
           </InputAdornment>
-        )
-      } : undefined }
+        ) : undefined,
+        endAdornment: props.useShowPasswordAdornment ? (
+          <InputAdornment position="end">
+            <IconButton
+              aria-label="toggle password visibility"
+              onClick={props.handleClickShowPassword}
+              edge="end"
+            >
+              {props.showPassword ? <Visibility /> : <VisibilityOff />}
+            </IconButton>
+          </InputAdornment>
+        ) : undefined
+      }}
     />
   )
 }

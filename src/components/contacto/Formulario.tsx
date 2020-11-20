@@ -14,7 +14,7 @@ import { openToast } from '../toast-alert/toastAlertSlice'
 
 import styles from './Formulario.module.css'
 
-import { ValidationInput } from '../validation-input/ValidationInput'
+import ValidationInput from '../validation-input/ValidationInput'
 import Button from '@material-ui/core/Button'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import Email from '@material-ui/icons/Email'

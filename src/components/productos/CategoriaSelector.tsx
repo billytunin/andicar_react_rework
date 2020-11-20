@@ -28,7 +28,7 @@ export default function CategoriaSelector() {
     const getCategorias = async () => {
       setIsLoadingCategorias(true)
       try {
-        const resp: CategoriasBackendResponse = await request.get('/getCategorias')
+        const resp: CategoriasBackendResponse = await request.get('/auth/getCategorias')
         dispatch(setCategorias(resp.data))
       } catch (error) {
         setIsLoadingCategorias(false)
