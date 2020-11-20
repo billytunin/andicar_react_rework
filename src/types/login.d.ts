@@ -4,3 +4,5 @@ interface LoginBackendResponse {
     isAdmin: boolean
   }
 }
+
+interface IsValidTokenBackendResponse extends LoginBackendResponse {}

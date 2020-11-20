@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from './app/store'
+import request from './utils/request'
 
 const initialState: UserState = {
   isLoggedIn: false,
@@ -12,18 +13,33 @@ export const userStateSlice = createSlice({
   name: 'userState',
   initialState,
   reducers: {
-    setState: (state, action: PayloadAction<SetStateAction>) => {
-      state.isLoggedIn = action.payload.isLoggedIn ? true : false
-      state.isAdmin = action.payload.isAdmin ? true : false
-      state.sessionErrorId = action.payload.sessionErrorId ? action.payload.sessionErrorId : null
-    },
     setInitialCheck: (state, action: PayloadAction<boolean>) => {
       state.initialCheck = action.payload
+    },
+    userStateLogin: (state, action: PayloadAction<string>) => {
+      state.isLoggedIn = true
+      request.setAuthToken(action.payload)
+    },
+    userStateLogout: (state) => {
+      state.isLoggedIn = false
+      request.removeAuthToken()
+    },
+    setIsAdmin: (state, action: PayloadAction<boolean>) => {
+      state.isAdmin = action.payload
+    },
+    setSessionErrorId: (state, action: PayloadAction<string>) => {
+      state.sessionErrorId = action.payload
     }
   }
 })
 
-export const { setState, setInitialCheck } = userStateSlice.actions
+export const {
+  setInitialCheck,
+  userStateLogin,
+  userStateLogout,
+  setIsAdmin,
+  setSessionErrorId
+} = userStateSlice.actions
 
 export const userState = (state: RootState) => state.userState
 export const getInitialCheckState = (state: RootState) => state.userState.initialCheck

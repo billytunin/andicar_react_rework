@@ -4,9 +4,3 @@ interface UserState {
   sessionErrorId: string | null
   initialCheck: boolean
 }
-
-interface SetStateAction {
-  isLoggedIn?: boolean
-  isAdmin?: boolean
-  sessionErrorId?: string | null
-}

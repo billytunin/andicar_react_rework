@@ -29,7 +29,7 @@ export default function Productos() {
       <div>
         <p>
           {errorIdIntoMessage({ errorId: sessionErrorId, customMessage: 'Por favor, inicie sesión' })}
-          <NavLink to="/login">
+          <NavLink to="/session">
             <Button variant="contained" color='primary'>
               INICIAR SESIÓN
             </Button>

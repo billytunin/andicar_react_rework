@@ -3,13 +3,19 @@ import SlideRoutes from 'react-slide-routes'
 import { Route, useLocation } from 'react-router-dom'
 import request from './utils/request'
 import './App.css'
-import { getInitialCheckState, setState, setInitialCheck } from './userStateSlice'
+import {
+  getInitialCheckState,
+  setInitialCheck,
+  userStateLogin,
+  setIsAdmin,
+  setSessionErrorId
+} from './userStateSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import AppHeader from './components/app-header/AppHeader'
 import Inicio from './components/inicio/Inicio'
 import Productos from './components/productos/Productos'
 import Contacto from './components/contacto/Contacto'
-import LoginPage from './components/login-page/LoginPage'
+import SessionPage from './components/session-page/SessionPage'
 import AppFooter from './components/app-footer/AppFooter'
 import ToastAlert from './components/toast-alert/ToastAlert'
 import Spinner from './components/spinner/Spinner'
@@ -17,7 +23,7 @@ import Spinner from './components/spinner/Spinner'
 function App() {
   const dispatch = useDispatch()
   const location = useLocation()
-  const pathList = ['/', '/productos', '/contacto', '/login']
+  const pathList = ['/', '/productos', '/contacto', '/session']
   const [isLoading, setIsLoading] = useState(false)
 
   const initialCheck = useSelector(getInitialCheckState)
@@ -26,23 +32,13 @@ function App() {
     const loadUserState = async () => {
       setIsLoading(true)
       try {
-        const resp = await request.get('/auth/isValidToken')
-        dispatch(
-          setState({
-            isLoggedIn: true,
-            isAdmin: resp.data.isAdmin
-          })
-        )
+        const resp: IsValidTokenBackendResponse = await request.get('/auth/isValidToken')
+        dispatch(userStateLogin(resp.data.token))
+        dispatch(setIsAdmin(resp.data.isAdmin))
         dispatch(setInitialCheck(true))
       } catch(error) {
         const errorId = (error.error && error.error.data && error.error.data.errorId) || null
-        dispatch(
-          setState({
-            isLoggedIn: false,
-            isAdmin: false,
-            sessionErrorId: errorId
-          })
-        )
+        dispatch(setSessionErrorId(errorId))
         dispatch(setInitialCheck(true))
       } finally {
         setIsLoading(false)
@@ -62,7 +58,7 @@ function App() {
           <Route path="/" component={Inicio} exact />
           <Route path="/productos" component={Productos} />
           <Route path="/contacto" component={Contacto} />
-          <Route path="/login" component={LoginPage} />
+          <Route path="/session" component={SessionPage} />
         </SlideRoutes>
       </div>
     </div>

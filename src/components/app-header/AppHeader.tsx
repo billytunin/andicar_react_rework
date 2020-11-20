@@ -28,8 +28,8 @@ export default function AppHeader() {
           CONTACTO
         </Button>
       </NavLink>
-      <NavLink to="/login">
-        <Button variant="contained" color={useRouteMatch({ path: '/login' }) ? 'primary' : 'default'}>
+      <NavLink to="/session">
+        <Button variant="contained" color={useRouteMatch({ path: '/session' }) ? 'primary' : 'default'}>
           SESIÓN
         </Button>
       </NavLink>

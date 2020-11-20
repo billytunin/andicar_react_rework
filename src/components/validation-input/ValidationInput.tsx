@@ -32,6 +32,7 @@ interface ValidationInputProps {
   type?: string
   handleClickShowPassword?: () => void
   showPassword?: boolean
+  onKeyPress?: (event: any) => void /* TODO: type-ear ese "event" bien */
   useShowPasswordAdornment?: boolean
   icon?: JSX.Element
   onChange: (value: string) => void
@@ -212,6 +213,7 @@ export default function ValidationInput(props: ValidationInputProps) {
       rows={props.rows}
       margin="normal"
       onChange={handleChange}
+      onKeyPress={(event) => props.onKeyPress ? props.onKeyPress(event) : undefined}
       error={getIsDirty() && getIsInvalid()}
       helperText={(getIsDirty() && getValidationMessage()) || props.helperText}
       InputLabelProps={{

@@ -10,6 +10,9 @@ const wrapper = {
   setAuthToken: (token: string) => {
     sessionStorage.setItem('authToken', token)
   },
+  removeAuthToken: () => {
+    sessionStorage.removeItem('authToken')
+  },
   get: (endpoint: string) => {
     return request({
       uri: `${BASE_URL}${endpoint}`,

@@ -13,12 +13,12 @@ import {
   setValidationGroupDirtyState,
   shakeInvalids
 } from '../validation-input/validationInputsSlice'
-import { setState } from '../../userStateSlice'
-import styles from './LoginPage.module.css'
+import { userStateLogin, setIsAdmin } from '../../userStateSlice'
+import styles from './LoginBox.module.css'
 
 const VALIDATION_GROUP_NAME = 'loginForm'
 
-export default function LoginPage() {
+export default function LoginBox() {
   const history = useHistory()
   const dispatch = useDispatch()
   const [loginData, setLoginData] = useState({ user: '', pass: '' })
@@ -39,13 +39,8 @@ export default function LoginPage() {
           user: loginData.user,
           pass: loginData.pass
         })
-        request.setAuthToken(resp.data.token)
-        dispatch(
-          setState({
-            isLoggedIn: true,
-            isAdmin: resp.data.isAdmin
-          })
-        )
+        dispatch(userStateLogin(resp.data.token))
+        dispatch(setIsAdmin(resp.data.isAdmin))
         history.push('/productos')
       } catch(error) {
         setErrorText(
@@ -53,7 +48,6 @@ export default function LoginPage() {
             error.error.data.message :
             'Ocurrió un error al intentar hacer login. Por favor intente nuevamente'
         )
-      } finally {
         setIsLoading(false)
       }
     }
@@ -62,6 +56,12 @@ export default function LoginPage() {
   const handleLoginDataChange = (field: string, value: string) => {
     setErrorText('')
     setLoginData({ ...loginData, [field]: value })
+  }
+
+  const handleKeyPress = (event: any /* TODO: type-ear este event bien */) => {
+    if (event.code === 'Enter') {
+      login()
+    }
   }
 
   if (isLoading) {
@@ -78,6 +78,7 @@ export default function LoginPage() {
           label="Usuario"
           icon={<AccountCircle />}
           fullWidth
+          onKeyPress={handleKeyPress}
           onChange={(value) => handleLoginDataChange('user', value)}
         />
         <ValidationInput
@@ -93,6 +94,7 @@ export default function LoginPage() {
           handleClickShowPassword={() => setShowPassword(!showPassword)}
           icon={<LockIcon />}
           fullWidth
+          onKeyPress={handleKeyPress}
           onChange={(value) => handleLoginDataChange('pass', value)}
         />
         {errorText ? <Alert severity='error'>{errorText}</Alert> : ''}
