@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import {
   setProductos,
-  setCurrentTotal,
   getProductsFromState,
   getPaginaFromState,
   getPaginadoFromState,
@@ -34,7 +33,6 @@ export default function ProductosGrid() {
   const classes = useStyles()
 
   const [isLoadingProducts, setIsLoadingProducts] = useState(true)
-  const [isLoadingTotal, setIsLoadingTotal] = useState(true)
   const [errorLoadingProducts, setErrorLoadingProducts] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
 
@@ -42,17 +40,6 @@ export default function ProductosGrid() {
   const pagina = useSelector(getPaginaFromState)
   const paginado = useSelector(getPaginadoFromState)
   const categoria = useSelector(getCurrentCategoriaFromState)
-
-  const handleEndpointErrors = (error: any) => {
-    const errorId = (error.error && error.error.data && error.error.data.errorId) || null
-    setErrorMessage(
-      errorIdIntoMessage({
-        customMessage: 'Hubo un problema al intentar cargar los productos',
-        errorId
-      })
-    )
-    setErrorLoadingProducts(true)
-  }
 
   useEffect(() => {
     const getProducts = async () => {
@@ -65,7 +52,14 @@ export default function ProductosGrid() {
         )
         dispatch(setProductos(resp.data))
       } catch (error) {
-        handleEndpointErrors(error)
+        const errorId = (error.error && error.error.data && error.error.data.errorId) || null
+        setErrorMessage(
+          errorIdIntoMessage({
+            customMessage: 'Hubo un problema al intentar cargar los productos',
+            errorId
+          })
+        )
+        setErrorLoadingProducts(true)
       } finally {
         setIsLoadingProducts(false)
       }
@@ -74,23 +68,7 @@ export default function ProductosGrid() {
     getProducts()
   }, [dispatch, pagina, paginado, categoria])
 
-  useEffect(() => {
-    const getTotal = async () => {
-      const categoriaParam = categoria ? `?categoriaId=${categoria}` : ''
-      try {
-        const resp: GetTotalBackendResponse = await request.get(`/auth/getTotal${categoriaParam}`)
-        dispatch(setCurrentTotal(resp.data))
-      } catch (error) {
-        handleEndpointErrors(error)
-      } finally {
-        setIsLoadingTotal(false)
-      }
-    }
-
-    getTotal()
-  }, [dispatch, categoria])
-
-  if (isLoadingProducts || isLoadingTotal) {
+  if (isLoadingProducts) {
     return <Spinner />
   }
   if (errorLoadingProducts) {

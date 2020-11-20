@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+
+import request from '../../../utils/request'
 
 import { createStyles, makeStyles } from '@material-ui/core/styles'
 
@@ -7,7 +9,9 @@ import {
   setPagina,
   getPaginaFromState,
   getCurrentTotalFromState,
-  getPaginadoFromState
+  getPaginadoFromState,
+  getCurrentCategoriaFromState,
+  setCurrentTotal
 } from '../productosSlice'
 
 import PaginadorConfigModal from '../../paginador-config-modal/PaginadorConfigModal'
@@ -41,12 +45,32 @@ export default function Paginador() {
   const currentTotal = useSelector(getCurrentTotalFromState)
   const currentPaginado = useSelector(getPaginadoFromState)
   const lastPage = Math.ceil(currentTotal / currentPaginado)
+  const categoria = useSelector(getCurrentCategoriaFromState)
+  const [getTotalError, setGetTotalError] = useState(false)
+  const [isLoadingTotal, setIsLoadingTotal] = useState(false)
 
   const handleClick = (pageNumber: number) => {
     dispatch(setPagina(pageNumber))
   }
 
-  return (
+  useEffect(() => {
+    const getTotal = async () => {
+      setIsLoadingTotal(true)
+      const categoriaParam = categoria ? `?categoriaId=${categoria}` : ''
+      try {
+        const resp: GetTotalBackendResponse = await request.get(`/auth/getTotal${categoriaParam}`)
+        dispatch(setCurrentTotal(resp.data))
+      } catch (error) {
+        setGetTotalError(true)
+      } finally {
+        setIsLoadingTotal(false)
+      }
+    }
+
+    getTotal()
+  }, [dispatch, categoria])
+
+  return getTotalError || isLoadingTotal ? <div></div> : (
     <div className={classes.root}>
       <IconButton
         aria-label="previous-page"
