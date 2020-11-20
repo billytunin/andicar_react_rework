@@ -54,7 +54,4 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 - Pensar que hacer con el "deprecated findDOMNode" warning (mas info [aca](https://github.com/nanxiaobei/react-slide-routes))
 
 - ¿Donde me quede?
-- - agregar el /nuevaConsulta en andicar DEV
-- - manejar los errores de falta de autenticación y sesion expirada en el FE
-- - probar como responden los endpoints /auth si mando authToken inexistente en headers? usar postman
 

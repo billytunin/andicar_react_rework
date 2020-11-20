@@ -11,6 +11,7 @@ import {
 } from './productosSlice'
 
 import request from '../../utils/request'
+import { errorIdIntoMessage } from '../../utils/errorFormater'
 
 import { makeStyles, createStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
@@ -35,11 +36,23 @@ export default function ProductosGrid() {
   const [isLoadingProducts, setIsLoadingProducts] = useState(true)
   const [isLoadingTotal, setIsLoadingTotal] = useState(true)
   const [errorLoadingProducts, setErrorLoadingProducts] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
 
   const productos = useSelector(getProductsFromState)
   const pagina = useSelector(getPaginaFromState)
   const paginado = useSelector(getPaginadoFromState)
   const categoria = useSelector(getCurrentCategoriaFromState)
+
+  const handleEndpointErrors = (error: any) => {
+    const errorId = (error.error && error.error.data && error.error.data.errorId) || null
+    setErrorMessage(
+      errorIdIntoMessage({
+        customMessage: 'Hubo un problema al intentar cargar los productos',
+        errorId
+      })
+    )
+    setErrorLoadingProducts(true)
+  }
 
   useEffect(() => {
     const getProducts = async () => {
@@ -52,7 +65,7 @@ export default function ProductosGrid() {
         )
         dispatch(setProductos(resp.data))
       } catch (error) {
-        setErrorLoadingProducts(true)
+        handleEndpointErrors(error)
       } finally {
         setIsLoadingProducts(false)
       }
@@ -68,7 +81,7 @@ export default function ProductosGrid() {
         const resp: GetTotalBackendResponse = await request.get(`/auth/getTotal${categoriaParam}`)
         dispatch(setCurrentTotal(resp.data))
       } catch (error) {
-        setErrorLoadingProducts(true)
+        handleEndpointErrors(error)
       } finally {
         setIsLoadingTotal(false)
       }
@@ -81,7 +94,7 @@ export default function ProductosGrid() {
     return <Spinner />
   }
   if (errorLoadingProducts) {
-    return <div>Hubo un problema al intentar cargar los productos</div>
+    return <div>{errorMessage}</div>
   }
 
   return (

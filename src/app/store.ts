@@ -4,6 +4,7 @@ import validationInputsReducer from '../components/validation-input/validationIn
 import toastAlertReducer from '../components/toast-alert/toastAlertSlice'
 import productosViewerReducer from '../components/productos-viewer/productosViewerSlice'
 import productosSlice from '../components/productos/productosSlice'
+import userStateReducer from '../userStateSlice'
 
 export const store = configureStore({
   reducer: {
@@ -11,7 +12,8 @@ export const store = configureStore({
     validationInputs: validationInputsReducer,
     toastAlert: toastAlertReducer,
     productos: productosSlice,
-    productosViewer: productosViewerReducer
+    productosViewer: productosViewerReducer,
+    userState: userStateReducer
   }
 })
 

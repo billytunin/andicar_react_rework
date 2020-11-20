@@ -1,3 +1,6 @@
 interface LoginBackendResponse {
-  data: { token: string }
+  data: {
+    token: string,
+    isAdmin: boolean
+  }
 }

@@ -13,6 +13,7 @@ import {
   setValidationGroupDirtyState,
   shakeInvalids
 } from '../validation-input/validationInputsSlice'
+import { setState } from '../../userStateSlice'
 import styles from './LoginPage.module.css'
 
 const VALIDATION_GROUP_NAME = 'loginForm'
@@ -39,6 +40,12 @@ export default function LoginPage() {
           pass: loginData.pass
         })
         request.setAuthToken(resp.data.token)
+        dispatch(
+          setState({
+            isLoggedIn: true,
+            isAdmin: resp.data.isAdmin
+          })
+        )
         history.push('/productos')
       } catch(error) {
         setErrorText(
