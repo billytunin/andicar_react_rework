@@ -2,16 +2,16 @@ import request from 'request-promise-native'
 import { BASE_URL } from './constants'
 
 const setupHeaders = () => {
-  const authToken = sessionStorage.getItem('authToken')
+  const authToken = localStorage.getItem('andicarAuthToken')
   return authToken ? { authToken } : {}
 }
 
 const wrapper = {
   setAuthToken: (token: string) => {
-    sessionStorage.setItem('authToken', token)
+    localStorage.setItem('andicarAuthToken', token)
   },
   removeAuthToken: () => {
-    sessionStorage.removeItem('authToken')
+    localStorage.removeItem('andicarAuthToken')
   },
   get: (endpoint: string) => {
     return request({
