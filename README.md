@@ -54,5 +54,5 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 - Pensar que hacer con el "deprecated findDOMNode" warning (mas info [aca](https://github.com/nanxiaobei/react-slide-routes))
 
 - ¿Donde me quede?
-- - typear bien los eventos de onKeyPress? Deberian ser KeyboardEvents pero estaba teniendo problemas con eso
+
 

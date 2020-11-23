@@ -20,7 +20,7 @@ import {
 interface ValidationInputProps {
   id: string
   label: string
-  value: string // TODO: cambiar esto a any?
+  value: string
   fullWidth?: boolean
   multiline?: boolean
   isEmail?: boolean
@@ -32,7 +32,7 @@ interface ValidationInputProps {
   type?: string
   handleClickShowPassword?: () => void
   showPassword?: boolean
-  onKeyPress?: (event: any) => void /* TODO: type-ear ese "event" bien */
+  onKeyPress?: (event: React.KeyboardEvent<HTMLDivElement>) => void
   useShowPasswordAdornment?: boolean
   icon?: JSX.Element
   onChange: (value: string) => void

@@ -58,8 +58,8 @@ export default function LoginBox() {
     setLoginData({ ...loginData, [field]: value })
   }
 
-  const handleKeyPress = (event: any /* TODO: type-ear este event bien */) => {
-    if (event.code === 'Enter') {
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === 'Enter') {
       login()
     }
   }
