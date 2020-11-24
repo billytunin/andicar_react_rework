@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { userState } from '../../userStateSlice'
 
 import Button from '@material-ui/core/Button'
-import Paginador from '../productos/tools/Paginador'
+import PaginadorProductos from '../paginador/PaginadorProductos'
 import styles from './AppHeader.module.css'
 
 export default function AppHeader() {
@@ -33,7 +33,7 @@ export default function AppHeader() {
           SESIÓN
         </Button>
       </NavLink>
-      {useRouteMatch({ path: '/productos' }) && isLoggedIn ? <Paginador /> : ''}
+      {useRouteMatch({ path: '/productos' }) && isLoggedIn ? <PaginadorProductos /> : ''}
     </div>
   )
 }

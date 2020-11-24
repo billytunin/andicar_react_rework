@@ -1,12 +1,4 @@
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-
-import {
-  getPaginadoFromState,
-  getCurrentTotalFromState,
-  setPaginado,
-  setPagina
-} from '../productos/productosSlice'
+import React, { useState } from 'react'
 
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import Modal from '@material-ui/core/Modal'
@@ -38,14 +30,9 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 )
 
-export default function PaginadorConfigModal() {
-  const dispatch = useDispatch()
-
+export default function PaginadorConfigModal(props: PaginadorConfigModalProps) {
   const classes = useStyles()
-  const [open, setOpen] = React.useState(false)
-
-  const paginado = useSelector(getPaginadoFromState)
-  const currentTotal = useSelector(getCurrentTotalFromState)
+  const [open, setOpen] = useState(false)
 
   const handleOpen = () => {
     setOpen(true)
@@ -55,9 +42,8 @@ export default function PaginadorConfigModal() {
     setOpen(false)
   }
 
-  const handleCallToAction = (newValue: number) => {
-    dispatch(setPaginado(newValue))
-    dispatch(setPagina(1))
+  const handlePaginadoChange = (paginadoNumber: number) => {
+    props.handlePaginadoChange(paginadoNumber)
     setOpen(false)
   }
 
@@ -81,11 +67,11 @@ export default function PaginadorConfigModal() {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <p>¿Cuantos artículos por página desea ver?</p>
+            <p>{props.paginadorConfigModalText}</p>
             <ValidatedNumberField
-              bindedValue={paginado.toString()}
-              maxNumber={currentTotal}
-              handleClick={handleCallToAction}
+              bindedValue={props.paginado.toString()}
+              maxNumber={props.currentTotal}
+              handleClick={handlePaginadoChange}
             />
             <Alert severity="warning">
               Si utiliza un número muy alto, los tiempos de carga podrian extenderse y el consumo de datos podría ser mayor

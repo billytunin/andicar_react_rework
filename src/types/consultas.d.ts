@@ -2,6 +2,10 @@ interface GetConsultasBackendResponse {
   data: Array<Consulta>
 }
 
+interface GetTotalConsultasBackendResponse {
+  data: number
+}
+
 interface Consulta {
   id: number
   nombreCompleto: string
