@@ -50,6 +50,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 - Obtener un favicon.ico mas lindo de alguna manera
 - Cuando haga el admin de modificacion de productos, acordarse de la validacion de maxlength de Categoria
 - Que las imagenes que se vayan a subir, sean en un nuevo bucket de AWS con permisos puestos
+- Testear bien el token expired -> poner un mensaje de "sesion expirada" en las paginas de productos y sesion?
 - Ver como se ve el sitio en mobile/ipad
 - Borrar la carpeta features/counter cuando no la necesite más
 - Meter filtros de busqueda (por fecha, por texto que abarque nombre+mail+consulta) en ConsultasList
