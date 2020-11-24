@@ -56,7 +56,6 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 - Pensar que hacer con el "deprecated findDOMNode" warning (mas info [aca](https://github.com/nanxiaobei/react-slide-routes))
 
 - ¿Donde me quede?
-- - Trabajando sobre PaginadorConsultas, con la base generica de PaginadorComponent
-- - Tener en cuenta que tambien voy a tener que hacer que PaginadorConfigModal sea mas generico
+
 
 
