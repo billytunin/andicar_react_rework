@@ -1,6 +1,5 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import styles from './InformacionDeContacto.module.css'
 
 export default function InformacionDeContacto() {
   return (
@@ -10,19 +9,19 @@ export default function InformacionDeContacto() {
           <span>Telefono</span>
         </Grid>
         <Grid item xs={6}>
-          <span className={styles.rightAligned}>(011)4583-3740</span>
+          <span className='rightAligned'>(011)4583-3740</span>
         </Grid>
         <Grid item xs={6}>
           <span>Fax</span>
         </Grid>
         <Grid item xs={6}>
-          <span className={styles.rightAligned}>(011)4583-3740</span>
+          <span className='rightAligned'>(011)4583-3740</span>
         </Grid>
         <Grid item xs={6}>
           <span>E-mail</span>
         </Grid>
         <Grid item xs={6}>
-          <span className={styles.rightAligned}>andicar@fibertel.com.ar</span>
+          <span className='rightAligned'>andicar@fibertel.com.ar</span>
         </Grid>
       </Grid>
     </div>

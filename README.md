@@ -45,12 +45,14 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## TODOs
 
+- Probar usar los endpoints de admin con un token de customer -> usando postman
 - ¿Pensar el tema de los iconos para las categorias?
 - Obtener un favicon.ico mas lindo de alguna manera
 - Cuando haga el admin de modificacion de productos, acordarse de la validacion de maxlength de Categoria
 - Que las imagenes que se vayan a subir, sean en un nuevo bucket de AWS con permisos puestos
 - Ver como se ve el sitio en mobile/ipad
 - Borrar la carpeta features/counter cuando no la necesite más
+- Meter filtros de busqueda (por fecha, por texto que abarque nombre+mail+consulta) en ConsultasList
 - Pensar que hacer con el "deprecated findDOMNode" warning (mas info [aca](https://github.com/nanxiaobei/react-slide-routes))
 
 - ¿Donde me quede?
