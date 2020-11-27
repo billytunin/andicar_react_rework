@@ -13,7 +13,7 @@ import {
   setValidationGroupDirtyState,
   shakeInvalids
 } from '../validation-input/validationInputsSlice'
-import { userStateLogin, setIsAdmin } from '../../userStateSlice'
+import { userStateLogin, setIsAdmin, userState } from '../../userStateSlice'
 import styles from './LoginBox.module.css'
 
 const VALIDATION_GROUP_NAME = 'loginForm'
@@ -27,6 +27,7 @@ export default function LoginBox() {
   const [errorText, setErrorText] = useState('')
 
   const formHasErrors = useSelector(validationGroupHasErrors(VALIDATION_GROUP_NAME))
+  const { sessionErrorId } = useSelector(userState)
   
   const login = async () => {
     dispatch(setValidationGroupDirtyState({ validationGroupName: VALIDATION_GROUP_NAME, isDirty: true }))
@@ -98,6 +99,14 @@ export default function LoginBox() {
           onChange={(value) => handleLoginDataChange('pass', value)}
         />
         {errorText ? <Alert severity='error'>{errorText}</Alert> : ''}
+        {
+          sessionErrorId && sessionErrorId === 'TokenExpiredError' ?
+            <Alert severity='warning'>
+              Su sesión ha expirado. Por favor, vuelva a iniciar sesión
+            </Alert>
+            :
+            ''
+        }
         <Button
           onClick={login}
           variant="contained"
