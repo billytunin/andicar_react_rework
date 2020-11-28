@@ -12,7 +12,8 @@ import {
   getCurrentTotalFromState,
   getPaginadoFromState,
   getCurrentCategoriaFromState,
-  setCurrentTotal
+  setCurrentTotal,
+  getArchivadosFilter
 } from '../productos/productosSlice'
 
 
@@ -22,6 +23,7 @@ export default function PaginadorProductos() {
   const currentTotal = useSelector(getCurrentTotalFromState)
   const currentPaginado = useSelector(getPaginadoFromState)
   const categoria = useSelector(getCurrentCategoriaFromState)
+  const archivadosFilter = useSelector(getArchivadosFilter)
   const [getTotalError, setGetTotalError] = useState(false)
   const [isLoadingTotal, setIsLoadingTotal] = useState(false)
 
@@ -37,9 +39,15 @@ export default function PaginadorProductos() {
   useEffect(() => {
     const getTotal = async () => {
       setIsLoadingTotal(true)
-      const categoriaParam = categoria ? `?categoriaId=${categoria}` : ''
+      let queryParams = ''
+      if (categoria || archivadosFilter !== null) {
+        let paramsArray = []
+        if(categoria) paramsArray.push(`categoriaId=${categoria}`)
+        if(archivadosFilter !== null) paramsArray.push(`archivados=${archivadosFilter}`)
+        queryParams = `?${paramsArray.join('&')}`
+      }
       try {
-        const resp: GetTotalBackendResponse = await request.get(`/auth/getTotalProducts${categoriaParam}`)
+        const resp: GetTotalBackendResponse = await request.get(`/auth/getTotalProducts${queryParams}`)
         dispatch(setCurrentTotal(resp.data))
       } catch (error) {
         setGetTotalError(true)
@@ -49,7 +57,7 @@ export default function PaginadorProductos() {
     }
 
     getTotal()
-  }, [dispatch, categoria])
+  }, [dispatch, categoria, archivadosFilter])
 
   return getTotalError || isLoadingTotal ?
     <div></div> :

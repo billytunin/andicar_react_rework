@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import request from '../../utils/request'
+import { DEFAULT_PAGINADO } from '../../utils/constants'
 import { openToast } from '../toast-alert/toastAlertSlice'
 
 import Spinner from '../spinner/Spinner'
@@ -10,9 +11,6 @@ import styles from './ConsultasList.module.css'
 
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
-
-const DEFAULT_PAGINA = 1
-const DEFAULT_PAGINADO = 12
 
 export default function ConsultasList() {
   const dispatch = useDispatch()
@@ -26,7 +24,7 @@ export default function ConsultasList() {
   const [consultas, setConsultas] = useState<Array<Consulta>>([])
   const [consultasToArchivar, setConsultasToArchivar] = useState<Array<number>>([])
 
-  const [pagina, setPagina] = useState(DEFAULT_PAGINA)
+  const [pagina, setPagina] = useState(1)
   const [paginado, setPaginado] = useState(DEFAULT_PAGINADO)
   const [currentTotal, setCurrentTotal] = useState(0)
 
@@ -108,7 +106,7 @@ export default function ConsultasList() {
   }
 
   const changeShowActiveConsultas = () => {
-    setPagina(DEFAULT_PAGINA)
+    setPagina(1)
     setPaginado(DEFAULT_PAGINADO)
     setConsultasToArchivar([])
     setShowActiveConsultas(!showActiveConsultas)

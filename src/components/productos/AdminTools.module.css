@@ -1,0 +1,6 @@
+.leyendaBox {
+  width: 20px;
+  height: 18px;
+  border-radius: 2px;
+  border: 1px solid rgba(100, 100, 100, 0.5);
+}

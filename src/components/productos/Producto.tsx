@@ -11,7 +11,7 @@ export default function Producto(props: ProductoProps) {
   const dispatch = useDispatch()
 
   return (
-    <div className={styles.productoContainer}>
+    <div className={`${styles.productoContainer} ${props.archivado ? 'archivadoBackgroundColor' : 'nonArchivadoBackgroundColor'}`}>
       <img
         src={CDNEdgeUrl + props.imagen}
         alt={`Articulo ${props.codigo}`}
