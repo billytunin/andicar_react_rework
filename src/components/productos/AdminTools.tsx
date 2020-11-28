@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { DEFAULT_PAGINADO } from '../../utils/constants'
 
 import {
-  getArchivadosFilter,
-  setArchivadosFilter,
+  getProductosStatusFilter,
+  setProductosStatusFilter,
   setPagina,
   setPaginado
 } from './productosSlice'
@@ -16,17 +16,17 @@ import styles from './AdminTools.module.css'
 
 export default function AdminTools() {
   const dispatch = useDispatch()
-  const archivadosFilter = useSelector(getArchivadosFilter)
+  const productosStatusFilter = useSelector(getProductosStatusFilter)
 
-  const handleArchivadosFilterChange = (newValue: archivadosFilter) => {
+  const handleProductosStatusFilterChange = (newValue: productosStatusFilter) => {
     if (
-      archivadosFilter === null ||
-      (newValue === 0 && archivadosFilter === 1) ||
-      (newValue === 1 && archivadosFilter === 0)
+      productosStatusFilter === 'both' ||
+      (newValue === null && productosStatusFilter === 'archivados') ||
+      (newValue === 'archivados' && productosStatusFilter === null)
     ) {
-      dispatch(setArchivadosFilter(newValue))
+      dispatch(setProductosStatusFilter(newValue))
     } else {
-      dispatch(setArchivadosFilter(null))
+      dispatch(setProductosStatusFilter('both'))
     }
 
     dispatch(setPagina(1))
@@ -61,15 +61,15 @@ export default function AdminTools() {
       <ButtonGroup>
         <Button
           variant='contained'
-          color={archivadosFilter === 0 ? 'primary' : undefined}
-          onClick={() => handleArchivadosFilterChange(0)}
+          color={productosStatusFilter === null ? 'primary' : undefined}
+          onClick={() => handleProductosStatusFilterChange(null)}
         >
           Activos
         </Button>
         <Button
           variant='contained'
-          color={archivadosFilter === 1 ? 'primary' : undefined}
-          onClick={() => handleArchivadosFilterChange(1)}
+          color={productosStatusFilter === 'archivados' ? 'primary' : undefined}
+          onClick={() => handleProductosStatusFilterChange('archivados')}
         >
           Archivados
         </Button>

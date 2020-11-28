@@ -20,12 +20,14 @@ interface ProductosState {
   paginado: number
   currentTotal: number
   categoria: string
-  archivadosFilter: archivadosFilter
+  productosStatusFilter: productosStatusFilter
   categorias: Array<Categoria>
 }
 
-/* archivadosFilter filters by product: 0 means return only actives, 1 means return only archivados, null means return both */
-type archivadosFilter = 0 | 1 | null
+/* productosStatusFilter filters products by status.
+ * 'archivados' means return only archivados, 'both' means return both activos and archivados, null means return only activos
+*/
+type productosStatusFilter = 'archivados' | 'both' | null
 
 interface ProductosBackendResponse {
   data: Array<Producto>

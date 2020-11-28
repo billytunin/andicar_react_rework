@@ -13,7 +13,7 @@ import {
   getPaginadoFromState,
   getCurrentCategoriaFromState,
   setCurrentTotal,
-  getArchivadosFilter
+  getProductosStatusFilter
 } from '../productos/productosSlice'
 
 
@@ -23,7 +23,7 @@ export default function PaginadorProductos() {
   const currentTotal = useSelector(getCurrentTotalFromState)
   const currentPaginado = useSelector(getPaginadoFromState)
   const categoria = useSelector(getCurrentCategoriaFromState)
-  const archivadosFilter = useSelector(getArchivadosFilter)
+  const productosStatusFilter = useSelector(getProductosStatusFilter)
   const [getTotalError, setGetTotalError] = useState(false)
   const [isLoadingTotal, setIsLoadingTotal] = useState(false)
 
@@ -40,10 +40,10 @@ export default function PaginadorProductos() {
     const getTotal = async () => {
       setIsLoadingTotal(true)
       let queryParams = ''
-      if (categoria || archivadosFilter !== null) {
+      if (categoria || productosStatusFilter) {
         let paramsArray = []
         if(categoria) paramsArray.push(`categoriaId=${categoria}`)
-        if(archivadosFilter !== null) paramsArray.push(`archivados=${archivadosFilter}`)
+        if(productosStatusFilter) paramsArray.push(`productosStatusFilter=${productosStatusFilter}`)
         queryParams = `?${paramsArray.join('&')}`
       }
       try {
@@ -57,7 +57,7 @@ export default function PaginadorProductos() {
     }
 
     getTotal()
-  }, [dispatch, categoria, archivadosFilter])
+  }, [dispatch, categoria, productosStatusFilter])
 
   return getTotalError || isLoadingTotal ?
     <div></div> :

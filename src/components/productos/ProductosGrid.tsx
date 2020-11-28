@@ -7,7 +7,7 @@ import {
   getPaginaFromState,
   getPaginadoFromState,
   getCurrentCategoriaFromState,
-  getArchivadosFilter
+  getProductosStatusFilter
 } from './productosSlice'
 
 import request from '../../utils/request'
@@ -41,7 +41,7 @@ export default function ProductosGrid() {
   const pagina = useSelector(getPaginaFromState)
   const paginado = useSelector(getPaginadoFromState)
   const categoria = useSelector(getCurrentCategoriaFromState)
-  const archivadosFilter = useSelector(getArchivadosFilter)
+  const productosStatusFilter = useSelector(getProductosStatusFilter)
 
   useEffect(() => {
     const getProducts = async () => {
@@ -51,7 +51,7 @@ export default function ProductosGrid() {
       let queryParams = ''
       let paramsArray = [`limitStart=${limitStart}`, `limitCount=${paginado}`]
       if(categoria) paramsArray.push(`categoriaId=${categoria}`)
-      if(archivadosFilter !== null) paramsArray.push(`archivados=${archivadosFilter}`)
+      if(productosStatusFilter) paramsArray.push(`productosStatusFilter=${productosStatusFilter}`)
       queryParams = `?${paramsArray.join('&')}`
 
       try {
@@ -74,7 +74,7 @@ export default function ProductosGrid() {
     }
 
     getProducts()
-  }, [dispatch, pagina, paginado, categoria, archivadosFilter])
+  }, [dispatch, pagina, paginado, categoria, productosStatusFilter])
 
   if (isLoadingProducts) {
     return <Spinner />

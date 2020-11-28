@@ -8,7 +8,7 @@ const initialState: ProductosState = {
   paginado: DEFAULT_PAGINADO,
   currentTotal: 0,
   categoria: '',
-  archivadosFilter: 0,
+  productosStatusFilter: null,
   categorias: []
 }
 
@@ -34,9 +34,10 @@ export const productosSlice = createSlice({
     setCategorias: (state, action: PayloadAction<Array<Categoria>>) => {
       state.categorias = action.payload
     },
-    setArchivadosFilter: (state, action: PayloadAction<archivadosFilter>) => {
-      state.archivadosFilter = action.payload
-    }
+    setProductosStatusFilter: (state, action: PayloadAction<productosStatusFilter>) => {
+      state.productosStatusFilter = action.payload
+    },
+    resetState: () => initialState
   }
 })
 
@@ -47,7 +48,8 @@ export const {
   setCurrentTotal,
   setCategoria,
   setCategorias,
-  setArchivadosFilter
+  setProductosStatusFilter,
+  resetState
 } = productosSlice.actions
 
 export const getProductsFromState = (state: RootState) => state.productos.productos
@@ -56,7 +58,7 @@ export const getPaginadoFromState = (state: RootState) => state.productos.pagina
 export const getCurrentTotalFromState = (state: RootState) => state.productos.currentTotal
 export const getCurrentCategoriaFromState = (state: RootState) => state.productos.categoria
 export const getCurrentCategoriasFromState = (state: RootState) => state.productos.categorias
-export const getArchivadosFilter = (state: RootState) => state.productos.archivadosFilter
+export const getProductosStatusFilter = (state: RootState) => state.productos.productosStatusFilter
 export const getCategoriaById = (id: string) => (state: RootState) => {
   const foundCategoria = state.productos.categorias.find(categoria => categoria.id === id)
   return foundCategoria ? foundCategoria.titulo : ''
