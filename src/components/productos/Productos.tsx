@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 
 import Grid from '@material-ui/core/Grid'
 import ProductosGrid from './ProductosGrid'
-import AdminTools from './AdminTools'
+import AdminTools from './admin-tools/AdminTools'
 import CategoriaSelector from './CategoriaSelector'
 import { NavLink } from 'react-router-dom'
 import Button from '@material-ui/core/Button'

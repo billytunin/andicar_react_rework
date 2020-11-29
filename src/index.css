@@ -27,6 +27,9 @@ code {
 .nonArchivadoBackgroundColor {
   background-color: rgba(200, 200, 255, 0.5);
 }
+.isModifiedBackgroundColor {
+  background-color: rgba(245, 228, 76, 0.877);
+}
 .textAlignCenter {
   text-align: center;
 }

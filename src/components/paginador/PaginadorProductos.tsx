@@ -13,19 +13,24 @@ import {
   getPaginadoFromState,
   getCurrentCategoriaFromState,
   setCurrentTotal,
-  getProductosStatusFilter
+  getProductosStatusFilter,
+  getModificarProductosLoading
 } from '../productos/productosSlice'
 
 
 export default function PaginadorProductos() {
   const dispatch = useDispatch()
+
   const currentPagina = useSelector(getPaginaFromState)
   const currentTotal = useSelector(getCurrentTotalFromState)
   const currentPaginado = useSelector(getPaginadoFromState)
+
   const categoria = useSelector(getCurrentCategoriaFromState)
   const productosStatusFilter = useSelector(getProductosStatusFilter)
+
   const [getTotalError, setGetTotalError] = useState(false)
   const [isLoadingTotal, setIsLoadingTotal] = useState(false)
+  const modificarProductosLoading = useSelector(getModificarProductosLoading)
 
   const handlePageChange = (pageNumber: number) => {
     dispatch(setPagina(pageNumber))
@@ -57,9 +62,9 @@ export default function PaginadorProductos() {
     }
 
     getTotal()
-  }, [dispatch, categoria, productosStatusFilter])
+  }, [dispatch, categoria, productosStatusFilter, modificarProductosLoading])
 
-  return getTotalError || isLoadingTotal ?
+  return getTotalError || isLoadingTotal || modificarProductosLoading ?
     <div></div> :
     <PaginadorComponent
       currentPagina={currentPagina}

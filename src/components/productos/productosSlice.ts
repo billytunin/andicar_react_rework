@@ -9,7 +9,9 @@ const initialState: ProductosState = {
   currentTotal: 0,
   categoria: '',
   productosStatusFilter: null,
-  categorias: []
+  categorias: [],
+  modifiedProductos: [],
+  modificarProductosLoading: false
 }
 
 export const productosSlice = createSlice({
@@ -37,6 +39,23 @@ export const productosSlice = createSlice({
     setProductosStatusFilter: (state, action: PayloadAction<productosStatusFilter>) => {
       state.productosStatusFilter = action.payload
     },
+    addModifiedProducto: (state, action: PayloadAction<Producto>) => {
+      const foundIndex = state.modifiedProductos.findIndex(producto => producto.id === action.payload.id)
+      if (foundIndex === -1) {
+        state.modifiedProductos.push(action.payload)
+      } else {
+        state.modifiedProductos[foundIndex] = action.payload
+      }
+    },
+    removeModifiedProducto: (state, action: PayloadAction<number>) => {
+      const foundIndex = state.modifiedProductos.findIndex(producto => producto.id === action.payload)
+      if (foundIndex !== -1) {
+        state.modifiedProductos.splice(foundIndex, 1)
+      }
+    },
+    setModificarProductosLoading: (state, action: PayloadAction<boolean>) => {
+      state.modificarProductosLoading = action.payload
+    },
     resetState: () => initialState
   }
 })
@@ -49,7 +68,10 @@ export const {
   setCategoria,
   setCategorias,
   setProductosStatusFilter,
-  resetState
+  resetState,
+  addModifiedProducto,
+  removeModifiedProducto,
+  setModificarProductosLoading
 } = productosSlice.actions
 
 export const getProductsFromState = (state: RootState) => state.productos.productos
@@ -59,6 +81,8 @@ export const getCurrentTotalFromState = (state: RootState) => state.productos.cu
 export const getCurrentCategoriaFromState = (state: RootState) => state.productos.categoria
 export const getCurrentCategoriasFromState = (state: RootState) => state.productos.categorias
 export const getProductosStatusFilter = (state: RootState) => state.productos.productosStatusFilter
+export const getModifiedProductos = (state: RootState) => state.productos.modifiedProductos
+export const getModificarProductosLoading = (state: RootState) => state.productos.modificarProductosLoading
 export const getCategoriaById = (id: string) => (state: RootState) => {
   const foundCategoria = state.productos.categorias.find(categoria => categoria.id === id)
   return foundCategoria ? foundCategoria.titulo : ''

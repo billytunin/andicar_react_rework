@@ -10,7 +10,8 @@ interface Producto {
   imagen: string
 }
 
-interface ProductoProps extends Producto {
+interface ProductoProps {
+  producto: Producto
   productIndex: number
 }
 
@@ -22,6 +23,8 @@ interface ProductosState {
   categoria: string
   productosStatusFilter: productosStatusFilter
   categorias: Array<Categoria>
+  modifiedProductos: Array<Producto>
+  modificarProductosLoading: boolean
 }
 
 /* productosStatusFilter filters products by status.

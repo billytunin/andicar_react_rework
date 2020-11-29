@@ -7,7 +7,8 @@ import {
   getPaginaFromState,
   getPaginadoFromState,
   getCurrentCategoriaFromState,
-  getProductosStatusFilter
+  getProductosStatusFilter,
+  getModificarProductosLoading
 } from './productosSlice'
 
 import request from '../../utils/request'
@@ -16,7 +17,7 @@ import { errorIdIntoMessage } from '../../utils/errorFormater'
 import { makeStyles, createStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import Spinner from '../spinner/Spinner'
-import Producto from './Producto'
+import Producto from './producto/Producto'
 import ProductosViewer from '../productos-viewer/ProductosViewer'
 
 const useStyles = makeStyles(() =>
@@ -36,6 +37,8 @@ export default function ProductosGrid() {
   const [isLoadingProducts, setIsLoadingProducts] = useState(true)
   const [errorLoadingProducts, setErrorLoadingProducts] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
+
+  const modificarProductosLoading = useSelector(getModificarProductosLoading)
 
   const productos = useSelector(getProductsFromState)
   const pagina = useSelector(getPaginaFromState)
@@ -74,9 +77,9 @@ export default function ProductosGrid() {
     }
 
     getProducts()
-  }, [dispatch, pagina, paginado, categoria, productosStatusFilter])
+  }, [dispatch, pagina, paginado, categoria, productosStatusFilter, modificarProductosLoading])
 
-  if (isLoadingProducts) {
+  if (isLoadingProducts || modificarProductosLoading) {
     return <Spinner />
   }
   if (errorLoadingProducts) {
@@ -89,7 +92,7 @@ export default function ProductosGrid() {
         {productos.map((producto, index) => {
           return (
             <Grid item xs={4} key={producto.id}>
-              <Producto {...producto} productIndex={index} />
+              <Producto producto={producto} productIndex={index} />
             </Grid>
           )
         })}
