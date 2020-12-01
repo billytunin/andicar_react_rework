@@ -2,14 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import request from '../../utils/request'
-import { DEFAULT_PAGINADO } from '../../utils/constants'
 
 import {
   getCurrentCategoriaFromState,
   getCurrentCategoriasFromState,
   setCategoria,
-  setPagina,
-  setPaginado,
+  resetPaginacion,
   setCategorias
 } from './productosSlice'
 
@@ -42,8 +40,7 @@ export default function CategoriaSelector() {
 
   const changeCategoria = (categoria: string) => {
     dispatch(setCategoria(categoria))
-    dispatch(setPagina(1))
-    dispatch(setPaginado(DEFAULT_PAGINADO))
+    dispatch(resetPaginacion())
   }
 
   if (isLoadingCategorias) {

@@ -37,7 +37,6 @@ export default function PaginadorProductos() {
   }
 
   const handlePaginadoChange = (paginadoNumber: number) => {
-    dispatch(setPagina(1))
     dispatch(setPaginado(paginadoNumber))
   }
 

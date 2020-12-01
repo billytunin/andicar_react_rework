@@ -26,9 +26,16 @@ export const productosSlice = createSlice({
     },
     setPagina: (state, action: PayloadAction<number>) => {
       state.pagina = action.payload
+      state.modifiedProductos = []
     },
     setPaginado: (state, action: PayloadAction<number>) => {
+      state.pagina = 1
+      state.modifiedProductos = []
       state.paginado = action.payload
+    },
+    resetPaginacion: (state) => {
+      state.pagina = 1
+      state.paginado = DEFAULT_PAGINADO
     },
     setCategoria: (state, action: PayloadAction<string>) => {
       state.categoria = action.payload
@@ -64,6 +71,7 @@ export const {
   setProductos,
   setPagina,
   setPaginado,
+  resetPaginacion,
   setCurrentTotal,
   setCategoria,
   setCategorias,

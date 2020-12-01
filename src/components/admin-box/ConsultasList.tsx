@@ -105,10 +105,18 @@ export default function ConsultasList() {
     }
   }
 
-  const changeShowActiveConsultas = () => {
+  const resetPaginacion = () => {
     setPagina(1)
     setPaginado(DEFAULT_PAGINADO)
+  }
+
+  const resetState = () => {
+    resetPaginacion()
     setConsultasToArchivar([])
+  }
+
+  const changeShowActiveConsultas = () => {
+    resetState()
     setShowActiveConsultas(!showActiveConsultas)
   }
 

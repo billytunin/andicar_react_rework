@@ -1,12 +1,10 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { DEFAULT_PAGINADO } from '../../../utils/constants'
 
 import {
   getProductosStatusFilter,
   setProductosStatusFilter,
-  setPagina,
-  setPaginado
+  resetPaginacion
 } from '../productosSlice'
 
 import Button from '@material-ui/core/Button'
@@ -27,8 +25,7 @@ export default function AdminToolsEstadoFilter() {
       dispatch(setProductosStatusFilter('both'))
     }
 
-    dispatch(setPagina(1))
-    dispatch(setPaginado(DEFAULT_PAGINADO))
+    dispatch(resetPaginacion())
   }
 
   return (
