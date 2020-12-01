@@ -58,7 +58,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 - Pensar que hacer con el "deprecated findDOMNode" warning (mas info [aca](https://github.com/nanxiaobei/react-slide-routes))
 
 - ¿Donde me quede?
-- - Ver por que se rompe todo cuando archivo varios productos de una pagina
+- - Que el enter funcione como call to action en el paginador component
 - - Agregar "eliminar productos"
 
 

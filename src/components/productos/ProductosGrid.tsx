@@ -85,6 +85,9 @@ export default function ProductosGrid() {
   if (errorLoadingProducts) {
     return <div>{errorMessage}</div>
   }
+  if (productos.length === 0) {
+    return <div>No se encontraron productos</div>
+  }
 
   return (
     <div className={classes.productosGrid}>
