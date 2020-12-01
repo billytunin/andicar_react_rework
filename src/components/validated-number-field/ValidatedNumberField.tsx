@@ -38,6 +38,12 @@ export default function ValidatedNumberField(props: ValidatedNumberFieldProps) {
     props.handleClick(Number(newValue))
   }
 
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === 'Enter' && !errorOnInternalValue) {
+      handleCallToActionClick(internalValue)
+    }
+  }
+
   useEffect(() => {
     setInternalValue(props.bindedValue)
     setErrorOnInternalValue(false)
@@ -64,6 +70,7 @@ export default function ValidatedNumberField(props: ValidatedNumberFieldProps) {
         InputProps={{
           endAdornment: <InputAdornment position="end" className={classes.inputAdornment}>/ {props.maxNumber}</InputAdornment>
         }}
+        onKeyPress={handleKeyPress}
       />
       <CallToActionButton
         handleClick={() => handleCallToActionClick(internalValue)}

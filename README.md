@@ -49,6 +49,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 - Obtener un favicon.ico mas lindo de alguna manera
 - ¿Agregar "eliminar" consultas? Ya que ya tengo la feature de archivarlas
 - Agregar validaciones a los fields de cuando estás editando un producto como admin
+- - Usar el componente validationInput
 - Cuando haga el admin de modificacion de productos, acordarse de la validacion de maxlength de Categoria
 - Que las imagenes que se vayan a subir, sean en un nuevo bucket de AWS con permisos puestos
 - Ver como se ve el sitio en mobile/ipad
@@ -58,7 +59,6 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 - Pensar que hacer con el "deprecated findDOMNode" warning (mas info [aca](https://github.com/nanxiaobei/react-slide-routes))
 
 - ¿Donde me quede?
-- - Que el enter funcione como call to action en el paginador component
 - - Agregar "eliminar productos"
 
 
