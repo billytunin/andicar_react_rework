@@ -59,7 +59,8 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 - Pensar que hacer con el "deprecated findDOMNode" warning (mas info [aca](https://github.com/nanxiaobei/react-slide-routes))
 
 - ¿Donde me quede?
-- - Agregar "eliminar productos"
+- - Reemplazar mi toastAlert (o combinarlo bien) por notistack
+- - Ver el asunto de que a veces modificas un producto, tira el spinner, pero vuelve a mostrar el producto con datos viejos
 
 
 

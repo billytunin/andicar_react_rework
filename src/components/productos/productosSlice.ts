@@ -11,6 +11,7 @@ const initialState: ProductosState = {
   productosStatusFilter: null,
   categorias: [],
   modifiedProductos: [],
+  productoIdsToDelete: [],
   modificarProductosLoading: false
 }
 
@@ -60,6 +61,18 @@ export const productosSlice = createSlice({
         state.modifiedProductos.splice(foundIndex, 1)
       }
     },
+    addProductoToDelete: (state, action: PayloadAction<number>) => {
+      state.productoIdsToDelete.push(action.payload)
+    },
+    removeProductoToDelete: (state, action: PayloadAction<number>) => {
+      const foundIndex = state.productoIdsToDelete.findIndex(productoId => productoId === action.payload)
+      if (foundIndex !== -1) {
+        state.productoIdsToDelete.splice(foundIndex, 1)
+      }
+    },
+    resetProductoIdsToDelete: (state) => {
+      state.productoIdsToDelete = []
+    },
     setModificarProductosLoading: (state, action: PayloadAction<boolean>) => {
       state.modificarProductosLoading = action.payload
     },
@@ -79,6 +92,9 @@ export const {
   resetState,
   addModifiedProducto,
   removeModifiedProducto,
+  addProductoToDelete,
+  removeProductoToDelete,
+  resetProductoIdsToDelete,
   setModificarProductosLoading
 } = productosSlice.actions
 
@@ -91,6 +107,11 @@ export const getCurrentCategoriasFromState = (state: RootState) => state.product
 export const getProductosStatusFilter = (state: RootState) => state.productos.productosStatusFilter
 export const getModifiedProductos = (state: RootState) => state.productos.modifiedProductos
 export const getModificarProductosLoading = (state: RootState) => state.productos.modificarProductosLoading
+export const getProductoIdsToDelete = (state: RootState) => state.productos.productoIdsToDelete
+export const getIsProductoToDelete = (id: number) => (state: RootState) => {
+  const foundIndex = state.productos.productoIdsToDelete.findIndex(productoId => productoId === id)
+  return foundIndex !== -1
+}
 export const getCategoriaById = (id: string) => (state: RootState) => {
   const foundCategoria = state.productos.categorias.find(categoria => categoria.id === id)
   return foundCategoria ? foundCategoria.titulo : ''

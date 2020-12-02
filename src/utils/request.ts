@@ -29,6 +29,15 @@ const wrapper = {
       json: true,
       headers: setupHeaders()
     })
+  },
+  delete: (endpoint: string, body: any) => {
+    return request({
+      uri: `${BASE_URL}${endpoint}`,
+      method: 'DELETE',
+      body,
+      json: true,
+      headers: setupHeaders()
+    })
   }
 }
 

@@ -24,6 +24,7 @@ interface ProductosState {
   productosStatusFilter: productosStatusFilter
   categorias: Array<Categoria>
   modifiedProductos: Array<Producto>
+  productoIdsToDelete: Array<number>
   modificarProductosLoading: boolean
 }
 

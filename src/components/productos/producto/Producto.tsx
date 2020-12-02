@@ -7,7 +7,14 @@ import { userState } from '../../../userStateSlice'
 import { CDNEdgeUrl } from '../../../utils/constants'
 import styles from './Producto.module.css'
 
-import { getCategoriaById, removeModifiedProducto, addModifiedProducto } from '../productosSlice'
+import {
+  getCategoriaById,
+  getIsProductoToDelete,
+  removeModifiedProducto,
+  addModifiedProducto,
+  addProductoToDelete,
+  removeProductoToDelete
+} from '../productosSlice'
 
 import RowAsClient from './RowAsClient'
 import RowAsAdmin from './RowAsAdmin'
@@ -22,6 +29,7 @@ interface ModificarProductoArguments {
 export default function Producto(props: ProductoProps) {
   const dispatch = useDispatch()
   const categoriaName = useSelector(getCategoriaById(props.producto.categoriaId))
+  const isProductoToDelete = useSelector(getIsProductoToDelete(props.producto.id))
 
   const { isAdmin } = useSelector(userState)
 
@@ -131,6 +139,16 @@ export default function Producto(props: ProductoProps) {
                 />
               }
               label={productoPotencialmenteModificado.archivado ? 'Archivado' : 'Activo'}
+            />
+            <FormControlLabel
+              control={
+                <Switch
+                  color='secondary'
+                  checked={isProductoToDelete}
+                  onChange={(event) => event.target.checked ? dispatch(addProductoToDelete(props.producto.id)) : dispatch(removeProductoToDelete(props.producto.id))}
+                />
+              }
+              label='Eliminar'
             />
           </div>
           :
