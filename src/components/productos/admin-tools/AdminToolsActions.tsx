@@ -65,28 +65,18 @@ export default function AdminToolsActions() {
 
     const modifiedProductosPromiseIndex = promisesMap.findIndex(mappedPromise => mappedPromise.key === 'MODIFY_PRODUCTS')
     if (modifiedProductosPromiseIndex !== -1) {
+      const isModifyError = results[modifiedProductosPromiseIndex] instanceof Error
       enqueueSnackbar(
-        results[modifiedProductosPromiseIndex] instanceof Error ? 'Hubo un problema al intentar modificar los productos' : 'Productos modificados con éxito',
-        {
-          variant: results[modifiedProductosPromiseIndex] instanceof Error ? 'error' : 'success',
-          anchorOrigin: {
-            vertical: 'bottom',
-            horizontal: 'center'
-          }
-        }
+        isModifyError ? 'Hubo un problema al intentar modificar los productos' : 'Productos modificados con éxito',
+        { variant: isModifyError ? 'error' : 'success' }
       )
     }
     const productoIdsToDeletePromiseIndex = promisesMap.findIndex(mappedPromise => mappedPromise.key === 'DELETE_PRODUCTS')
     if (productoIdsToDeletePromiseIndex !== -1) {
+      const isDeleteError = results[productoIdsToDeletePromiseIndex] instanceof Error
       enqueueSnackbar(
-        results[productoIdsToDeletePromiseIndex] instanceof Error ? 'Hubo un problema al intentar eliminar los productos' : 'Productos eliminados con éxito',
-        {
-          variant: results[productoIdsToDeletePromiseIndex] instanceof Error ? 'error' : 'success',
-          anchorOrigin: {
-            vertical: 'bottom',
-            horizontal: 'center'
-          }
-        }
+        isDeleteError ? 'Hubo un problema al intentar eliminar los productos' : 'Productos eliminados con éxito',
+        { variant: isDeleteError ? 'error' : 'success' }
       )
     }
 

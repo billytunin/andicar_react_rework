@@ -17,7 +17,6 @@ import Productos from './components/productos/Productos'
 import Contacto from './components/contacto/Contacto'
 import SessionPage from './components/session-page/SessionPage'
 import AppFooter from './components/app-footer/AppFooter'
-import ToastAlert from './components/toast-alert/ToastAlert'
 import Spinner from './components/spinner/Spinner'
 
 function App() {
@@ -69,7 +68,6 @@ function App() {
   return (
     <div className="app">
       {appBody}
-      <ToastAlert />
       <AppFooter />
     </div>
   )

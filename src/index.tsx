@@ -12,7 +12,11 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <SnackbarProvider maxSnack={3}>
+        <SnackbarProvider
+          maxSnack={3}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+          className='notiStackContainer'
+        >
           <App />
         </SnackbarProvider>
       </BrowserRouter>

@@ -3,14 +3,13 @@ import React, { useState } from 'react'
 import request from '../../utils/request'
 
 import { useSelector, useDispatch } from 'react-redux'
+import { useSnackbar } from 'notistack'
 
 import {
   validationGroupHasErrors,
   setValidationGroupDirtyState,
   shakeInvalids
 } from '../validation-input/validationInputsSlice'
-
-import { openToast } from '../toast-alert/toastAlertSlice'
 
 import styles from './Formulario.module.css'
 
@@ -25,6 +24,7 @@ const VALIDATION_GROUP_NAME = 'formularioContacto'
 
 export default function Formulario() {
   const dispatch = useDispatch()
+  const { enqueueSnackbar } = useSnackbar()
   const initialState = {
     nombreCompleto: '',
     email: '',
@@ -50,11 +50,17 @@ export default function Formulario() {
           telefono: formularioData.telefono,
           consulta: formularioData.consulta
         })
-        dispatch(openToast({ severity: 'success', text: 'Consulta enviada exitosamente' }))
+        enqueueSnackbar(
+          'Consulta enviada exitosamente',
+          { variant: 'success' }
+        )
         dispatch(setValidationGroupDirtyState({ validationGroupName: VALIDATION_GROUP_NAME, isDirty: false }))
         setFormularioData(initialState)
       } catch(error) {
-        dispatch(openToast({ severity: 'error', text: 'Hubo un problema al intentar enviar la consulta. Por favor intente nuevamente' }))
+        enqueueSnackbar(
+          'Hubo un problema al intentar enviar la consulta. Por favor intente nuevamente',
+          { variant: 'error' }
+        )
       } finally {
         setIsLoading(false)
       }

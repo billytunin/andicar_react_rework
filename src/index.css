@@ -33,3 +33,6 @@ code {
 .textAlignCenter {
   text-align: center;
 }
+.notiStackContainer {
+  font-size: 1.875rem!important;
+}

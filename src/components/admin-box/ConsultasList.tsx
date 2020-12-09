@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useSnackbar } from 'notistack'
 import request from '../../utils/request'
 import { DEFAULT_PAGINADO } from '../../utils/constants'
-import { openToast } from '../toast-alert/toastAlertSlice'
 
 import Spinner from '../spinner/Spinner'
 import ConsultaBox from './ConsultaBox'
@@ -13,7 +12,7 @@ import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 
 export default function ConsultasList() {
-  const dispatch = useDispatch()
+  const { enqueueSnackbar } = useSnackbar()
 
   const [isLoading, setIsLoading] = useState(false)
   const [isLoadingTotal, setIsLoadingTotal] = useState(false)
@@ -95,11 +94,17 @@ export default function ConsultasList() {
     setIsLoading(true)
     try {
       await request.post('/auth/archivarConsultas', { idsArray: consultasToArchivar })
-      dispatch(openToast({ severity: 'success', text: 'Consultas archivadas con éxito' }))
+      enqueueSnackbar(
+        'Consultas archivadas con éxito',
+        { variant: 'success' }
+      )
     } catch(error) {
       console.log('ConsultasLista.tsx error at archivarConsultas:')
       console.log(error)
-      dispatch(openToast({ severity: 'error', text: 'Hubo un problema al intentar archivar las consultas' }))
+      enqueueSnackbar(
+        'Hubo un problema al intentar archivar las consultas',
+        { variant: 'error' }
+      )
     } finally {
       setIsLoading(false)
     }

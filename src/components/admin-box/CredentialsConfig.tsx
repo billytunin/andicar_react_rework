@@ -3,8 +3,7 @@ import ValidationInput from '../validation-input/ValidationInput'
 import Spinner from '../spinner/Spinner'
 import request from '../../utils/request'
 import { useSelector, useDispatch } from 'react-redux'
-
-import { openToast } from '../toast-alert/toastAlertSlice'
+import { useSnackbar } from 'notistack'
 
 import {
   validationGroupHasErrors,
@@ -21,6 +20,7 @@ const VALIDATION_GROUP_NAME = 'newCredentialsForm'
 
 export default function CredentialsConfig() {
   const dispatch = useDispatch()
+  const { enqueueSnackbar } = useSnackbar()
   const initialState = {
     user: '',
     pass: ''
@@ -46,11 +46,17 @@ export default function CredentialsConfig() {
           user: newCredentialsData.user,
           pass: newCredentialsData.pass
         })
-        dispatch(openToast({ severity: 'success', text: 'Credenciales cambiadas con éxito' }))
+        enqueueSnackbar(
+          'Credenciales cambiadas con éxito',
+          { variant: 'success' }
+        )
         dispatch(setValidationGroupDirtyState({ validationGroupName: VALIDATION_GROUP_NAME, isDirty: false }))
         setNewCredentialsData(initialState)
       } catch(error) {
-        dispatch(openToast({ severity: 'error', text: 'Hubo un problema al intentar cambiar las credenciales. Por favor intente nuevamente' }))
+        enqueueSnackbar(
+          'Hubo un problema al intentar cambiar las credenciales. Por favor intente nuevamente',
+          { variant: 'error' }
+        )
       } finally {
         setIsLoading(false)
         getCurrentCredentials()
