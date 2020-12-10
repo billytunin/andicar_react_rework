@@ -60,6 +60,9 @@ export default function PaginadorProductos() {
       }
     }
 
+    if (modificarProductosLoading) {
+      return
+    }
     getTotal()
   }, [dispatch, categoria, productosStatusFilter, modificarProductosLoading])
 

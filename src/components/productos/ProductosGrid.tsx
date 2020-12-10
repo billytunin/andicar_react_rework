@@ -76,6 +76,9 @@ export default function ProductosGrid() {
       }
     }
 
+    if (modificarProductosLoading) {
+      return
+    }
     getProducts()
   }, [dispatch, pagina, paginado, categoria, productosStatusFilter, modificarProductosLoading])
 
