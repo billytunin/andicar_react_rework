@@ -30,6 +30,9 @@ code {
 .isModifiedBackgroundColor {
   background-color: rgba(245, 228, 76, 0.877);
 }
+.isMarkedAsDeleteBackgroundColor {
+  background-color: rgba(247, 104, 104, 0.904);
+}
 .textAlignCenter {
   text-align: center;
 }

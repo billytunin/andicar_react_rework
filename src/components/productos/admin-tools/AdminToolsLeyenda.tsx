@@ -32,6 +32,14 @@ export default function AdminToolsLeyenda() {
             <span className={styles.leyendaText}>Modificado</span>
           </div>
         </Grid>
+        <Grid item xs={1}>
+          <div className={`${styles.leyendaBox} isMarkedAsDeleteBackgroundColor`}></div>
+        </Grid>
+        <Grid item xs={11}>
+          <div>
+            <span className={styles.leyendaText}>Marcado para eliminar</span>
+          </div>
+        </Grid>
       </Grid>
     </div>
   )

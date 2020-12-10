@@ -20,6 +20,7 @@ import RowAsClient from './RowAsClient'
 import RowAsAdmin from './RowAsAdmin'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Switch from '@material-ui/core/Switch'
+import Checkbox from '@material-ui/core/Checkbox';
 
 interface ModificarProductoArguments {
   field: string
@@ -52,8 +53,17 @@ export default function Producto(props: ProductoProps) {
     }
   }, [productoPotencialmenteModificado, unmodifiedProducto, dispatch])
 
+  const productoContainerClasses = [styles.productoContainer]
+  if(props.producto.archivado) {
+    productoContainerClasses.push('archivadoBackgroundColor')
+  } else {
+    productoContainerClasses.push('nonArchivadoBackgroundColor')
+  }
+  if(isModified) productoContainerClasses.push('isModifiedBackgroundColor')
+  if(isProductoToDelete) productoContainerClasses.push('isMarkedAsDeleteBackgroundColor')
+
   return (
-    <div className={`${styles.productoContainer} ${props.producto.archivado ? 'archivadoBackgroundColor' : 'nonArchivadoBackgroundColor'} ${isModified ? 'isModifiedBackgroundColor' : ''}`}>
+    <div className={productoContainerClasses.join(' ')}>
       <img
         src={CDNEdgeUrl + props.producto.imagen}
         alt={`Articulo ${props.producto.codigo}`}
@@ -142,7 +152,7 @@ export default function Producto(props: ProductoProps) {
             />
             <FormControlLabel
               control={
-                <Switch
+                <Checkbox
                   color='secondary'
                   checked={isProductoToDelete}
                   onChange={(event) => event.target.checked ? dispatch(addProductoToDelete(props.producto.id)) : dispatch(removeProductoToDelete(props.producto.id))}
