@@ -16,6 +16,7 @@ export default function ConsultasList() {
 
   const [isLoading, setIsLoading] = useState(false)
   const [isLoadingTotal, setIsLoadingTotal] = useState(false)
+  const [isLoadingArchivarConsultas, setIsLoadingArchivarConsultas] = useState(false)
 
   const [errorText, setErrorText] = useState('')
   const [getTotalError, setGetTotalError] = useState(false)
@@ -49,8 +50,11 @@ export default function ConsultasList() {
       }
     }
 
+    if (isLoadingArchivarConsultas) {
+      return
+    }
     getConsultas()
-  }, [pagina, paginado, showActiveConsultas])
+  }, [pagina, paginado, showActiveConsultas, isLoadingArchivarConsultas])
 
   useEffect(() => {
     const getTotalConsultas = async () => {
@@ -67,8 +71,11 @@ export default function ConsultasList() {
       }
     }
 
+    if (isLoadingArchivarConsultas) {
+      return
+    }
     getTotalConsultas()
-  }, [showActiveConsultas])
+  }, [showActiveConsultas, isLoadingArchivarConsultas])
 
   const handlePageChange = (pageNumber: number) => {
     setPagina(pageNumber)
@@ -91,7 +98,7 @@ export default function ConsultasList() {
   }
 
   const archivarConsultas = async () => {
-    setIsLoading(true)
+    setIsLoadingArchivarConsultas(true)
     try {
       await request.post('/auth/archivarConsultas', { idsArray: consultasToArchivar })
       enqueueSnackbar(
@@ -106,7 +113,8 @@ export default function ConsultasList() {
         { variant: 'error' }
       )
     } finally {
-      setIsLoading(false)
+      setIsLoadingArchivarConsultas(false)
+      setConsultasToArchivar([])
     }
   }
 
@@ -125,7 +133,7 @@ export default function ConsultasList() {
     setShowActiveConsultas(!showActiveConsultas)
   }
 
-  if (isLoading) {
+  if (isLoading || isLoadingArchivarConsultas) {
     return <Spinner />
   }
   if (errorText) {
