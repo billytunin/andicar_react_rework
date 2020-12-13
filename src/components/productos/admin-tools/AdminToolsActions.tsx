@@ -13,7 +13,7 @@ import {
 import Button from '@material-ui/core/Button'
 import ButtonGroup from '@material-ui/core/ButtonGroup'
 import SaveIcon from '@material-ui/icons/Save'
-import AddIcon from '@material-ui/icons/Add'
+import UploadProductsModal from '../../upload-products-modal/UploadProductsModal'
 
 export default function AdminToolsActions() {
   const dispatch = useDispatch()
@@ -97,13 +97,7 @@ export default function AdminToolsActions() {
         >
           Guardar cambios
         </Button>
-        <Button
-          variant='contained'
-          color='primary'
-          startIcon={<AddIcon />}
-        >
-          Agregar productos
-        </Button>
+        <UploadProductsModal />
       </ButtonGroup>
     </div>
   )
