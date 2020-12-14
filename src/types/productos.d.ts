@@ -26,6 +26,7 @@ interface ProductosState {
   modifiedProductos: Array<Producto>
   productoIdsToDelete: Array<number>
   modificarProductosLoading: boolean
+  searchFilter: string
 }
 
 /* productosStatusFilter filters products by status.

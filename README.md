@@ -59,6 +59,8 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 - Pensar que hacer con el "deprecated findDOMNode" warning (mas info [aca](https://github.com/nanxiaobei/react-slide-routes))
 
 - ¿Donde me quede?
+- - Ver el TODO de Andicar BE sobre el getTotalProducts
+- - ¿Implementar que se puedan buscar varios productos con el BuscadorDeProductos.tsx? ¿Es una feature que queremos? Consultar con Fede. Si no la queremos, podría hacer que el BuscadorDeProductos.tsx busque en el onChange, usando lodash/debounce
 
 
 

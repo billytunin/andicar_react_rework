@@ -1,16 +1,10 @@
 import React from 'react'
 import { NavLink, useRouteMatch } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-
-import { userState } from '../../userStateSlice'
 
 import Button from '@material-ui/core/Button'
-import PaginadorProductos from '../paginador/PaginadorProductos'
 import styles from './AppHeader.module.css'
 
 export default function AppHeader() {
-  const { isLoggedIn } = useSelector(userState)
-
   return (
     <div className={styles.headerContainer}>
       <NavLink to="/" exact>
@@ -33,7 +27,6 @@ export default function AppHeader() {
           SESIÓN
         </Button>
       </NavLink>
-      {useRouteMatch({ path: '/productos' }) && isLoggedIn ? <PaginadorProductos /> : ''}
     </div>
   )
 }

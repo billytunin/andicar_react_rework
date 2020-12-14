@@ -11,11 +11,7 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
 const useStyles = makeStyles(() =>
   createStyles({
     root: {
-      '& .MuiButton-root, .MuiIconButton-root': {
-        color: 'white'
-      },
       '& .MuiIconButton-root.Mui-disabled, .MuiButton-root.Mui-disabled': {
-        opacity: 0.3,
         cursor: 'not-allowed'
       },
       '& .MuiInputBase-input': {

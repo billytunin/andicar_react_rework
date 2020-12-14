@@ -12,7 +12,8 @@ const initialState: ProductosState = {
   categorias: [],
   modifiedProductos: [],
   productoIdsToDelete: [],
-  modificarProductosLoading: false
+  modificarProductosLoading: false,
+  searchFilter: ''
 }
 
 export const productosSlice = createSlice({
@@ -40,12 +41,14 @@ export const productosSlice = createSlice({
     },
     setCategoria: (state, action: PayloadAction<string>) => {
       state.categoria = action.payload
+      state.searchFilter = ''
     },
     setCategorias: (state, action: PayloadAction<Array<Categoria>>) => {
       state.categorias = action.payload
     },
     setProductosStatusFilter: (state, action: PayloadAction<productosStatusFilter>) => {
       state.productosStatusFilter = action.payload
+      state.searchFilter = ''
     },
     addModifiedProducto: (state, action: PayloadAction<Producto>) => {
       const foundIndex = state.modifiedProductos.findIndex(producto => producto.id === action.payload.id)
@@ -76,6 +79,10 @@ export const productosSlice = createSlice({
     setModificarProductosLoading: (state, action: PayloadAction<boolean>) => {
       state.modificarProductosLoading = action.payload
     },
+    setSearchFilter: (state, action: PayloadAction<string>) => {
+      state.pagina = 1
+      state.searchFilter = action.payload
+    },
     resetState: () => initialState
   }
 })
@@ -95,7 +102,8 @@ export const {
   addProductoToDelete,
   removeProductoToDelete,
   resetProductoIdsToDelete,
-  setModificarProductosLoading
+  setModificarProductosLoading,
+  setSearchFilter
 } = productosSlice.actions
 
 export const getProductsFromState = (state: RootState) => state.productos.productos
@@ -108,6 +116,7 @@ export const getProductosStatusFilter = (state: RootState) => state.productos.pr
 export const getModifiedProductos = (state: RootState) => state.productos.modifiedProductos
 export const getModificarProductosLoading = (state: RootState) => state.productos.modificarProductosLoading
 export const getProductoIdsToDelete = (state: RootState) => state.productos.productoIdsToDelete
+export const getSearchFilter = (state: RootState) => state.productos.searchFilter
 export const getIsProductoToDelete = (id: number) => (state: RootState) => {
   const foundIndex = state.productos.productoIdsToDelete.findIndex(productoId => productoId === id)
   return foundIndex !== -1

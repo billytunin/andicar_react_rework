@@ -14,7 +14,8 @@ import {
   getCurrentCategoriaFromState,
   setCurrentTotal,
   getProductosStatusFilter,
-  getModificarProductosLoading
+  getModificarProductosLoading,
+  getSearchFilter
 } from '../productos/productosSlice'
 
 
@@ -26,6 +27,7 @@ export default function PaginadorProductos() {
   const currentPaginado = useSelector(getPaginadoFromState)
 
   const categoria = useSelector(getCurrentCategoriaFromState)
+  const searchFilter = useSelector(getSearchFilter)
   const productosStatusFilter = useSelector(getProductosStatusFilter)
 
   const [getTotalError, setGetTotalError] = useState(false)
@@ -44,12 +46,12 @@ export default function PaginadorProductos() {
     const getTotal = async () => {
       setIsLoadingTotal(true)
       let queryParams = ''
-      if (categoria || productosStatusFilter) {
-        let paramsArray = []
-        if(categoria) paramsArray.push(`categoriaId=${categoria}`)
-        if(productosStatusFilter) paramsArray.push(`productosStatusFilter=${productosStatusFilter}`)
-        queryParams = `?${paramsArray.join('&')}`
-      }
+      let paramsArray = []
+      if(categoria) paramsArray.push(`categoriaId=${categoria}`)
+      if(productosStatusFilter) paramsArray.push(`productosStatusFilter=${productosStatusFilter}`)
+      if(searchFilter) paramsArray.push(`searchFilter=${searchFilter}`)
+
+      if(paramsArray.length) queryParams = `?${paramsArray.join('&')}`
       try {
         const resp: GetTotalBackendResponse = await request.get(`/auth/getTotalProducts${queryParams}`)
         dispatch(setCurrentTotal(resp.data))
@@ -64,7 +66,7 @@ export default function PaginadorProductos() {
       return
     }
     getTotal()
-  }, [dispatch, categoria, productosStatusFilter, modificarProductosLoading])
+  }, [dispatch, categoria, productosStatusFilter, modificarProductosLoading, searchFilter])
 
   return getTotalError || isLoadingTotal || modificarProductosLoading ?
     <div></div> :
