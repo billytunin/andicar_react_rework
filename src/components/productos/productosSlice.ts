@@ -12,6 +12,7 @@ const initialState: ProductosState = {
   categorias: [],
   modifiedProductos: [],
   productoIdsToDelete: [],
+  getProductsLoading: false,
   modificarProductosLoading: false,
   searchFilter: ''
 }
@@ -79,6 +80,9 @@ export const productosSlice = createSlice({
     setModificarProductosLoading: (state, action: PayloadAction<boolean>) => {
       state.modificarProductosLoading = action.payload
     },
+    setGetProductsLoading: (state, action: PayloadAction<boolean>) => {
+      state.getProductsLoading = action.payload
+    },
     setSearchFilter: (state, action: PayloadAction<string>) => {
       state.pagina = 1
       state.searchFilter = action.payload
@@ -103,6 +107,7 @@ export const {
   removeProductoToDelete,
   resetProductoIdsToDelete,
   setModificarProductosLoading,
+  setGetProductsLoading,
   setSearchFilter
 } = productosSlice.actions
 
@@ -115,6 +120,7 @@ export const getCurrentCategoriasFromState = (state: RootState) => state.product
 export const getProductosStatusFilter = (state: RootState) => state.productos.productosStatusFilter
 export const getModifiedProductos = (state: RootState) => state.productos.modifiedProductos
 export const getModificarProductosLoading = (state: RootState) => state.productos.modificarProductosLoading
+export const getGetProductsLoading = (state: RootState) => state.productos.getProductsLoading
 export const getProductoIdsToDelete = (state: RootState) => state.productos.productoIdsToDelete
 export const getSearchFilter = (state: RootState) => state.productos.searchFilter
 export const getIsProductoToDelete = (id: number) => (state: RootState) => {

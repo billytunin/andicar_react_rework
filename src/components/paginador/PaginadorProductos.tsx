@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import PaginadorComponent from './PaginadorComponent'
-
-import request from '../../utils/request'
 
 import {
   setPagina,
@@ -11,11 +9,8 @@ import {
   getPaginaFromState,
   getCurrentTotalFromState,
   getPaginadoFromState,
-  getCurrentCategoriaFromState,
-  setCurrentTotal,
-  getProductosStatusFilter,
+  getGetProductsLoading,
   getModificarProductosLoading,
-  getSearchFilter
 } from '../productos/productosSlice'
 
 
@@ -26,13 +21,8 @@ export default function PaginadorProductos() {
   const currentTotal = useSelector(getCurrentTotalFromState)
   const currentPaginado = useSelector(getPaginadoFromState)
 
-  const categoria = useSelector(getCurrentCategoriaFromState)
-  const searchFilter = useSelector(getSearchFilter)
-  const productosStatusFilter = useSelector(getProductosStatusFilter)
-
-  const [getTotalError, setGetTotalError] = useState(false)
-  const [isLoadingTotal, setIsLoadingTotal] = useState(false)
   const modificarProductosLoading = useSelector(getModificarProductosLoading)
+  const getProductsLoading = useSelector(getGetProductsLoading)
 
   const handlePageChange = (pageNumber: number) => {
     dispatch(setPagina(pageNumber))
@@ -42,33 +32,7 @@ export default function PaginadorProductos() {
     dispatch(setPaginado(paginadoNumber))
   }
 
-  useEffect(() => {
-    const getTotal = async () => {
-      setIsLoadingTotal(true)
-      let queryParams = ''
-      let paramsArray = []
-      if(categoria) paramsArray.push(`categoriaId=${categoria}`)
-      if(productosStatusFilter) paramsArray.push(`productosStatusFilter=${productosStatusFilter}`)
-      if(searchFilter) paramsArray.push(`searchFilter=${searchFilter}`)
-
-      if(paramsArray.length) queryParams = `?${paramsArray.join('&')}`
-      try {
-        const resp: GetTotalBackendResponse = await request.get(`/auth/getTotalProducts${queryParams}`)
-        dispatch(setCurrentTotal(resp.data))
-      } catch (error) {
-        setGetTotalError(true)
-      } finally {
-        setIsLoadingTotal(false)
-      }
-    }
-
-    if (modificarProductosLoading) {
-      return
-    }
-    getTotal()
-  }, [dispatch, categoria, productosStatusFilter, modificarProductosLoading, searchFilter])
-
-  return getTotalError || isLoadingTotal || modificarProductosLoading ?
+  return getProductsLoading || modificarProductosLoading ?
     <div></div> :
     <PaginadorComponent
       currentPagina={currentPagina}

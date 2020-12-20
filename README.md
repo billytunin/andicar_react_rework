@@ -45,21 +45,20 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## TODOs
 
-- ¿Pensar el tema de los iconos para las categorias?
-- Obtener un favicon.ico mas lindo de alguna manera
 - ¿Agregar "eliminar" consultas? Ya que ya tengo la feature de archivarlas
 - Agregar validaciones a los fields de cuando estás editando un producto como admin
 - - Usar el componente validationInput
-- Cuando haga el admin de modificacion de productos, acordarse de la validacion de maxlength de Categoria
+- Agregar admin action para crear categorias (acordarse de la validacion de maxlength para el titulo de la Categoria)
 - Que las imagenes que se vayan a subir, sean en un nuevo bucket de AWS con permisos puestos
 - Ver como se ve el sitio en mobile/ipad
+- ¿Pensar el tema de los iconos para las categorias?
 - Borrar la carpeta features/counter cuando no la necesite más
 - Revisar si se están usando los especificadores globales de index.css (tipo "rightAligned", "displayBlock", etc)
 - Meter filtros de busqueda (por fecha, por texto que abarque nombre+mail+consulta) en ConsultasList
 - Pensar que hacer con el "deprecated findDOMNode" warning (mas info [aca](https://github.com/nanxiaobei/react-slide-routes))
+- Obtener un favicon.ico mas lindo de alguna manera
 
 - ¿Donde me quede?
-- - Ver el TODO de Andicar BE sobre el getTotalProducts
 - - ¿Implementar que se puedan buscar varios productos con el BuscadorDeProductos.tsx? ¿Es una feature que queremos? Consultar con Fede. Si no la queremos, podría hacer que el BuscadorDeProductos.tsx busque en el onChange, usando lodash/debounce
 
 

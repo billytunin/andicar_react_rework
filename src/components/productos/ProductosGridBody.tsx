@@ -3,6 +3,9 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import {
   setProductos,
+  setCurrentTotal,
+  setGetProductsLoading,
+  getGetProductsLoading,
   getProductsFromState,
   getPaginaFromState,
   getPaginadoFromState,
@@ -23,11 +26,11 @@ import ProductosViewer from '../productos-viewer/ProductosViewer'
 export default function ProductosGridBody() {
   const dispatch = useDispatch()
 
-  const [isLoadingProducts, setIsLoadingProducts] = useState(true)
   const [errorLoadingProducts, setErrorLoadingProducts] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
 
   const modificarProductosLoading = useSelector(getModificarProductosLoading)
+  const isLoadingProducts = useSelector(getGetProductsLoading)
 
   const productos = useSelector(getProductsFromState)
   const pagina = useSelector(getPaginaFromState)
@@ -38,7 +41,7 @@ export default function ProductosGridBody() {
 
   useEffect(() => {
     const getProducts = async () => {
-      setIsLoadingProducts(true)
+      dispatch(setGetProductsLoading(true))
       const limitStart = (pagina - 1) * paginado
 
       let queryParams = ''
@@ -52,7 +55,8 @@ export default function ProductosGridBody() {
         const resp: ProductosBackendResponse = await request.get(
           `/auth/getProducts${queryParams}`
         )
-        dispatch(setProductos(resp.data))
+        dispatch(setProductos(resp.data.items))
+        dispatch(setCurrentTotal(resp.data.total))
       } catch (error) {
         const errorId = (error.error && error.error.data && error.error.data.errorId) || null
         setErrorMessage(
@@ -63,7 +67,7 @@ export default function ProductosGridBody() {
         )
         setErrorLoadingProducts(true)
       } finally {
-        setIsLoadingProducts(false)
+        dispatch(setGetProductsLoading(false))
       }
     }
 

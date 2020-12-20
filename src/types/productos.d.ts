@@ -25,6 +25,7 @@ interface ProductosState {
   categorias: Array<Categoria>
   modifiedProductos: Array<Producto>
   productoIdsToDelete: Array<number>
+  getProductsLoading: boolean
   modificarProductosLoading: boolean
   searchFilter: string
 }
@@ -35,9 +36,8 @@ interface ProductosState {
 type productosStatusFilter = 'archivados' | 'both' | null
 
 interface ProductosBackendResponse {
-  data: Array<Producto>
-}
-
-interface GetTotalBackendResponse {
-  data: number
+  data: {
+    items: Array<Producto>
+    total: number
+  }
 }
