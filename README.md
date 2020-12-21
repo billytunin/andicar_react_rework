@@ -59,7 +59,8 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 - Obtener un favicon.ico mas lindo de alguna manera
 
 - ¿Donde me quede?
-
+- inventar el eliminar consultas
+- que el paginador esté "desactivado" mientras getProductsLoading
 
 
 

@@ -15,11 +15,9 @@ export default function ConsultasList() {
   const { enqueueSnackbar } = useSnackbar()
 
   const [isLoading, setIsLoading] = useState(false)
-  const [isLoadingTotal, setIsLoadingTotal] = useState(false)
   const [isLoadingArchivarConsultas, setIsLoadingArchivarConsultas] = useState(false)
 
   const [errorText, setErrorText] = useState('')
-  const [getTotalError, setGetTotalError] = useState(false)
 
   const [consultas, setConsultas] = useState<Array<Consulta>>([])
   const [consultasToArchivar, setConsultasToArchivar] = useState<Array<number>>([])
@@ -38,7 +36,8 @@ export default function ConsultasList() {
         const resp: GetConsultasBackendResponse = await request.get(
           `/auth/getConsultas?start=${start}&count=${paginado}${showActiveConsultas ? '' : '&archivadas=true'}`
         )
-        setConsultas(resp.data)
+        setConsultas(resp.data.items)
+        setCurrentTotal(resp.data.total)
       } catch(error) {
         setErrorText(
           error.error && error.error.data ?
@@ -55,27 +54,6 @@ export default function ConsultasList() {
     }
     getConsultas()
   }, [pagina, paginado, showActiveConsultas, isLoadingArchivarConsultas])
-
-  useEffect(() => {
-    const getTotalConsultas = async () => {
-      setIsLoadingTotal(true)
-      try {
-        const resp: GetTotalConsultasBackendResponse = await request.get(
-          `/auth/getTotalConsultas${showActiveConsultas ? '' : '?archivadas=true'}`
-        )
-        setCurrentTotal(resp.data)
-      } catch (error) {
-        setGetTotalError(true)
-      } finally {
-        setIsLoadingTotal(false)
-      }
-    }
-
-    if (isLoadingArchivarConsultas) {
-      return
-    }
-    getTotalConsultas()
-  }, [showActiveConsultas, isLoadingArchivarConsultas])
 
   const handlePageChange = (pageNumber: number) => {
     setPagina(pageNumber)
@@ -143,18 +121,14 @@ export default function ConsultasList() {
     <div>
       <Grid container spacing={0}>
         <Grid item xs={6}>
-          {
-            isLoadingTotal || getTotalError ?
-              <div></div> :
-              <PaginadorComponent
-                currentPagina={pagina}
-                currentTotal={currentTotal}
-                paginado={paginado}
-                paginadorConfigModalText='¿Cuantas consultas por página desea ver?'
-                handlePageChange={handlePageChange}
-                handlePaginadoChange={handlePaginadoChange}
-              />
-          }
+          <PaginadorComponent
+            currentPagina={pagina}
+            currentTotal={currentTotal}
+            paginado={paginado}
+            paginadorConfigModalText='¿Cuantas consultas por página desea ver?'
+            handlePageChange={handlePageChange}
+            handlePaginadoChange={handlePaginadoChange}
+          />
         </Grid>
         <Grid item xs={6}>
           <div className='displayInLine rightAligned'>

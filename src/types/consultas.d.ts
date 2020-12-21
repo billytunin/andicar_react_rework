@@ -1,9 +1,8 @@
 interface GetConsultasBackendResponse {
-  data: Array<Consulta>
-}
-
-interface GetTotalConsultasBackendResponse {
-  data: number
+  data: {
+    items: Array<Consulta>
+    total: number
+  }
 }
 
 interface Consulta {
