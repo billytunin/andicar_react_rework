@@ -6,30 +6,31 @@ import Backdrop from '@material-ui/core/Backdrop'
 import Fade from '@material-ui/core/Fade'
 
 interface AndicarModalProps {
-  children: React.ReactNode,
-  handleClose: () => void,
+  children: React.ReactNode
+  handleClose: () => void
   isOpen: boolean
+  width?: string
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    modal: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    paper: {
-      backgroundColor: theme.palette.background.paper,
-      border: '2px solid #000',
-      boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 3),
-      outline: 0,
-      width: '300px'
-    }
-  })
-)
-
 export default function AndicarModal(props: AndicarModalProps) {
+  const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+      modal: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      paper: {
+        backgroundColor: theme.palette.background.paper,
+        border: '2px solid #000',
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing(2, 4, 3),
+        outline: 0,
+        width: props.width || '300px'
+      }
+    })
+  )
+
   const classes = useStyles()
 
   return (

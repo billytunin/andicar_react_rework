@@ -59,7 +59,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 - Obtener un favicon.ico mas lindo de alguna manera
 
 - ¿Donde me quede?
-- - ¿Implementar que se puedan buscar varios productos con el BuscadorDeProductos.tsx? ¿Es una feature que queremos? Consultar con Fede. Si no la queremos, podría hacer que el BuscadorDeProductos.tsx busque en el onChange, usando lodash/debounce
+
 
 
 

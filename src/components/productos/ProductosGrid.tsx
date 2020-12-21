@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid'
 
 import ProductosGridBody from './ProductosGridBody'
 import PaginadorProductos from '../paginador/PaginadorProductos'
-import BuscadorDeProductos from './BuscadorDeProductos'
+import BuscadorDeProductos from './buscador-de-productos/BuscadorDeProductos'
 
 const useStyles = makeStyles(() =>
   createStyles({
