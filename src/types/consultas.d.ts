@@ -17,6 +17,6 @@ interface Consulta {
 
 interface ConsultaBoxProps extends Consulta {
   showActiveConsultasMode: boolean
-  removeConsultaToArchivar: (consultaId: number) => void
-  addConsultaToArchivar: (consultaId: number) => void
+  removeConsultaFromSelected: (consultaId: number) => void
+  addConsultaToSelected: (consultaId: number) => void
 }

@@ -3,27 +3,25 @@ import moment from 'moment'
 import styles from './ConsultaBox.module.css'
 
 export default function ConsultaBox(props: ConsultaBoxProps) {
-  const [archivarSelected, setArchivarSelected] = useState(false)
+  const [consultaSelected, setConsultaSelected] = useState(false)
 
-  const consultaSelected = () => {
-    if (!props.showActiveConsultasMode) {
-      return
-    }
-
-    const newArchivarSelectedValue = !archivarSelected
-    if (newArchivarSelectedValue) {
-      props.addConsultaToArchivar(props.id)
+  const selectConsulta = () => {
+    const newSelectedValue = !consultaSelected
+    if (newSelectedValue) {
+      props.addConsultaToSelected(props.id)
     } else {
-      props.removeConsultaToArchivar(props.id)
+      props.removeConsultaFromSelected(props.id)
     }
 
-    setArchivarSelected(newArchivarSelectedValue)
+    setConsultaSelected(newSelectedValue)
   }
+
+  const selectedClass = props.showActiveConsultasMode ? styles.containerSelected : 'isMarkedAsDeleteBackgroundColor'
 
   return (
     <div
-      className={`${styles.container} ${props.showActiveConsultasMode ? '' : styles.notSelectable} ${archivarSelected ? styles.containerSelected : ''}`}
-      onClick={consultaSelected}
+      className={`${styles.container} ${consultaSelected ? selectedClass : ''}`}
+      onClick={selectConsulta}
     >
       <div>
         <span>Nombre completo</span>

@@ -15,12 +15,12 @@ export default function ConsultasList() {
   const { enqueueSnackbar } = useSnackbar()
 
   const [isLoading, setIsLoading] = useState(false)
-  const [isLoadingArchivarConsultas, setIsLoadingArchivarConsultas] = useState(false)
+  const [isLoadingActionOnConsultas, setIsLoadingActionOnConsultas] = useState(false)
 
   const [errorText, setErrorText] = useState('')
 
   const [consultas, setConsultas] = useState<Array<Consulta>>([])
-  const [consultasToArchivar, setConsultasToArchivar] = useState<Array<number>>([])
+  const [selectedConsultas, setSelectedConsultas] = useState<Array<number>>([])
 
   const [pagina, setPagina] = useState(1)
   const [paginado, setPaginado] = useState(DEFAULT_PAGINADO)
@@ -49,11 +49,11 @@ export default function ConsultasList() {
       }
     }
 
-    if (isLoadingArchivarConsultas) {
+    if (isLoadingActionOnConsultas) {
       return
     }
     getConsultas()
-  }, [pagina, paginado, showActiveConsultas, isLoadingArchivarConsultas])
+  }, [pagina, paginado, showActiveConsultas, isLoadingActionOnConsultas])
 
   const handlePageChange = (pageNumber: number) => {
     setPagina(pageNumber)
@@ -64,35 +64,39 @@ export default function ConsultasList() {
     setPaginado(paginadoNumber)
   }
 
-  const addConsultaToArchivar = (consultaId: number) => {
-    setConsultasToArchivar([...consultasToArchivar, consultaId])
+  const addConsultaToSelected = (consultaId: number) => {
+    setSelectedConsultas([...selectedConsultas, consultaId])
   }
 
-  const removeConsultaToArchivar = (consultaId: number) => {
-    let currentArray = [...consultasToArchivar]
+  const removeConsultaFromSelected = (consultaId: number) => {
+    let currentArray = [...selectedConsultas]
     const consultaIdIndex = currentArray.findIndex(consultaIdFromArray => consultaIdFromArray === consultaId)
     currentArray.splice(consultaIdIndex, 1)
-    setConsultasToArchivar(currentArray)
+    setSelectedConsultas(currentArray)
   }
 
-  const archivarConsultas = async () => {
-    setIsLoadingArchivarConsultas(true)
+  const actionOnConsultas = async () => {
+    setIsLoadingActionOnConsultas(true)
     try {
-      await request.post('/auth/archivarConsultas', { idsArray: consultasToArchivar })
+      if (showActiveConsultas) {
+        await request.post('/auth/archivarConsultas', { idsArray: selectedConsultas })
+      } else {
+        await request.delete('/auth/borrarConsultas', { idsArray: selectedConsultas })
+      }
       enqueueSnackbar(
-        'Consultas archivadas con éxito',
+        `Consultas ${showActiveConsultas ? 'archivadas' : 'eliminadas'} con éxito`,
         { variant: 'success' }
       )
     } catch(error) {
-      console.log('ConsultasLista.tsx error at archivarConsultas:')
+      console.log('ConsultasLista.tsx error at actionOnConsultas:')
       console.log(error)
       enqueueSnackbar(
-        'Hubo un problema al intentar archivar las consultas',
+        `Hubo un problema al intentar ${showActiveConsultas ? 'archivar' : 'eliminar'} las consultas`,
         { variant: 'error' }
       )
     } finally {
-      setIsLoadingArchivarConsultas(false)
-      setConsultasToArchivar([])
+      setIsLoadingActionOnConsultas(false)
+      setSelectedConsultas([])
     }
   }
 
@@ -103,7 +107,7 @@ export default function ConsultasList() {
 
   const resetState = () => {
     resetPaginacion()
-    setConsultasToArchivar([])
+    setSelectedConsultas([])
   }
 
   const changeShowActiveConsultas = () => {
@@ -111,7 +115,7 @@ export default function ConsultasList() {
     setShowActiveConsultas(!showActiveConsultas)
   }
 
-  if (isLoading || isLoadingArchivarConsultas) {
+  if (isLoading || isLoadingActionOnConsultas) {
     return <Spinner />
   }
   if (errorText) {
@@ -144,11 +148,11 @@ export default function ConsultasList() {
             </Button>
             <Button
               variant='contained'
-              color='primary'
-              onClick={archivarConsultas}
-              disabled={consultasToArchivar.length === 0}
+              color={showActiveConsultas ? 'primary' : 'secondary'}
+              onClick={actionOnConsultas}
+              disabled={selectedConsultas.length === 0}
             >
-              Archivar consultas seleccionadas
+              {`${showActiveConsultas ? 'Archivar' : 'Eliminar'} consultas seleccionadas`}
             </Button>
           </div>
         </Grid>
@@ -162,8 +166,8 @@ export default function ConsultasList() {
                   <ConsultaBox
                     {...consultaObj}
                     showActiveConsultasMode={showActiveConsultas}
-                    addConsultaToArchivar={addConsultaToArchivar}
-                    removeConsultaToArchivar={removeConsultaToArchivar}
+                    addConsultaToSelected={addConsultaToSelected}
+                    removeConsultaFromSelected={removeConsultaFromSelected}
                   />
                 </Grid>
             )
