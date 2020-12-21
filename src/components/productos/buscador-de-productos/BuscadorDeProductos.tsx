@@ -10,7 +10,7 @@ import InputAdornment from '@material-ui/core/InputAdornment'
 import IconButton from '@material-ui/core/IconButton'
 import SearchIcon from '@material-ui/icons/Search'
 
-export default function BuscadorDeProductos() {
+export default function BuscadorDeProductos(props: BuscadorDeProductosProps) {
   const dispatch = useDispatch()
   const searchFilter = useSelector(getSearchFilter)
 
@@ -31,13 +31,14 @@ export default function BuscadorDeProductos() {
       <TextField
         placeholder='Buscar'
         value={searchText}
+        disabled={props.isDisabled}
         onChange={(event) => setSearchText(event.target.value)}
         onKeyPress={handleKeyPress}
         InputProps={{
           endAdornment:
             <InputAdornment position='end'>
               <IconButton
-                disabled={!searchText}
+                disabled={props.isDisabled || !searchText}
                 onClick={() => dispatch(setSearchFilter(searchText))}
               >
                 <SearchIcon />
@@ -45,7 +46,7 @@ export default function BuscadorDeProductos() {
             </InputAdornment>
         }}
       />
-      <BuscadorDeProductosModal />
+      <BuscadorDeProductosModal isDisabled={props.isDisabled} />
     </div>
   )
 }

@@ -25,7 +25,7 @@ const useStyles = makeStyles(() =>
  * This component controls a call to action based on an input. Call to action will be
  * enabled only if the input is a positive integer. No rational numbers, no negative numbers
  * and no alphanumeric characters allowed.
- * Call to action is also disabled if the input number exceeds the maxNumber prop
+ * Call to action is also disabled if the input number exceeds the maxNumber prop, or if "isDisabled" prop is true
  * @param props - as specified by ValidatedNumberFieldProps interface
  */
 export default function ValidatedNumberField(props: ValidatedNumberFieldProps) {
@@ -67,12 +67,14 @@ export default function ValidatedNumberField(props: ValidatedNumberFieldProps) {
         error={errorOnInternalValue}
         className={classes.textField}
         value={internalValue}
+        disabled={props.isDisabled}
         InputProps={{
           endAdornment: <InputAdornment position="end" className={classes.inputAdornment}>/ {props.maxNumber}</InputAdornment>
         }}
         onKeyPress={handleKeyPress}
       />
       <CallToActionButton
+        isDisabled={props.isDisabled}
         handleClick={() => handleCallToActionClick(internalValue)}
         errorOnInternalValue={errorOnInternalValue}
       />

@@ -13,7 +13,7 @@ import Chip from '@material-ui/core/Chip'
 import Alert from '@material-ui/lab/Alert'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 
-export default function BuscadorDeProductosModal() {
+export default function BuscadorDeProductosModal(props: BuscadorDeProductosModalProps) {
   const dispatch = useDispatch()
   const [open, setOpen] = useState(false)
   const [codigosArray, setCodigosArray] = useState<Array<string>>([])
@@ -59,6 +59,7 @@ export default function BuscadorDeProductosModal() {
       <IconButton
         aria-label="buscador-de-productos-modal"
         onClick={handleOpen}
+        disabled={props.isDisabled}
       >
         <MoreVertIcon />
       </IconButton>

@@ -8,21 +8,16 @@ import {
   setPaginado,
   getPaginaFromState,
   getCurrentTotalFromState,
-  getPaginadoFromState,
-  getGetProductsLoading,
-  getModificarProductosLoading,
+  getPaginadoFromState
 } from '../productos/productosSlice'
 
 
-export default function PaginadorProductos() {
+export default function PaginadorProductos(props: PaginadorProductosProps) {
   const dispatch = useDispatch()
 
   const currentPagina = useSelector(getPaginaFromState)
   const currentTotal = useSelector(getCurrentTotalFromState)
   const currentPaginado = useSelector(getPaginadoFromState)
-
-  const modificarProductosLoading = useSelector(getModificarProductosLoading)
-  const getProductsLoading = useSelector(getGetProductsLoading)
 
   const handlePageChange = (pageNumber: number) => {
     dispatch(setPagina(pageNumber))
@@ -32,9 +27,9 @@ export default function PaginadorProductos() {
     dispatch(setPaginado(paginadoNumber))
   }
 
-  return getProductsLoading || modificarProductosLoading ?
-    <div></div> :
+  return (
     <PaginadorComponent
+      isDisabled={props.isDisabled}
       currentPagina={currentPagina}
       handlePageChange={handlePageChange}
       paginado={currentPaginado}
@@ -42,4 +37,5 @@ export default function PaginadorProductos() {
       handlePaginadoChange={handlePaginadoChange}
       paginadorConfigModalText='¿Cuantos artículos por página desea ver?'
     />
+  )
 }

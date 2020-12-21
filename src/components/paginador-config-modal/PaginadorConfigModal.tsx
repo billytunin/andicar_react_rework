@@ -29,6 +29,7 @@ export default function PaginadorConfigModal(props: PaginadorConfigModalProps) {
       <IconButton
         aria-label="configure-paginacion"
         onClick={handleOpen}
+        disabled={props.isDisabled}
       >
         <SettingsIcon />
       </IconButton>

@@ -41,3 +41,10 @@ interface ProductosBackendResponse {
     total: number
   }
 }
+
+interface BuscadorDeProductosProps {
+  isDisabled?: boolean
+}
+interface BuscadorDeProductosModalProps {
+  isDisabled?: boolean
+}

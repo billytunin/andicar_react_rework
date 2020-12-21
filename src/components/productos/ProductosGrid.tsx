@@ -1,4 +1,7 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
+
+import { getGetProductsLoading, getModificarProductosLoading } from './productosSlice'
 
 import { makeStyles, createStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
@@ -24,14 +27,17 @@ const useStyles = makeStyles(() =>
 export default function ProductosGrid() {
   const classes = useStyles()
 
+  const isLoadingProducts = useSelector(getGetProductsLoading)
+  const modificarProductosLoading = useSelector(getModificarProductosLoading)
+
   return (
     <div>
       <Grid container spacing={0} className={classes.productosTools}>
         <Grid item xs>
-          <PaginadorProductos />
+          <PaginadorProductos isDisabled={isLoadingProducts || modificarProductosLoading} />
         </Grid>
         <Grid item xs>
-          <BuscadorDeProductos />
+          <BuscadorDeProductos isDisabled={isLoadingProducts || modificarProductosLoading} />
         </Grid>
       </Grid>
       <div className={classes.productosGrid}>

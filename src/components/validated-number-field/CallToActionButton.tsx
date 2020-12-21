@@ -8,7 +8,7 @@ export default function CallToActionButton(props: CallToActionButtonProps) {
     <IconButton
       aria-label="validated-number-field-call-to-action"
       onClick={() => props.handleClick()}
-      disabled={props.errorOnInternalValue}
+      disabled={props.isDisabled || props.errorOnInternalValue}
     >
       <SendIcon />
     </IconButton>

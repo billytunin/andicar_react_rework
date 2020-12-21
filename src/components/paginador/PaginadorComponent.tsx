@@ -29,11 +29,12 @@ export default function PaginadorComponent(props: PaginadorComponentProps) {
       <IconButton
         aria-label="previous-page"
         onClick={() => props.handlePageChange(props.currentPagina - 1)}
-        disabled={props.currentPagina <= 1}
+        disabled={props.isDisabled || props.currentPagina <= 1}
       >
         <ArrowBackIcon />
       </IconButton>
       <ValidatedNumberField
+        isDisabled={props.isDisabled}
         handleClick={props.handlePageChange}
         maxNumber={lastPage}
         bindedValue={props.currentPagina.toString()}
@@ -41,11 +42,12 @@ export default function PaginadorComponent(props: PaginadorComponentProps) {
       <IconButton
         aria-label="next-page"
         onClick={() => props.handlePageChange(props.currentPagina + 1)}
-        disabled={props.currentPagina >= lastPage}
+        disabled={props.isDisabled || props.currentPagina >= lastPage}
       >
         <ArrowForwardIcon />
       </IconButton>
       <PaginadorConfigModal
+        isDisabled={props.isDisabled}
         paginado={props.paginado}
         currentTotal={props.currentTotal}
         handlePaginadoChange={props.handlePaginadoChange}
