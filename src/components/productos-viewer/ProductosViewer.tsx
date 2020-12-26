@@ -8,6 +8,7 @@ import { CDNEdgeUrl } from '../../utils/constants'
 
 import { useDrag } from 'react-use-gesture'
 
+import EnOfertaSpan from '../productos/producto/EnOfertaSpan'
 import Modal from '@material-ui/core/Modal'
 import Grid from '@material-ui/core/Grid'
 import IconButton from '@material-ui/core/IconButton'
@@ -56,7 +57,11 @@ const useStyles = makeStyles(() =>
       }
     },
     imgGrid: {
-      textAlign: 'center'
+      textAlign: 'center',
+      '& .imageContainer': {
+        position: 'relative',
+        display: 'inline'
+      }
     }
   })
 )
@@ -135,7 +140,10 @@ export default function ProductosViewer() {
               </Grid>
               <Grid item xs className={classes.imgGrid}>
                 <animated.div {...dragBinding()} style={{ touchAction: 'none', x }}>
-                  <img src={CDNEdgeUrl + productos[productoIndex].imagen} alt='juguete' />
+                  <div className='imageContainer'>
+                    <img src={CDNEdgeUrl + productos[productoIndex].imagen} alt='juguete' />
+                    {productos[productoIndex].en_oferta ? <EnOfertaSpan isOnProductosViewer={true} /> : undefined}
+                  </div>
                   <IconButton
                     className={classes.closeButton}
                     aria-label="close-productos-viewer"

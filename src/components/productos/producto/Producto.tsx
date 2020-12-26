@@ -16,6 +16,7 @@ import {
   removeProductoToDelete
 } from '../productosSlice'
 
+import EnOfertaSpan from './EnOfertaSpan'
 import RowAsClient from './RowAsClient'
 import RowAsAdmin from './RowAsAdmin'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
@@ -73,6 +74,7 @@ export default function Producto(props: ProductoProps) {
             )
         }
       />
+      {props.producto.en_oferta ? <EnOfertaSpan /> : undefined}
       <div className={styles.lineInfo}>
         {
           isAdmin ?
@@ -149,6 +151,16 @@ export default function Producto(props: ProductoProps) {
                 />
               }
               label={productoPotencialmenteModificado.archivado ? 'Archivado' : 'Activo'}
+            />
+            <FormControlLabel
+              control={
+                <Switch
+                  color='primary'
+                  checked={productoPotencialmenteModificado.en_oferta}
+                  onChange={(event) => modificarProducto({ field: 'en_oferta', value: event.target.checked })}
+                />
+              }
+              label='En oferta'
             />
             <FormControlLabel
               control={

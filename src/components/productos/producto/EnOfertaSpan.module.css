@@ -1,0 +1,29 @@
+.enOfertaContainer {
+  position: absolute;
+  z-index: 10;
+  transform: rotate(35deg);
+  top: 2.2rem;
+  right: 0.5rem;
+  animation: enOfertaAnimation 2s infinite;
+  padding: 0.3rem 0.4rem 0.3rem 0.4rem;
+  border-radius: 8px;
+  font-size: 1.2rem;
+}
+.bottom {
+  transform: rotate(-35deg);
+  right: 0;
+  top: -5rem;
+  font-size: 2rem;
+}
+
+@keyframes enOfertaAnimation {
+  0% {
+    background-color: rgba(216, 186, 17, 0.8);
+  }
+  50% {
+    background-color: rgba(140, 216, 17, 0.8);
+  }
+  100% {
+    background-color: rgba(216, 186, 17, 0.8);
+  }
+}
