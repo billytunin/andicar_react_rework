@@ -37,7 +37,7 @@ export default function PaginadorConfigModal(props: PaginadorConfigModalProps) {
         isOpen={open}
         handleClose={handleClose}
       >
-        <p>{props.paginadorConfigModalText}</p>
+        <span className={styles.titleText}>{props.paginadorConfigModalText}</span>
         <ValidatedNumberField
           bindedValue={props.paginado.toString()}
           maxNumber={props.currentTotal}

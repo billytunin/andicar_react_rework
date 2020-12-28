@@ -1,5 +1,5 @@
 interface Categoria {
-  id: string
+  id: number
   titulo: string
 }
 

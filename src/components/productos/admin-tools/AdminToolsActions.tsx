@@ -14,6 +14,7 @@ import Button from '@material-ui/core/Button'
 import ButtonGroup from '@material-ui/core/ButtonGroup'
 import SaveIcon from '@material-ui/icons/Save'
 import UploadProductsModal from '../../upload-products-modal/UploadProductsModal'
+import AdministrarCategoriasModal from '../../administrar-categorias-modal/AdministrarCategoriasModal'
 
 export default function AdminToolsActions() {
   const dispatch = useDispatch()
@@ -98,6 +99,7 @@ export default function AdminToolsActions() {
           Guardar cambios
         </Button>
         <UploadProductsModal />
+        <AdministrarCategoriasModal />
       </ButtonGroup>
     </div>
   )

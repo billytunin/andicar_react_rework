@@ -45,7 +45,6 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## TODOs
 
-- ¿Agregar "eliminar" consultas? Ya que ya tengo la feature de archivarlas
 - Agregar validaciones a los fields de cuando estás editando un producto como admin
 - - Usar el componente validationInput
 - Agregar admin action para crear categorias (acordarse de la validacion de maxlength para el titulo de la Categoria)

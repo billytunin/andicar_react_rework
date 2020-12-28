@@ -9,7 +9,7 @@ import {
   getProductsFromState,
   getPaginaFromState,
   getPaginadoFromState,
-  getCurrentCategoriaFromState,
+  getCurrentCategoriaIdFromState,
   getProductosStatusFilter,
   getModificarProductosLoading,
   getSearchFilter
@@ -35,7 +35,7 @@ export default function ProductosGridBody() {
   const productos = useSelector(getProductsFromState)
   const pagina = useSelector(getPaginaFromState)
   const paginado = useSelector(getPaginadoFromState)
-  const categoria = useSelector(getCurrentCategoriaFromState)
+  const categoria = useSelector(getCurrentCategoriaIdFromState)
   const productosStatusFilter = useSelector(getProductosStatusFilter)
   const searchFilter = useSelector(getSearchFilter)
 

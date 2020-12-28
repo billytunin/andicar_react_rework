@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import request from '../../utils/request'
 
 import {
-  getCurrentCategoriaFromState,
+  getCurrentCategoriaIdFromState,
   getCurrentCategoriasFromState,
   setCategoria,
   resetPaginacion,
@@ -17,7 +17,7 @@ import Spinner from '../spinner/Spinner'
 
 export default function CategoriaSelector() {
   const dispatch = useDispatch()
-  const currentCategoria = useSelector(getCurrentCategoriaFromState)
+  const currentCategoria = useSelector(getCurrentCategoriaIdFromState)
   const categorias = useSelector(getCurrentCategoriasFromState)
 
   const [isLoadingCategorias, setIsLoadingCategorias] = useState(true)
@@ -38,7 +38,7 @@ export default function CategoriaSelector() {
     getCategorias()
   }, [dispatch])
 
-  const changeCategoria = (categoria: string) => {
+  const changeCategoria = (categoria: number) => {
     dispatch(setCategoria(categoria))
     dispatch(resetPaginacion())
   }
@@ -50,7 +50,7 @@ export default function CategoriaSelector() {
   return (
     <ButtonGroup orientation="vertical">
       <Button
-        onClick={() => changeCategoria('')}
+        onClick={() => changeCategoria(0)}
         variant="contained"
         color={!currentCategoria ? 'primary' : undefined}
       >

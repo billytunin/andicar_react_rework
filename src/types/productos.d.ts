@@ -3,7 +3,7 @@ interface Producto {
   ancho: number
   largo: number
   archivado: boolean
-  categoriaId: string
+  categoriaId: number
   codigo: string
   en_oferta: boolean
   id: number
@@ -20,7 +20,7 @@ interface ProductosState {
   pagina: number
   paginado: number
   currentTotal: number
-  categoria: string
+  categoriaId: number
   productosStatusFilter: productosStatusFilter
   categorias: Array<Categoria>
   modifiedProductos: Array<Producto>

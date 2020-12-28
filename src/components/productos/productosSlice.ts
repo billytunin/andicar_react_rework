@@ -7,7 +7,7 @@ const initialState: ProductosState = {
   pagina: 1,
   paginado: DEFAULT_PAGINADO,
   currentTotal: 0,
-  categoria: '',
+  categoriaId: 0,
   productosStatusFilter: null,
   categorias: [],
   modifiedProductos: [],
@@ -40,8 +40,8 @@ export const productosSlice = createSlice({
       state.pagina = 1
       state.paginado = DEFAULT_PAGINADO
     },
-    setCategoria: (state, action: PayloadAction<string>) => {
-      state.categoria = action.payload
+    setCategoria: (state, action: PayloadAction<number>) => {
+      state.categoriaId = action.payload
       state.searchFilter = ''
     },
     setCategorias: (state, action: PayloadAction<Array<Categoria>>) => {
@@ -115,7 +115,7 @@ export const getProductsFromState = (state: RootState) => state.productos.produc
 export const getPaginaFromState = (state: RootState) => state.productos.pagina
 export const getPaginadoFromState = (state: RootState) => state.productos.paginado
 export const getCurrentTotalFromState = (state: RootState) => state.productos.currentTotal
-export const getCurrentCategoriaFromState = (state: RootState) => state.productos.categoria
+export const getCurrentCategoriaIdFromState = (state: RootState) => state.productos.categoriaId
 export const getCurrentCategoriasFromState = (state: RootState) => state.productos.categorias
 export const getProductosStatusFilter = (state: RootState) => state.productos.productosStatusFilter
 export const getModifiedProductos = (state: RootState) => state.productos.modifiedProductos
@@ -127,7 +127,7 @@ export const getIsProductoToDelete = (id: number) => (state: RootState) => {
   const foundIndex = state.productos.productoIdsToDelete.findIndex(productoId => productoId === id)
   return foundIndex !== -1
 }
-export const getCategoriaById = (id: string) => (state: RootState) => {
+export const getCategoriaById = (id: number) => (state: RootState) => {
   const foundCategoria = state.productos.categorias.find(categoria => categoria.id === id)
   return foundCategoria ? foundCategoria.titulo : ''
 }

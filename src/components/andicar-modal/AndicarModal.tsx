@@ -24,7 +24,7 @@ export default function AndicarModal(props: AndicarModalProps) {
         backgroundColor: theme.palette.background.paper,
         border: '2px solid #000',
         boxShadow: theme.shadows[5],
-        padding: theme.spacing(2, 4, 3),
+        padding: theme.spacing(3, 4, 3),
         outline: 0,
         width: props.width || '300px'
       }
