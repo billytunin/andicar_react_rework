@@ -31,7 +31,7 @@ export default function AdministrarCategoriasModal() {
         handleClose={handleClose}
         width='60vw'
       >
-        <AdministrarCategoriasModalBody />
+        <AdministrarCategoriasModalBody closeModal={handleClose} />
       </AndicarModal>
     </div>
   )

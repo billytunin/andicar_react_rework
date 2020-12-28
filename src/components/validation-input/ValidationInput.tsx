@@ -37,6 +37,7 @@ interface ValidationInputProps {
   icon?: JSX.Element
   onChange: (value: string) => void
   validationGroupName: string
+  customInputProps?: any /* TODO: type-ear esto bien */
 }
 
 export default function ValidationInput(props: ValidationInputProps) {
@@ -219,7 +220,7 @@ export default function ValidationInput(props: ValidationInputProps) {
       InputLabelProps={{
         shrink: true
       }}
-      InputProps={{
+      InputProps={props.customInputProps || {
         startAdornment: props.icon ? (
           <InputAdornment position="start">
             {props.icon}

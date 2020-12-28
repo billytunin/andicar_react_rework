@@ -58,6 +58,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 - Obtener un favicon.ico mas lindo de alguna manera
 
 - ¿Donde me quede?
+- - Ya implementé el modal de categorias para editarlas. Falta implementar el poder "crear" una nueva.
 
 
 
