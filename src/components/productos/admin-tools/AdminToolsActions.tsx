@@ -11,10 +11,7 @@ import {
 } from '../productosSlice'
 
 import Button from '@material-ui/core/Button'
-import ButtonGroup from '@material-ui/core/ButtonGroup'
 import SaveIcon from '@material-ui/icons/Save'
-import UploadProductsModal from '../../upload-products-modal/UploadProductsModal'
-import AdministrarCategoriasModal from '../../administrar-categorias-modal/AdministrarCategoriasModal'
 
 export default function AdminToolsActions() {
   const dispatch = useDispatch()
@@ -88,19 +85,15 @@ export default function AdminToolsActions() {
   return (
     <div>
       <p>Acciones:</p>
-      <ButtonGroup orientation='vertical'>
-        <Button
-          variant='contained'
-          color='primary'
-          startIcon={<SaveIcon />}
-          disabled={modifiedProductos.length === 0 && productoIdsToDelete.length === 0}
-          onClick={handleGuardarCambios}
-        >
-          Guardar cambios
-        </Button>
-        <UploadProductsModal />
-        <AdministrarCategoriasModal />
-      </ButtonGroup>
+      <Button
+        variant='contained'
+        color='primary'
+        startIcon={<SaveIcon />}
+        disabled={modifiedProductos.length === 0 && productoIdsToDelete.length === 0}
+        onClick={handleGuardarCambios}
+      >
+        Guardar cambios
+      </Button>
     </div>
   )
 }

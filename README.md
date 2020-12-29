@@ -47,10 +47,8 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 - Agregar validaciones a los fields de cuando estás editando un producto como admin
 - - Usar el componente validationInput
-- Agregar admin action para crear categorias (acordarse de la validacion de maxlength para el titulo de la Categoria)
 - Que las imagenes que se vayan a subir, sean en un nuevo bucket de AWS con permisos puestos
 - Ver como se ve el sitio en mobile/ipad
-- ¿Pensar el tema de los iconos para las categorias?
 - Borrar la carpeta features/counter cuando no la necesite más
 - Revisar si se están usando los especificadores globales de index.css (tipo "rightAligned", "displayBlock", etc)
 - Meter filtros de busqueda (por fecha, por texto que abarque nombre+mail+consulta) en ConsultasList
@@ -58,7 +56,6 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 - Obtener un favicon.ico mas lindo de alguna manera
 
 - ¿Donde me quede?
-- - Ya implementé el modal de categorias para editarlas. Falta implementar el poder "crear" una nueva.
 
 
 

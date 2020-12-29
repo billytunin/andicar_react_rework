@@ -6,6 +6,8 @@ import ExpandLessIcon from '@material-ui/icons/ExpandLess'
 
 import CredentialsConfig from './CredentialsConfig'
 import ConsultasList from './ConsultasList'
+import ConfigurarCategorias from '../configurar-categorias/ConfigurarCategorias'
+import UploadProducts from '../upload-products/UploadProducts'
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -22,7 +24,9 @@ const useStyles = makeStyles(() =>
 export default function AdminBox() {
   const classes = useStyles()
   const [expandedCredentialsConfig, setExpandedCredentialsConfig] = useState(false)
-  const [expandedConsultasList, setConsultasList] = useState(false)
+  const [expandedConsultasList, setExpandedConsultasList] = useState(false)
+  const [expandedConfigurarCategorias, setExpandedConfigurarCategorias] = useState(false)
+  const [expandedAgregarProductos, setExpandedAgregarProductos] = useState(false)
 
   return (
     <div className={classes.root}>
@@ -43,7 +47,31 @@ export default function AdminBox() {
           variant="contained"
           color="primary"
           fullWidth
-          onClick={() => setConsultasList(!expandedConsultasList)}
+          onClick={() => setExpandedConfigurarCategorias(!expandedConfigurarCategorias)}
+          endIcon={expandedConfigurarCategorias ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+        >
+          Configurar Categorias
+        </Button>
+        {expandedConfigurarCategorias ? <ConfigurarCategorias /> : undefined}
+      </div>
+      <div className={classes.smallMarginBottom}>
+        <Button
+          variant="contained"
+          color="primary"
+          fullWidth
+          onClick={() => setExpandedAgregarProductos(!expandedAgregarProductos)}
+          endIcon={expandedAgregarProductos ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+        >
+          Agregar Productos
+        </Button>
+        {expandedAgregarProductos ? <UploadProducts /> : undefined}
+      </div>
+      <div className={classes.smallMarginBottom}>
+        <Button
+          variant="contained"
+          color="primary"
+          fullWidth
+          onClick={() => setExpandedConsultasList(!expandedConsultasList)}
           endIcon={expandedConsultasList ? <ExpandLessIcon /> : <ExpandMoreIcon />}
         >
           Ver Consultas
