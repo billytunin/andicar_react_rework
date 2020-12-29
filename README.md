@@ -51,9 +51,13 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 - Ver como se ve el sitio en mobile/ipad
 - Borrar la carpeta features/counter cuando no la necesite más
 - Revisar si se están usando los especificadores globales de index.css (tipo "rightAligned", "displayBlock", etc)
+
+## TODOs que se pueden hacer post-launch
+- Implementar delete para categorias? Si asi fuera, implementar una categoria DEFAULT. Cuando borras una categoria, todos los productos que quedarían "categoria-less" pasarian a ser de la categoria DEFAULT.
 - Meter filtros de busqueda (por fecha, por texto que abarque nombre+mail+consulta) en ConsultasList
 - Pensar que hacer con el "deprecated findDOMNode" warning (mas info [aca](https://github.com/nanxiaobei/react-slide-routes))
 - Obtener un favicon.ico mas lindo de alguna manera
+
 
 - ¿Donde me quede?
 
