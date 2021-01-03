@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { toggleProductosViewer } from '../../productos-viewer/productosViewerSlice'
 import { userState } from '../../../userStateSlice'
 
-import { CDNEdgeUrl } from '../../../utils/constants'
+import { CDNEdgeUrl, PRODUCTS_MODIFICATIONS_VALIDATION_GROUP_NAME } from '../../../utils/constants'
 import styles from './Producto.module.css'
 
 import {
@@ -18,10 +18,12 @@ import {
 
 import EnOfertaSpan from './EnOfertaSpan'
 import RowAsClient from './RowAsClient'
-import RowAsAdmin from './RowAsAdmin'
+import TextRowAsAdmin from './TextRowAsAdmin'
+import SelectRowAsAdmin from './SelectRowAsAdmin'
+import FloatNumberRowAsAdmin from './FloatNumberRowAsAdmin'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Switch from '@material-ui/core/Switch'
-import Checkbox from '@material-ui/core/Checkbox';
+import Checkbox from '@material-ui/core/Checkbox'
 
 interface ModificarProductoArguments {
   field: string
@@ -78,10 +80,12 @@ export default function Producto(props: ProductoProps) {
       <div className={styles.lineInfo}>
         {
           isAdmin ?
-            <RowAsAdmin
+            <TextRowAsAdmin
+              productoId={props.producto.id}
               label='Código'
               value={productoPotencialmenteModificado.codigo}
               onChange={(value) => modificarProducto({ field: 'codigo', value })}
+              validationGroupName={PRODUCTS_MODIFICATIONS_VALIDATION_GROUP_NAME}
             />
             :
             <RowAsClient field='Código' value={props.producto.codigo} />
@@ -90,9 +94,8 @@ export default function Producto(props: ProductoProps) {
       <div className={styles.lineInfo}>
         {
           isAdmin ?
-            <RowAsAdmin
+            <SelectRowAsAdmin
               label='Categoría'
-              type='select'
               value={productoPotencialmenteModificado.categoriaId}
               onChange={(value) => modificarProducto({ field: 'categoriaId', value })}
             />
@@ -103,11 +106,12 @@ export default function Producto(props: ProductoProps) {
       <div className={styles.lineInfo}>
         {
           isAdmin ?
-            <RowAsAdmin
+            <FloatNumberRowAsAdmin
+              productoId={props.producto.id}
               label='Ancho'
-              type='number'
               value={productoPotencialmenteModificado.ancho}
               onChange={(value) => modificarProducto({ field: 'ancho', value })}
+              validationGroupName={PRODUCTS_MODIFICATIONS_VALIDATION_GROUP_NAME}
             />
             :
             <RowAsClient field='Ancho' value={props.producto.ancho} />
@@ -116,11 +120,12 @@ export default function Producto(props: ProductoProps) {
       <div className={styles.lineInfo}>
         {
           isAdmin ?
-            <RowAsAdmin
+            <FloatNumberRowAsAdmin
+              productoId={props.producto.id}
               label='Alto'
-              type='number'
               value={productoPotencialmenteModificado.alto}
               onChange={(value) => modificarProducto({ field: 'alto', value })}
+              validationGroupName={PRODUCTS_MODIFICATIONS_VALIDATION_GROUP_NAME}
             />
             :
             <RowAsClient field='Alto' value={props.producto.alto} />
@@ -129,11 +134,12 @@ export default function Producto(props: ProductoProps) {
       <div className={styles.lineInfo}>
         {
           isAdmin ?
-            <RowAsAdmin
+            <FloatNumberRowAsAdmin
+              productoId={props.producto.id}
               label='Largo'
-              type='number'
               value={productoPotencialmenteModificado.largo}
               onChange={(value) => modificarProducto({ field: 'largo', value })}
+              validationGroupName={PRODUCTS_MODIFICATIONS_VALIDATION_GROUP_NAME}
             />
             :
             <RowAsClient field='Largo' value={props.producto.largo} />

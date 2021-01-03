@@ -7,3 +7,7 @@
 .leyendaText {
   margin-left: 1rem;
 }
+.modifiedProductsError {
+  color: red;
+  display: block;
+}

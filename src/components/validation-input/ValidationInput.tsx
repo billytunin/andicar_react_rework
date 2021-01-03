@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { FLOAT_NUMBER_REGEXP } from '../../utils/constants'
 import TextField from '@material-ui/core/TextField'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import Visibility from '@material-ui/icons/Visibility'
@@ -18,6 +19,7 @@ import {
 } from './validationInputsSlice'
 
 interface ValidationInputProps {
+  /* id prop MUST be unique within given validationGroupName */
   id: string
   label: string
   value: string
@@ -26,6 +28,7 @@ interface ValidationInputProps {
   isEmail?: boolean
   isPhone?: boolean
   maxlength?: number
+  isFloatNumber?: boolean
   rows?: number
   required?: boolean
   helperText?: string
@@ -157,7 +160,36 @@ export default function ValidationInput(props: ValidationInputProps) {
       dispatch(
         setFieldValidationMessage({
           name: props.validationGroupName,
-          field: props.id, value: `La cantidad máxima de caracteres para este campo es ${props.maxlength}`
+          field: props.id,
+          value: `La cantidad máxima de caracteres para este campo es ${props.maxlength}`
+        })
+      )
+    }
+
+    return hasError
+  }
+
+  /**
+   * Checks if current field value complies with the "FloatNumber" validation.
+   * If it doesn't, the validation field state in the validationInputSlice will be modified.
+   * Returns false if it complies with the validation, true otherwise
+   */
+  const floatNumberValidation = (): boolean => {
+    let hasError = false
+    if (
+      props.isFloatNumber &&
+      props.value &&
+      (!FLOAT_NUMBER_REGEXP.test(props.value) || props.value.endsWith('.'))
+    ) {
+      hasError = true
+      dispatch(
+        setFieldInvalid({ name: props.validationGroupName, field: props.id, value: true })
+      )
+      dispatch(
+        setFieldValidationMessage({
+          name: props.validationGroupName,
+          field: props.id,
+          value: `Solo números positivos enteros o decimales son permitidos en este campo`
         })
       )
     }
@@ -166,7 +198,7 @@ export default function ValidationInput(props: ValidationInputProps) {
   }
 
   const runValidations = () => {
-    const hasErrors = requiredValidation() || maxlengthValidation() || emailValidation() || phoneValidation()
+    const hasErrors = requiredValidation() || maxlengthValidation() || emailValidation() || phoneValidation() || floatNumberValidation()
     if (!hasErrors) {
       dispatch(
         setFieldInvalid({ name: props.validationGroupName, field: props.id, value: false })

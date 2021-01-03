@@ -2,6 +2,8 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useSnackbar } from 'notistack'
 import request from '../../../utils/request'
+import styles from './AdminTools.module.css'
+import { PRODUCTS_MODIFICATIONS_VALIDATION_GROUP_NAME } from '../../../utils/constants'
 
 import {
   getModifiedProductos,
@@ -9,6 +11,11 @@ import {
   getProductoIdsToDelete,
   resetProductoIdsToDelete
 } from '../productosSlice'
+import {
+  validationGroupHasErrors,
+  setValidationGroupDirtyState,
+  shakeInvalids
+} from '../../validation-input/validationInputsSlice'
 
 import Button from '@material-ui/core/Button'
 import SaveIcon from '@material-ui/icons/Save'
@@ -18,6 +25,7 @@ export default function AdminToolsActions() {
   const { enqueueSnackbar } = useSnackbar()
   const modifiedProductos = useSelector(getModifiedProductos)
   const productoIdsToDelete = useSelector(getProductoIdsToDelete)
+  const modifiedProductosHaveErrors = useSelector(validationGroupHasErrors(PRODUCTS_MODIFICATIONS_VALIDATION_GROUP_NAME))
 
   /**
    * Checks that no modifiedProductos overlap with productoIdsToDelete. If there are overlaps, remove them from modifiedProductos
@@ -37,6 +45,12 @@ export default function AdminToolsActions() {
   }
 
   const handleGuardarCambios = async () => {
+    dispatch(setValidationGroupDirtyState({ validationGroupName: PRODUCTS_MODIFICATIONS_VALIDATION_GROUP_NAME, isDirty: true }))
+    if (modifiedProductosHaveErrors) {
+      dispatch(shakeInvalids(PRODUCTS_MODIFICATIONS_VALIDATION_GROUP_NAME))
+      return
+    }
+
     cleanModifiedProductos()
     dispatch(setModificarProductosLoading(true))
 
@@ -94,6 +108,7 @@ export default function AdminToolsActions() {
       >
         Guardar cambios
       </Button>
+      {modifiedProductosHaveErrors ? <span className={styles.modifiedProductsError}>Uno o más productos modificados tiene un problema de validación</span> : undefined}
     </div>
   )
 }
