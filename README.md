@@ -45,8 +45,6 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## TODOs
 
-- Agregar validaciones a los fields de cuando estás editando un producto como admin
-- - Usar el componente validationInput
 - Que las imagenes que se vayan a subir, sean en un nuevo bucket de AWS con permisos puestos
 - Ver como se ve el sitio en mobile/ipad
 - Borrar la carpeta features/counter cuando no la necesite más

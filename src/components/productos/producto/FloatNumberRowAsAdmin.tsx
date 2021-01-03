@@ -29,6 +29,7 @@ export default function FloatNumberRowAsAdmin(props: FloatNumberRowAsAdminProps)
       isFloatNumber
       fullWidth
       required
+      maxlength={10}
     />
   )
 }

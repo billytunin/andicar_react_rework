@@ -20,6 +20,7 @@ export default function TextRowAsAdmin(props: TextRowAsAdminProps) {
       validationGroupName={props.validationGroupName}
       fullWidth
       required
+      maxlength={20}
     />
   )
 }
