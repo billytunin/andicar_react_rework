@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useSnackbar } from 'notistack'
 import { cloneDeep } from 'lodash'
@@ -32,27 +32,6 @@ export default function ConfigurarCategorias() {
 
   const categorias = useSelector(getCurrentCategoriasFromState)
   const formHasErrors = useSelector(validationGroupHasErrors(VALIDATION_GROUP_NAME))
-
-  useEffect(() => {
-    const getCategorias = async () => {
-      setIsLoading(true)
-      try {
-        const getCategoriasResp: CategoriasBackendResponse = await request.get('/auth/getCategorias')
-        dispatch(setCategorias(getCategoriasResp.data))
-      } catch(error) {
-        enqueueSnackbar(
-          'Hubo un problema al intentar obtener las categorias. Por favor intente nuevamente',
-          { variant: 'error' }
-        )
-      } finally {
-        setIsLoading(false)
-      }
-    }
-
-    if (!categorias.length) {
-      getCategorias()
-    }
-  }, [dispatch, categorias, enqueueSnackbar])
 
   const handleOnChange = (categoriaId: number, value: string) => {
     let newArray: Array<Categoria> = cloneDeep(modifiedCategorias)

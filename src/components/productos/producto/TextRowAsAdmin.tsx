@@ -3,7 +3,7 @@ import React from 'react'
 import ValidationInput from '../../validation-input/ValidationInput'
 
 interface TextRowAsAdminProps {
-  productoId: number
+  uniqueId: number
   label: string
   value: string
   validationGroupName: string
@@ -13,7 +13,7 @@ interface TextRowAsAdminProps {
 export default function TextRowAsAdmin(props: TextRowAsAdminProps) {
   return (
     <ValidationInput
-      id={`producto-${props.productoId}-${props.label}`}
+      id={`producto-${props.uniqueId}-${props.label}`}
       value={props.value}
       label={props.label}
       onChange={props.onChange}

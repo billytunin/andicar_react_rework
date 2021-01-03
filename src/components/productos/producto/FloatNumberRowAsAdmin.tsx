@@ -5,7 +5,7 @@ import { FLOAT_NUMBER_REGEXP } from '../../../utils/constants'
 import ValidationInput from '../../validation-input/ValidationInput'
 
 interface FloatNumberRowAsAdminProps {
-  productoId: number
+  uniqueId: number
   label: string
   value: string | number
   validationGroupName: string
@@ -21,7 +21,7 @@ export default function FloatNumberRowAsAdmin(props: FloatNumberRowAsAdminProps)
   }
   return (
     <ValidationInput
-      id={`producto-${props.productoId}-${props.label}`}
+      id={`producto-${props.uniqueId}-${props.label}`}
       value={internalValue}
       label={props.label}
       onChange={onChange}

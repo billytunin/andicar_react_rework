@@ -10,7 +10,9 @@ import {
   setIsAdmin,
   setSessionErrorId
 } from './userStateSlice'
+import { setCategorias } from './components/productos/productosSlice'
 import { useSelector, useDispatch } from 'react-redux'
+import { useSnackbar } from 'notistack'
 import AppHeader from './components/app-header/AppHeader'
 import Inicio from './components/inicio/Inicio'
 import Productos from './components/productos/Productos'
@@ -21,6 +23,7 @@ import Spinner from './components/spinner/Spinner'
 
 function App() {
   const dispatch = useDispatch()
+  const { enqueueSnackbar } = useSnackbar()
   const location = useLocation()
   const pathList = ['/', '/productos', '/contacto', '/session']
   const [isLoading, setIsLoading] = useState(false)
@@ -28,26 +31,39 @@ function App() {
   const initialCheck = useSelector(getInitialCheckState)
 
   useEffect(() => {
-    const loadUserState = async () => {
+    /*
+    initialSetup takes care of the asynchronous operations that need to ocurr before the app gets rendered.
+    Such as verifying that the user has a valid token and loading the categorias array in the productosSlice store
+    */
+    const initialSetup = async () => {
       setIsLoading(true)
       try {
         const resp: IsValidTokenBackendResponse = await request.get('/auth/isValidToken')
         dispatch(userStateLogin(resp.data.token))
         dispatch(setIsAdmin(resp.data.isAdmin))
-        dispatch(setInitialCheck(true))
       } catch(error) {
         const errorId = (error.error && error.error.data && error.error.data.errorId) || null
         dispatch(setSessionErrorId(errorId))
-        dispatch(setInitialCheck(true))
-      } finally {
-        setIsLoading(false)
       }
+
+      try {
+        const getCategoriasResp: CategoriasBackendResponse = await request.get('/auth/getCategorias')
+        dispatch(setCategorias(getCategoriasResp.data))
+      } catch(error) {
+        enqueueSnackbar(
+          'Hubo un problema al intentar obtener las categorias.',
+          { variant: 'error' }
+        )
+      }
+
+      dispatch(setInitialCheck(true))
+      setIsLoading(false)
     }
 
     if (!initialCheck) {
-      loadUserState()
+      initialSetup()
     }
-  }, [initialCheck, dispatch])
+  }, [initialCheck, dispatch, enqueueSnackbar])
 
   let appBody = 
     <div>

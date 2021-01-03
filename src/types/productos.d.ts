@@ -10,6 +10,10 @@ interface Producto {
   imagen: string
 }
 
+interface NewProducto extends Producto {
+  id?: number
+}
+
 interface ProductoProps {
   producto: Producto
   productIndex: number
@@ -47,4 +51,10 @@ interface BuscadorDeProductosProps {
 }
 interface BuscadorDeProductosModalProps {
   isDisabled?: boolean
+}
+
+interface ModificarNewProductoArguments {
+  value: string | number | boolean
+  field: string
+  index: number
 }

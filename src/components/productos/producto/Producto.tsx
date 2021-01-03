@@ -81,7 +81,7 @@ export default function Producto(props: ProductoProps) {
         {
           isAdmin ?
             <TextRowAsAdmin
-              productoId={props.producto.id}
+              uniqueId={props.producto.id}
               label='Código'
               value={productoPotencialmenteModificado.codigo}
               onChange={(value) => modificarProducto({ field: 'codigo', value })}
@@ -107,7 +107,7 @@ export default function Producto(props: ProductoProps) {
         {
           isAdmin ?
             <FloatNumberRowAsAdmin
-              productoId={props.producto.id}
+              uniqueId={props.producto.id}
               label='Ancho'
               value={productoPotencialmenteModificado.ancho}
               onChange={(value) => modificarProducto({ field: 'ancho', value })}
@@ -121,7 +121,7 @@ export default function Producto(props: ProductoProps) {
         {
           isAdmin ?
             <FloatNumberRowAsAdmin
-              productoId={props.producto.id}
+              uniqueId={props.producto.id}
               label='Alto'
               value={productoPotencialmenteModificado.alto}
               onChange={(value) => modificarProducto({ field: 'alto', value })}
@@ -135,7 +135,7 @@ export default function Producto(props: ProductoProps) {
         {
           isAdmin ?
             <FloatNumberRowAsAdmin
-              productoId={props.producto.id}
+              uniqueId={props.producto.id}
               label='Largo'
               value={productoPotencialmenteModificado.largo}
               onChange={(value) => modificarProducto({ field: 'largo', value })}

@@ -51,6 +51,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 - Revisar si se están usando los especificadores globales de index.css (tipo "rightAligned", "displayBlock", etc)
 
 ## TODOs que se pueden hacer post-launch
+- Invertir la logica de "archivados". En vez de que sea true para cuando están inactivos tanto en FE como en BE, que sea true para cuando están activos. Y la propiedad se pasaria a llamar "activo" o algo asi.
 - Implementar delete para categorias? Si asi fuera, implementar una categoria DEFAULT. Cuando borras una categoria, todos los productos que quedarían "categoria-less" pasarian a ser de la categoria DEFAULT.
 - Meter filtros de busqueda (por fecha, por texto que abarque nombre+mail+consulta) en ConsultasList
 - Pensar que hacer con el "deprecated findDOMNode" warning (mas info [aca](https://github.com/nanxiaobei/react-slide-routes))
