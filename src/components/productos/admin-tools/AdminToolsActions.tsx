@@ -59,7 +59,7 @@ export default function AdminToolsActions() {
       promisesMap.push(
         {
           key: 'MODIFY_PRODUCTS',
-          promise: request.post('/auth/modificarProductos', { productos: modifiedProductos })
+          promise: request.put('/auth/modificarProductos', { productos: modifiedProductos })
         }
       )
     }

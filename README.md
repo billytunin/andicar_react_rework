@@ -52,6 +52,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## TODOs que se pueden hacer post-launch
 - Invertir la logica de "archivados". En vez de que sea true para cuando están inactivos tanto en FE como en BE, que sea true para cuando están activos. Y la propiedad se pasaria a llamar "activo" o algo asi.
+- - Buscar en el codigo -> // TODO: Cambiar esto cuando cambie "archivado" por "activo"
 - Implementar delete para categorias? Si asi fuera, implementar una categoria DEFAULT. Cuando borras una categoria, todos los productos que quedarían "categoria-less" pasarian a ser de la categoria DEFAULT.
 - Meter filtros de busqueda (por fecha, por texto que abarque nombre+mail+consulta) en ConsultasList
 - Pensar que hacer con el "deprecated findDOMNode" warning (mas info [aca](https://github.com/nanxiaobei/react-slide-routes))
@@ -59,6 +60,8 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 
 - ¿Donde me quede?
+- - Resolver el bug de que ahora cuando te deslogueas y volves a loguear se pierden las categorias
+- - Implementar la carga de imagenes para cuando cargas nuevos productos
 
 
 

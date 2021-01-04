@@ -42,6 +42,7 @@ export default function Producto(props: ProductoProps) {
   const [isModified, setIsModified] = useState(false)
 
   const modificarProducto = ({ field, value }: ModificarProductoArguments) => {
+    // TODO: Cambiar esto cuando cambie "archivado" por "activo"
     const newValue = field === 'archivado' ? !value : value
     setProductoPotencialmenteModificado({ ...productoPotencialmenteModificado, [field]: newValue })
   }

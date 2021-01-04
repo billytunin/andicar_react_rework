@@ -30,6 +30,15 @@ const wrapper = {
       headers: setupHeaders()
     })
   },
+  put: (endpoint: string, body: any) => {
+    return request({
+      uri: `${BASE_URL}${endpoint}`,
+      method: 'PUT',
+      body,
+      json: true,
+      headers: setupHeaders()
+    })
+  },
   delete: (endpoint: string, body: any) => {
     return request({
       uri: `${BASE_URL}${endpoint}`,

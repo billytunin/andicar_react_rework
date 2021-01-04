@@ -10,10 +10,6 @@ interface Producto {
   imagen: string
 }
 
-interface NewProducto extends Producto {
-  id?: number
-}
-
 interface ProductoProps {
   producto: Producto
   productIndex: number
@@ -56,5 +52,5 @@ interface BuscadorDeProductosModalProps {
 interface ModificarNewProductoArguments {
   value: string | number | boolean
   field: string
-  index: number
+  id: number
 }

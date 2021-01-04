@@ -62,7 +62,7 @@ export default function AdminBox() {
           onClick={() => setExpandedAgregarProductos(!expandedAgregarProductos)}
           endIcon={expandedAgregarProductos ? <ExpandLessIcon /> : <ExpandMoreIcon />}
         >
-          Agregar Productos
+          Cargar Productos
         </Button>
         {expandedAgregarProductos ? <UploadProducts /> : undefined}
       </div>
