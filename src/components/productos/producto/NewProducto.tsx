@@ -4,6 +4,7 @@ import UploadImageButton from './UploadImageButton'
 
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Switch from '@material-ui/core/Switch'
+import Button from '@material-ui/core/Button'
 
 import TextRowAsAdmin from './TextRowAsAdmin'
 import SelectRowAsAdmin from './SelectRowAsAdmin'
@@ -16,6 +17,7 @@ interface NewProductoProps {
   validationGroupName: string
   modificarNewProducto: ({ value, field, id }: ModificarNewProductoArguments) => void
   agregarImagen: (file: File, productID: number) => void
+  removerNewProducto: (id: number) => void
 }
 
 export default function NewProducto(props: NewProductoProps) {
@@ -87,6 +89,12 @@ export default function NewProducto(props: NewProductoProps) {
           label='En oferta'
         />
       </div>
+      <Button
+        variant='contained'
+        onClick={() => props.removerNewProducto(props.producto.id)}
+      >
+        Remover
+      </Button>
     </div>
   )
 }

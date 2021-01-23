@@ -60,7 +60,6 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 
 - ¿Donde me quede?
-- - Implementar un "UNDO" de cuando estás agregando Nuevos Productos. Por si agregaste uno nuevo sin querer (previo a que presiones "Cargar")
 - - Implementar la carga de imagenes para cuando cargas nuevos productos
 
 

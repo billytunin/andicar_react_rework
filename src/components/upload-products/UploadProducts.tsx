@@ -82,6 +82,13 @@ export default function UploadProducts() {
     setNewImages(newArray)
   }
 
+  const removerNewProducto = (id: number) => {
+    let currentArray = cloneDeep(newProducts)
+    const foundNewProductoIndex = currentArray.findIndex(newProductoObj => newProductoObj.id === id)
+    currentArray.splice(foundNewProductoIndex, 1)
+    setNewProducts(currentArray)
+  }
+
   const modificarNewProducto = ({ field, value, id }: ModificarNewProductoArguments) => {
     let currentArray = cloneDeep(newProducts)
     const foundNewProductoIndex = currentArray.findIndex(newProductoObj => newProductoObj.id === id)
@@ -148,6 +155,7 @@ export default function UploadProducts() {
                     producto={newProduct}
                     validationGroupName={VALIDATION_GROUP_NAME}
                     modificarNewProducto={modificarNewProducto}
+                    removerNewProducto={removerNewProducto}
                     agregarImagen={agregarImagen}
                   />
                 </Grid>
