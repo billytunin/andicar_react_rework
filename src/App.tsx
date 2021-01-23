@@ -37,15 +37,30 @@ function App() {
     */
     const initialSetup = async () => {
       setIsLoading(true)
+      const validToken = await checkTokenValidity()
+      if (validToken) {
+        await getCategoriasArray()
+      }
+      dispatch(setInitialCheck(true))
+      setIsLoading(false)
+    }
+
+    const checkTokenValidity = async (): Promise<boolean> => {
+      let success = false
       try {
         const resp: IsValidTokenBackendResponse = await request.get('/auth/isValidToken')
         dispatch(userStateLogin(resp.data.token))
         dispatch(setIsAdmin(resp.data.isAdmin))
+        success = true
       } catch(error) {
         const errorId = (error.error && error.error.data && error.error.data.errorId) || null
         dispatch(setSessionErrorId(errorId))
       }
 
+      return success
+    }
+
+    const getCategoriasArray = async () => {
       try {
         const getCategoriasResp: CategoriasBackendResponse = await request.get('/auth/getCategorias')
         dispatch(setCategorias(getCategoriasResp.data))
@@ -55,9 +70,6 @@ function App() {
           { variant: 'error' }
         )
       }
-
-      dispatch(setInitialCheck(true))
-      setIsLoading(false)
     }
 
     if (!initialCheck) {
