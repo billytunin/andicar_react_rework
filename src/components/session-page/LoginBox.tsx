@@ -13,6 +13,7 @@ import {
   setValidationGroupDirtyState,
   shakeInvalids
 } from '../validation-input/validationInputsSlice'
+import { setCategorias } from '../productos/productosSlice'
 import { userStateLogin, setIsAdmin, userState } from '../../userStateSlice'
 import styles from './LoginBox.module.css'
 
@@ -42,6 +43,11 @@ export default function LoginBox() {
         })
         dispatch(userStateLogin(resp.data.token))
         dispatch(setIsAdmin(resp.data.isAdmin))
+
+        // Get categorias after logging in
+        const getCategoriasResp: CategoriasBackendResponse = await request.get('/auth/getCategorias')
+        dispatch(setCategorias(getCategoriasResp.data))
+
         history.push('/productos')
       } catch(error) {
         setErrorText(

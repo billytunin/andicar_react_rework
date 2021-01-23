@@ -60,7 +60,6 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 
 - ¿Donde me quede?
-- - Resolver el bug de que ahora cuando te deslogueas y volves a loguear se pierden las categorias
 - - Implementar un "UNDO" de cuando estás agregando Nuevos Productos. Por si agregaste uno nuevo sin querer (previo a que presiones "Cargar")
 - - Implementar la carga de imagenes para cuando cargas nuevos productos
 
