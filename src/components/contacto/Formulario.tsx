@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import request from '../../utils/request'
+import axios from '../../utils/axios'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { useSnackbar } from 'notistack'
@@ -44,7 +44,7 @@ export default function Formulario() {
     } else {
       setIsLoading(true)
       try {
-        await request.post('/nuevaConsulta', {
+        await axios.post('/nuevaConsulta', {
           full_name: formularioData.nombreCompleto,
           email: formularioData.email,
           telefono: formularioData.telefono,

@@ -15,7 +15,7 @@ import {
   getSearchFilter
 } from './productosSlice'
 
-import request from '../../utils/request'
+import axios from '../../utils/axios'
 import { errorIdIntoMessage } from '../../utils/errorFormater'
 
 import Grid from '@material-ui/core/Grid'
@@ -52,7 +52,7 @@ export default function ProductosGridBody() {
       queryParams = `?${paramsArray.join('&')}`
 
       try {
-        const resp: ProductosBackendResponse = await request.get(
+        const resp: ProductosBackendResponse = await axios.get(
           `/auth/getProducts${queryParams}`
         )
         dispatch(setProductos(resp.data.items))

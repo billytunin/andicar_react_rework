@@ -4,7 +4,7 @@ import { useSpring, animated } from 'react-spring'
 import { getProductsFromState } from '../productos/productosSlice'
 import { toggleProductosViewer, productosViewerState, next, prev } from './productosViewerSlice'
 
-import { CDNEdgeUrl } from '../../utils/constants'
+import { PHOTOS_URL } from '../../utils/constants'
 
 import { useDrag } from 'react-use-gesture'
 
@@ -141,7 +141,7 @@ export default function ProductosViewer() {
               <Grid item xs className={classes.imgGrid}>
                 <animated.div {...dragBinding()} style={{ touchAction: 'none', x }}>
                   <div className='imageContainer'>
-                    <img src={CDNEdgeUrl + productos[productoIndex].imagen} alt='juguete' />
+                    <img src={PHOTOS_URL + productos[productoIndex].imagen} alt='juguete' />
                     {productos[productoIndex].en_oferta ? <EnOfertaSpan isOnProductosViewer={true} /> : undefined}
                   </div>
                   <IconButton

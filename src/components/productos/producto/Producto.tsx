@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { toggleProductosViewer } from '../../productos-viewer/productosViewerSlice'
 import { userState } from '../../../userStateSlice'
 
-import { CDNEdgeUrl, PRODUCTS_MODIFICATIONS_VALIDATION_GROUP_NAME } from '../../../utils/constants'
+import { PHOTOS_URL, PRODUCTS_MODIFICATIONS_VALIDATION_GROUP_NAME } from '../../../utils/constants'
 import styles from './Producto.module.css'
 
 import {
@@ -69,7 +69,7 @@ export default function Producto(props: ProductoProps) {
   return (
     <div className={productoContainerClasses.join(' ')}>
       <img
-        src={CDNEdgeUrl + props.producto.imagen}
+        src={PHOTOS_URL + props.producto.imagen}
         alt={`Articulo ${props.producto.codigo}`}
         onClick={
           () => dispatch(

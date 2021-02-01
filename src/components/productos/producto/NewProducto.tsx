@@ -12,18 +12,14 @@ import FloatNumberRowAsAdmin from './FloatNumberRowAsAdmin'
 
 import styles from './Producto.module.css'
 
-interface NewProductoProps {
-  producto: Producto
-  validationGroupName: string
-  modificarNewProducto: ({ value, field, id }: ModificarNewProductoArguments) => void
-  agregarImagen: (file: File, productID: number) => void
-  removerNewProducto: (id: number) => void
-}
-
 export default function NewProducto(props: NewProductoProps) {
   return (
     <div className={styles.productoContainer}>
-      <UploadImageButton productID={props.producto.id} agregarImagen={(file) => props.agregarImagen(file, props.producto.id)} />
+      <UploadImageButton
+        productID={props.producto.id}
+        agregarImagen={(file) => props.agregarImagen(file, props.producto.id)}
+        newImages={props.newImages}
+      />
       <div className={styles.lineInfo}>
         <TextRowAsAdmin
           uniqueId={props.producto.id}

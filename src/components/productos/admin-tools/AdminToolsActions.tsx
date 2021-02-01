@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useSnackbar } from 'notistack'
-import request from '../../../utils/request'
+import axios from '../../../utils/axios'
 import styles from './AdminTools.module.css'
 import { PRODUCTS_MODIFICATIONS_VALIDATION_GROUP_NAME } from '../../../utils/constants'
 
@@ -59,7 +59,7 @@ export default function AdminToolsActions() {
       promisesMap.push(
         {
           key: 'MODIFY_PRODUCTS',
-          promise: request.put('/auth/modificarProductos', { productos: modifiedProductos })
+          promise: axios.put('/auth/modificarProductos', { productos: modifiedProductos })
         }
       )
     }
@@ -67,7 +67,7 @@ export default function AdminToolsActions() {
       promisesMap.push(
         {
           key: 'DELETE_PRODUCTS',
-          promise: request.delete('/auth/eliminarProductos', { productoIds: productoIdsToDelete })
+          promise: axios.delete('/auth/eliminarProductos', { productoIds: productoIdsToDelete })
         }
       )
     }

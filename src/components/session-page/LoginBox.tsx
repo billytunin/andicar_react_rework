@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import request from '../../utils/request'
+import axios from '../../utils/axios'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
 import Button from '@material-ui/core/Button'
@@ -37,7 +37,7 @@ export default function LoginBox() {
     } else {
       setIsLoading(true)
       try {
-        const resp: LoginBackendResponse = await request.post('/login', {
+        const resp: LoginBackendResponse = await axios.post('/login', {
           user: loginData.user,
           pass: loginData.pass
         })
@@ -45,7 +45,7 @@ export default function LoginBox() {
         dispatch(setIsAdmin(resp.data.isAdmin))
 
         // Get categorias after logging in
-        const getCategoriasResp: CategoriasBackendResponse = await request.get('/auth/getCategorias')
+        const getCategoriasResp: CategoriasBackendResponse = await axios.get('/auth/getCategorias')
         dispatch(setCategorias(getCategoriasResp.data))
 
         history.push('/productos')

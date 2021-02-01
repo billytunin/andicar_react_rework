@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import SlideRoutes from 'react-slide-routes'
 import { Route, useLocation } from 'react-router-dom'
-import request from './utils/request'
+import axios from './utils/axios'
 import './App.css'
 import {
   getInitialCheckState,
@@ -48,7 +48,7 @@ function App() {
     const checkTokenValidity = async (): Promise<boolean> => {
       let success = false
       try {
-        const resp: IsValidTokenBackendResponse = await request.get('/auth/isValidToken')
+        const resp: IsValidTokenBackendResponse = await axios.get('/auth/isValidToken')
         dispatch(userStateLogin(resp.data.token))
         dispatch(setIsAdmin(resp.data.isAdmin))
         success = true
@@ -62,7 +62,7 @@ function App() {
 
     const getCategoriasArray = async () => {
       try {
-        const getCategoriasResp: CategoriasBackendResponse = await request.get('/auth/getCategorias')
+        const getCategoriasResp: CategoriasBackendResponse = await axios.get('/auth/getCategorias')
         dispatch(setCategorias(getCategoriasResp.data))
       } catch(error) {
         enqueueSnackbar(

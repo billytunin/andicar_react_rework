@@ -11,17 +11,12 @@ import {
 
 import NewProducto from '../productos/producto/NewProducto'
 import Spinner from '../spinner/Spinner'
-import request from '../../utils/request'
+import axios from '../../utils/axios'
 
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import AddIcon from '@material-ui/icons/Add'
 import CloudUploadIcon from '@material-ui/icons/CloudUpload'
-
-interface ImageToUpload {
-  file: File
-  productID: number
-}
 
 const VALIDATION_GROUP_NAME = 'newProductos'
 
@@ -44,13 +39,13 @@ export default function UploadProducts() {
   const [isLoading, setIsLoading] = useState(false)
   const [newProducts, setNewProducts] = useState<Array<Producto>>([])
   const [newImages, setNewImages] = useState<Array<ImageToUpload>>([])
-  const [fakeID, setFakeID] = useState(0)
+  const [unsavedID, setUnsavedID] = useState(0)
 
   const newProductosHaveErrors = useSelector(validationGroupHasErrors(VALIDATION_GROUP_NAME))
 
   const agregarProducto = () => {
     let newArray = cloneDeep(newProducts)
-    const newID = fakeID + 1
+    const newID = unsavedID + 1
     newArray.push(
       {
         ...PRODUCTO_EMPTY_BODY,
@@ -58,13 +53,13 @@ export default function UploadProducts() {
       }
     )
     setNewProducts(newArray)
-    setFakeID(newID)
+    setUnsavedID(newID)
   }
 
   const resetState = () => {
     setNewProducts([])
     setNewImages([])
-    setFakeID(0)
+    setUnsavedID(0)
   }
 
   const agregarImagen = (file: File, productID: number) => {
@@ -84,8 +79,16 @@ export default function UploadProducts() {
 
   const removerNewProducto = (id: number) => {
     let currentArray = cloneDeep(newProducts)
+    let currentImagesArray = cloneDeep(newImages)
     const foundNewProductoIndex = currentArray.findIndex(newProductoObj => newProductoObj.id === id)
+    const foundNewImageIndex = currentImagesArray.findIndex(newImage => newImage.productID === id)
+
     currentArray.splice(foundNewProductoIndex, 1)
+    if (foundNewImageIndex !== -1) {
+      currentImagesArray.splice(foundNewImageIndex, 1)
+    }
+
+    setNewImages(currentImagesArray)
     setNewProducts(currentArray)
   }
 
@@ -99,6 +102,22 @@ export default function UploadProducts() {
     setNewProducts(currentArray)
   }
 
+  const mapUploadedImagesToNewProducts = (uploadedImages: Array<UploadedImage>) => {
+    let newArray: Array<Producto> = []
+    uploadedImages.forEach(uploadedImage => {
+      const foundImage = newImages.find(newImage => newImage.file.name === uploadedImage.originalName)
+      let foundNewProduct = newProducts.find(newProduct => newProduct.id === foundImage?.productID)
+      if (foundNewProduct) {
+        foundNewProduct.imagen = uploadedImage.newName
+        newArray.push(foundNewProduct)
+      } else {
+        console.warn('mapUploadedImagesToNewProducts warning: no matchean las imagenes en el estado actual de la UI con las imagenes cargadas que volvieron del BE')
+      }
+    })
+
+    setNewProducts(newArray)
+  }
+
   const cargar = async () => {
     dispatch(setValidationGroupDirtyState({ validationGroupName: VALIDATION_GROUP_NAME, isDirty: true }))
     if (newProductosHaveErrors) {
@@ -108,7 +127,13 @@ export default function UploadProducts() {
 
     setIsLoading(true)
     try {
-      await request.post('/auth/crearProductos', { productos: newProducts })
+      const formData = new FormData()
+      newImages.forEach(newImage => {
+        formData.append('photos', newImage.file)
+      })
+      const uploadImagesResp: UploadImagesResponse = await axios.post('/auth/uploadImages', formData)
+      mapUploadedImagesToNewProducts(uploadImagesResp.data)
+      await axios.post('/auth/crearProductos', { productos: newProducts })
       enqueueSnackbar(
         'Productos cargados con éxito',
         { variant: 'success' }
@@ -154,6 +179,7 @@ export default function UploadProducts() {
                   <NewProducto
                     producto={newProduct}
                     validationGroupName={VALIDATION_GROUP_NAME}
+                    newImages={newImages}
                     modificarNewProducto={modificarNewProducto}
                     removerNewProducto={removerNewProducto}
                     agregarImagen={agregarImagen}

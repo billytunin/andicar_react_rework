@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useSnackbar } from 'notistack'
 
 import styles from './UploadImageButton.module.css'
 
@@ -6,18 +7,24 @@ import IconButton from '@material-ui/core/IconButton'
 import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate'
 import EditIcon from '@material-ui/icons/Edit'
 
-interface UploadImageButtonProps {
-  productID: number
-  agregarImagen: (file: File) => void
-}
-
 export default function UploadImageButton(props: UploadImageButtonProps) {
+  const { enqueueSnackbar } = useSnackbar()
+
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
 
   const fileChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
-      setSelectedFile(event.target.files[0])
-      props.agregarImagen(event.target.files[0])
+      const file = event.target.files[0]
+      if (props.newImages.find(newImage => newImage.file.name === file.name)) {
+        enqueueSnackbar(
+          'No está permitido subir fotos (archivos) con el mismo nombre',
+          { variant: 'error' }
+        )
+        return
+      }
+
+      setSelectedFile(file)
+      props.agregarImagen(file)
     }
   }
 

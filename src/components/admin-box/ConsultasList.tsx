@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSnackbar } from 'notistack'
-import request from '../../utils/request'
+import axios from '../../utils/axios'
 import { DEFAULT_PAGINADO } from '../../utils/constants'
 
 import Spinner from '../spinner/Spinner'
@@ -33,7 +33,7 @@ export default function ConsultasList() {
       setIsLoading(true)
       const start = (pagina - 1) * paginado
       try {
-        const resp: GetConsultasBackendResponse = await request.get(
+        const resp: GetConsultasBackendResponse = await axios.get(
           `/auth/getConsultas?start=${start}&count=${paginado}${showActiveConsultas ? '' : '&archivadas=true'}`
         )
         setConsultas(resp.data.items)
@@ -79,9 +79,9 @@ export default function ConsultasList() {
     setIsLoadingActionOnConsultas(true)
     try {
       if (showActiveConsultas) {
-        await request.post('/auth/archivarConsultas', { idsArray: selectedConsultas })
+        await axios.post('/auth/archivarConsultas', { idsArray: selectedConsultas })
       } else {
-        await request.delete('/auth/borrarConsultas', { idsArray: selectedConsultas })
+        await axios.delete('/auth/borrarConsultas', { idsArray: selectedConsultas })
       }
       enqueueSnackbar(
         `Consultas ${showActiveConsultas ? 'archivadas' : 'eliminadas'} con éxito`,

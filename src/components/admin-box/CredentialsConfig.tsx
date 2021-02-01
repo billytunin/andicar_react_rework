@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import ValidationInput from '../validation-input/ValidationInput'
 import Spinner from '../spinner/Spinner'
-import request from '../../utils/request'
+import axios from '../../utils/axios'
 import { useSelector, useDispatch } from 'react-redux'
 import { useSnackbar } from 'notistack'
 
@@ -42,7 +42,7 @@ export default function CredentialsConfig() {
     } else {
       setIsLoading(true)
       try {
-        await request.post('/auth/changeCustomerCredentials', {
+        await axios.post('/auth/changeCustomerCredentials', {
           user: newCredentialsData.user,
           pass: newCredentialsData.pass
         })
@@ -67,7 +67,7 @@ export default function CredentialsConfig() {
   const getCurrentCredentials = async () => {
     setIsLoadingCurrentCredentials(true)
     try {
-      const resp: GetCustomerCredentialsBackendResponse = await request.get('/auth/getCustomerCredentials')
+      const resp: GetCustomerCredentialsBackendResponse = await axios.get('/auth/getCustomerCredentials')
       setCurrentCredentials({ user: resp.data.user, pass: resp.data.pass })
     } catch(error) {
       console.log('No se pudieron cargar las credenciales actuales del usuario cliente')

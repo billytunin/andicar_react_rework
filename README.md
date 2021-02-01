@@ -60,7 +60,8 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 
 - ¿Donde me quede?
-- - Implementar la carga de imagenes para cuando cargas nuevos productos
+- - Hacer que poner una imagen, cuando estás cargando productos, sea obligatorio
+- - Usar lo de CDN Edge URL para el photos.andicar.com.ar ahora
 
 
 

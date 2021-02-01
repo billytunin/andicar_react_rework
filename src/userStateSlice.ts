@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from './app/store'
-import request from './utils/request'
+import axios from './utils/axios'
 
 const initialState: UserState = {
   isLoggedIn: false,
@@ -18,11 +18,11 @@ export const userStateSlice = createSlice({
     },
     userStateLogin: (state, action: PayloadAction<string>) => {
       state.isLoggedIn = true
-      request.setAuthToken(action.payload)
+      axios.setAuthToken(action.payload)
     },
     userStateLogout: (state) => {
       state.isLoggedIn = false
-      request.removeAuthToken()
+      axios.removeAuthToken()
     },
     setIsAdmin: (state, action: PayloadAction<boolean>) => {
       state.isAdmin = action.payload

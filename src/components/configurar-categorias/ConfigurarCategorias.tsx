@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useSnackbar } from 'notistack'
 import { cloneDeep } from 'lodash'
 
-import request from '../../utils/request'
+import axios from '../../utils/axios'
 
 import {
   validationGroupHasErrors,
@@ -93,7 +93,7 @@ export default function ConfigurarCategorias() {
       setIsLoading(true)
       if (categoriasToAdd.length) {
         try {
-          await request.post('/auth/crearCategorias', {
+          await axios.post('/auth/crearCategorias', {
             categorias: categoriasToAdd
           })
           enqueueSnackbar(
@@ -110,7 +110,7 @@ export default function ConfigurarCategorias() {
       }
       if (modifiedCategorias.length) {
         try {
-          await request.post('/auth/modificarCategorias', {
+          await axios.post('/auth/modificarCategorias', {
             categorias: modifiedCategorias
           })
           enqueueSnackbar(
@@ -130,7 +130,7 @@ export default function ConfigurarCategorias() {
         dispatch(setValidationGroupDirtyState({ validationGroupName: VALIDATION_GROUP_NAME, isDirty: false }))
 
         // Refresh categorias state on productosSlice
-        const getCategoriasResp: CategoriasBackendResponse = await request.get('/auth/getCategorias')
+        const getCategoriasResp: CategoriasBackendResponse = await axios.get('/auth/getCategorias')
         dispatch(setCategorias(getCategoriasResp.data))
         setModifiedCategorias([])
         setCategoriasToAdd([])
