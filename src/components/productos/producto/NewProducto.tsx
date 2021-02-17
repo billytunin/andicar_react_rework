@@ -1,6 +1,6 @@
 import React from 'react'
 
-import UploadImageButton from './UploadImageButton'
+import UploadImageBox from './UploadImageBox'
 
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Switch from '@material-ui/core/Switch'
@@ -15,7 +15,7 @@ import styles from './Producto.module.css'
 export default function NewProducto(props: NewProductoProps) {
   return (
     <div className={styles.productoContainer}>
-      <UploadImageButton
+      <UploadImageBox
         productID={props.producto.id}
         agregarImagen={(file) => props.agregarImagen(file, props.producto.id)}
         newImages={props.newImages}

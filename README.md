@@ -62,6 +62,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 - ¿Donde me quede?
 - - Hacer que poner una imagen, cuando estás cargando productos, sea obligatorio
 - - Usar lo de CDN Edge URL para el photos.andicar.com.ar ahora
+- - Chequear que sucede si subo tipo 10 imagenes al mismo tiempo en la carga de productos. Me tirará timeout?
 
 
 

@@ -12,7 +12,7 @@ interface NewProductoProps {
   removerNewProducto: (id: number) => void
 }
 
-interface UploadImageButtonProps {
+interface UploadImageBoxProps {
   productID: number
   agregarImagen: (file: File) => void
   newImages: Array<ImageToUpload>
