@@ -1,21 +1,14 @@
-interface ImageToUpload {
-  file: File
-  productID: number
-}
-
 interface NewProductoProps {
   producto: Producto
   validationGroupName: string
   modificarNewProducto: ({ value, field, id }: ModificarNewProductoArguments) => void
-  agregarImagen: (file: File, productID: number) => void
-  newImages: Array<ImageToUpload>
   removerNewProducto: (id: number) => void
 }
 
 interface UploadImageBoxProps {
   productID: number
-  agregarImagen: (file: File) => void
-  newImages: Array<ImageToUpload>
+  productImagen: string
+  emitSavedImage: (fileName: string) => void
 }
 
 interface UploadedImage {

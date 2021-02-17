@@ -53,6 +53,8 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 ## TODOs que se pueden hacer post-launch
 - Invertir la logica de "archivados". En vez de que sea true para cuando están inactivos tanto en FE como en BE, que sea true para cuando están activos. Y la propiedad se pasaria a llamar "activo" o algo asi.
 - - Buscar en el codigo -> // TODO: Cambiar esto cuando cambie "archivado" por "activo"
+- Mejorar el ValidationInput. Cuando editas esos fields anda lento y creo que puede tener que ver con estar editando el State en cada keystroke
+- Usar lo de CDN Edge URL para el photos.andicar.com.ar
 - Implementar delete para categorias? Si asi fuera, implementar una categoria DEFAULT. Cuando borras una categoria, todos los productos que quedarían "categoria-less" pasarian a ser de la categoria DEFAULT.
 - Meter filtros de busqueda (por fecha, por texto que abarque nombre+mail+consulta) en ConsultasList
 - Pensar que hacer con el "deprecated findDOMNode" warning (mas info [aca](https://github.com/nanxiaobei/react-slide-routes))
@@ -60,9 +62,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 
 - ¿Donde me quede?
-- - Hacer que poner una imagen, cuando estás cargando productos, sea obligatorio
-- - Usar lo de CDN Edge URL para el photos.andicar.com.ar ahora
-- - Chequear que sucede si subo tipo 10 imagenes al mismo tiempo en la carga de productos. Me tirará timeout?
+
 
 
 

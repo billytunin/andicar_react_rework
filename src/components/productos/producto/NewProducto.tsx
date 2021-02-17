@@ -14,11 +14,11 @@ import styles from './Producto.module.css'
 
 export default function NewProducto(props: NewProductoProps) {
   return (
-    <div className={styles.productoContainer}>
+    <div className={`${styles.productoContainer} ${styles.normalCursor}`}>
       <UploadImageBox
         productID={props.producto.id}
-        agregarImagen={(file) => props.agregarImagen(file, props.producto.id)}
-        newImages={props.newImages}
+        productImagen={props.producto.imagen}
+        emitSavedImage={(fileName) => props.modificarNewProducto({ field: 'imagen', value: fileName, id: props.producto.id })}
       />
       <div className={styles.lineInfo}>
         <TextRowAsAdmin

@@ -13,6 +13,8 @@ import NewProducto from '../productos/producto/NewProducto'
 import Spinner from '../spinner/Spinner'
 import axios from '../../utils/axios'
 
+import { someImagenLoading } from '../productos/newProductosSlice'
+
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import AddIcon from '@material-ui/icons/Add'
@@ -38,10 +40,10 @@ export default function UploadProducts() {
 
   const [isLoading, setIsLoading] = useState(false)
   const [newProducts, setNewProducts] = useState<Array<Producto>>([])
-  const [newImages, setNewImages] = useState<Array<ImageToUpload>>([])
   const [unsavedID, setUnsavedID] = useState(0)
 
   const newProductosHaveErrors = useSelector(validationGroupHasErrors(VALIDATION_GROUP_NAME))
+  const isSomeImagenLoading = useSelector(someImagenLoading)
 
   const agregarProducto = () => {
     let newArray = cloneDeep(newProducts)
@@ -58,37 +60,15 @@ export default function UploadProducts() {
 
   const resetState = () => {
     setNewProducts([])
-    setNewImages([])
     setUnsavedID(0)
-  }
-
-  const agregarImagen = (file: File, productID: number) => {
-    let newArray = cloneDeep(newImages)
-    const newImagenIndex = newArray.findIndex(newImagenObj => newImagenObj.productID === productID)
-    if (newImagenIndex !== -1) {
-      newArray[newImagenIndex].file = file
-    } else {
-      newArray.push({
-        productID,
-        file
-      })
-    }
-
-    setNewImages(newArray)
+    dispatch(setValidationGroupDirtyState({ validationGroupName: VALIDATION_GROUP_NAME, isDirty: false }))
   }
 
   const removerNewProducto = (id: number) => {
     let currentArray = cloneDeep(newProducts)
-    let currentImagesArray = cloneDeep(newImages)
     const foundNewProductoIndex = currentArray.findIndex(newProductoObj => newProductoObj.id === id)
-    const foundNewImageIndex = currentImagesArray.findIndex(newImage => newImage.productID === id)
 
     currentArray.splice(foundNewProductoIndex, 1)
-    if (foundNewImageIndex !== -1) {
-      currentImagesArray.splice(foundNewImageIndex, 1)
-    }
-
-    setNewImages(currentImagesArray)
     setNewProducts(currentArray)
   }
 
@@ -102,37 +82,36 @@ export default function UploadProducts() {
     setNewProducts(currentArray)
   }
 
-  const mapUploadedImagesToNewProducts = (uploadedImages: Array<UploadedImage>) => {
-    let newArray: Array<Producto> = []
-    uploadedImages.forEach(uploadedImage => {
-      const foundImage = newImages.find(newImage => newImage.file.name === uploadedImage.originalName)
-      let foundNewProduct = newProducts.find(newProduct => newProduct.id === foundImage?.productID)
-      if (foundNewProduct) {
-        foundNewProduct.imagen = uploadedImage.newName
-        newArray.push(foundNewProduct)
-      } else {
-        console.warn('mapUploadedImagesToNewProducts warning: no matchean las imagenes en el estado actual de la UI con las imagenes cargadas que volvieron del BE')
-      }
-    })
+  const formIsInvalid = () => {
+    let invalidFields = false
+    let unsetImagen = false
 
-    setNewProducts(newArray)
-  }
-
-  const cargar = async () => {
+    // Check that all fields are valid
     dispatch(setValidationGroupDirtyState({ validationGroupName: VALIDATION_GROUP_NAME, isDirty: true }))
     if (newProductosHaveErrors) {
       dispatch(shakeInvalids(VALIDATION_GROUP_NAME))
+      invalidFields = true
+    }
+    
+    // Check that all products have imagen set
+    unsetImagen = newProducts.some(newProductObj => !newProductObj.imagen)
+    if (unsetImagen) {
+      enqueueSnackbar(
+        'Ha faltado cargarle imagen a algun producto',
+        { variant: 'error' }
+      )
+    }
+
+    return invalidFields || unsetImagen
+  }
+
+  const cargar = async () => {
+    if (formIsInvalid()) {
       return
     }
 
     setIsLoading(true)
     try {
-      const formData = new FormData()
-      newImages.forEach(newImage => {
-        formData.append('photos', newImage.file)
-      })
-      const uploadImagesResp: UploadImagesResponse = await axios.post('/auth/uploadImages', formData)
-      mapUploadedImagesToNewProducts(uploadImagesResp.data)
       await axios.post('/auth/crearProductos', { productos: newProducts })
       enqueueSnackbar(
         'Productos cargados con éxito',
@@ -161,6 +140,7 @@ export default function UploadProducts() {
               color='primary'
               startIcon={<AddIcon />}
               onClick={agregarProducto}
+              disabled={isSomeImagenLoading}
             >
               Agregar
             </Button>
@@ -168,7 +148,7 @@ export default function UploadProducts() {
               variant='contained'
               color='primary'
               startIcon={<CloudUploadIcon />}
-              disabled={!newProducts.length}
+              disabled={!newProducts.length || isSomeImagenLoading}
               onClick={cargar}
             >
               Cargar
@@ -179,10 +159,8 @@ export default function UploadProducts() {
                   <NewProducto
                     producto={newProduct}
                     validationGroupName={VALIDATION_GROUP_NAME}
-                    newImages={newImages}
                     modificarNewProducto={modificarNewProducto}
                     removerNewProducto={removerNewProducto}
-                    agregarImagen={agregarImagen}
                   />
                 </Grid>
               )}
