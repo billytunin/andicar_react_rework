@@ -44,8 +44,6 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## TODOs
-
-- Que las imagenes que se vayan a subir, sean en un nuevo bucket de AWS con permisos puestos
 - Ver como se ve el sitio en mobile/ipad
 - Borrar la carpeta features/counter cuando no la necesite más
 - Revisar si se están usando los especificadores globales de index.css (tipo "rightAligned", "displayBlock", etc)

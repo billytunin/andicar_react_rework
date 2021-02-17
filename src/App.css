@@ -8,6 +8,13 @@
   padding: 0 1rem 0 1rem;
   height: 88vh;
   overflow-y: scroll;
+  -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
+  scrollbar-width: none;  /* Hide scrollbar for Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.app-content::-webkit-scrollbar {
+  display: none;
 }
 
 /* Change Autocomplete styles in Chrome*/
