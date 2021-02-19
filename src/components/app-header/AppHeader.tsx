@@ -1,32 +1,38 @@
 import React from 'react'
-import { NavLink, useRouteMatch } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
-import Button from '@material-ui/core/Button'
+import { getIsMobileVersion } from '../../userStateSlice'
+
+import HeaderNavLink from './HeaderNavLink'
 import styles from './AppHeader.module.css'
 
+import Grid from '@material-ui/core/Grid'
+
 export default function AppHeader() {
+  const isMobileVersion = useSelector(getIsMobileVersion)
+
   return (
     <div className={styles.headerContainer}>
-      <NavLink to="/" exact>
-        <Button variant="contained" color={useRouteMatch({ path: '/', exact: true }) ? 'primary' : 'default'}>
-          INICIO
-        </Button>
-      </NavLink>
-      <NavLink to="/productos">
-        <Button variant="contained" color={useRouteMatch({ path: '/productos' }) ? 'primary' : 'default'}>
-          PRODUCTOS
-        </Button>
-      </NavLink>
-      <NavLink to="/contacto">
-        <Button variant="contained" color={useRouteMatch({ path: '/contacto' }) ? 'primary' : 'default'}>
-          CONTACTO
-        </Button>
-      </NavLink>
-      <NavLink to="/session">
-        <Button variant="contained" color={useRouteMatch({ path: '/session' }) ? 'primary' : 'default'}>
-          SESIÓN
-        </Button>
-      </NavLink>
+      <Grid container>
+        <Grid item xs></Grid>
+        <Grid item xs={isMobileVersion ? 12 : 7}>
+          <Grid container>
+            <Grid item xs={3}>
+              <HeaderNavLink text='INICIO' path='/' shouldBeExactPath={true} />
+            </Grid>
+            <Grid item xs={3}>
+              <HeaderNavLink text='PRODUCTOS' path='/productos' />
+            </Grid>
+            <Grid item xs={3}>
+              <HeaderNavLink text='CONTACTO' path='/contacto' />
+            </Grid>
+            <Grid item xs={3}>
+              <HeaderNavLink text='SESIÓN' path='/session' />
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid item xs></Grid>
+      </Grid>
     </div>
   )
 }

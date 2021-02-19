@@ -8,7 +8,8 @@ import {
   setInitialCheck,
   userStateLogin,
   setIsAdmin,
-  setSessionErrorId
+  setSessionErrorId,
+  setIsMobileVersion
 } from './userStateSlice'
 import { setCategorias } from './components/productos/productosSlice'
 import { useSelector, useDispatch } from 'react-redux'
@@ -34,6 +35,7 @@ function App() {
     /*
     initialSetup takes care of the asynchronous operations that need to ocurr before the app gets rendered.
     Such as verifying that the user has a valid token and loading the categorias array in the productosSlice store
+    It also takes care of setting the state of "isMobileVersion" on the userState
     */
     const initialSetup = async () => {
       setIsLoading(true)
@@ -41,6 +43,13 @@ function App() {
       if (validToken) {
         await getCategoriasArray()
       }
+
+      if (window.innerWidth <= 768) {
+        dispatch(setIsMobileVersion(true))
+      } else {
+        dispatch(setIsMobileVersion(false))
+      }
+
       dispatch(setInitialCheck(true))
       setIsLoading(false)
     }

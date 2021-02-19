@@ -3,4 +3,5 @@ interface UserState {
   isAdmin: boolean
   sessionErrorId: string | null
   initialCheck: boolean
+  isMobileVersion: boolean
 }

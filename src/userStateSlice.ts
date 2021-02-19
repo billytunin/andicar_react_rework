@@ -6,7 +6,8 @@ const initialState: UserState = {
   isLoggedIn: false,
   isAdmin: false,
   sessionErrorId: null,
-  initialCheck: false
+  initialCheck: false,
+  isMobileVersion: false
 }
 
 export const userStateSlice = createSlice({
@@ -29,6 +30,9 @@ export const userStateSlice = createSlice({
     },
     setSessionErrorId: (state, action: PayloadAction<string>) => {
       state.sessionErrorId = action.payload
+    },
+    setIsMobileVersion: (state, action: PayloadAction<boolean>) => {
+      state.isMobileVersion = action.payload
     }
   }
 })
@@ -38,10 +42,12 @@ export const {
   userStateLogin,
   userStateLogout,
   setIsAdmin,
-  setSessionErrorId
+  setSessionErrorId,
+  setIsMobileVersion
 } = userStateSlice.actions
 
 export const userState = (state: RootState) => state.userState
 export const getInitialCheckState = (state: RootState) => state.userState.initialCheck
+export const getIsMobileVersion = (state: RootState) => state.userState.isMobileVersion
 
 export default userStateSlice.reducer

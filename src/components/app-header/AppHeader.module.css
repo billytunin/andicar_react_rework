@@ -3,3 +3,42 @@
   box-shadow: inset 0px -20px 100px -27px;
   height: 8vh;
 }
+.navLinkContainer {
+  text-align: center;
+  margin-top: 1.2vh;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+.navLinkContainer a {
+  text-decoration: unset;
+}
+.headerNavLink {
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  font-family: 'Rubik';
+  font-size: 24px;
+  background-color: rgba(240, 240, 240, 0.1);
+  border-radius: 30px;
+  color: white;
+  transition: background-color 0.5s ease-in-out;
+  transition: color 0.3s ease-in-out;
+}
+.isActive {
+  background-color: rgba(240, 240, 240, 0.7);
+  color: black;
+}
+.smallerFontSize {
+  font-size: 12px !important;
+  padding-top: 1.2vh;
+  padding-bottom: 1.2vh;
+}
+
+@media (max-width: 768px) {
+  .headerNavLink {
+    font-size: 14px;
+  }
+  .navLinkContainer {
+    margin-left: 0.1rem;
+    margin-right: 0.1rem;
+  }
+}
