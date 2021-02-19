@@ -47,6 +47,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 - Ver como se ve el sitio en mobile/ipad
 - Borrar la carpeta features/counter cuando no la necesite más
 - Revisar si se están usando los especificadores globales de index.css (tipo "rightAligned", "displayBlock", etc)
+- Borrar los archivos fonts que no se están usando en index.css?
 
 ## TODOs que se pueden hacer post-launch
 - Invertir la logica de "archivados". En vez de que sea true para cuando están inactivos tanto en FE como en BE, que sea true para cuando están activos. Y la propiedad se pasaria a llamar "activo" o algo asi.
