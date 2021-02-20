@@ -6,7 +6,7 @@ import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import Modal from '@material-ui/core/Modal'
 import Backdrop from '@material-ui/core/Backdrop'
-import Fade from '@material-ui/core/Fade'
+import Slide from '@material-ui/core/Slide'
 
 import styles from './MobileMenu.module.css'
 
@@ -32,7 +32,7 @@ export default function MobileMenu(props: MobileMenuProps) {
           timeout: 500
         }}
       >
-        <Fade in={menuIsOpen}>
+        <Slide in={menuIsOpen} direction='left' mountOnEnter unmountOnExit>
           <div className={styles.body}>
             {props.pathArray.map((pathObject, index) =>
               <MobileMenuLink
@@ -43,7 +43,7 @@ export default function MobileMenu(props: MobileMenuProps) {
               />
             )}
           </div>
-        </Fade>
+        </Slide>
       </Modal>
     </div>
   )
