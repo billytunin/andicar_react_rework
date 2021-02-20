@@ -3,6 +3,11 @@
   box-shadow: inset 0px -20px 100px -27px;
   height: 8vh;
 }
+.headerContainer img {
+  width: 33%;
+  margin-top: 0.7vh;
+  margin-left: 0.5vw;
+}
 .navLinkContainer {
   text-align: center;
   margin-top: 1.2vh;
@@ -27,18 +32,9 @@
   background-color: rgba(240, 240, 240, 0.7);
   color: black;
 }
-.smallerFontSize {
-  font-size: 12px !important;
-  padding-top: 1.2vh;
-  padding-bottom: 1.2vh;
-}
 
 @media (max-width: 768px) {
-  .headerNavLink {
-    font-size: 14px;
-  }
-  .navLinkContainer {
-    margin-left: 0.1rem;
-    margin-right: 0.1rem;
+  .headerContainer img {
+    width: 38%;
   }
 }

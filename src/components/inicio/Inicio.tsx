@@ -8,7 +8,6 @@ import DoubleBox from '../double-box/DoubleBox'
 import LeftPaneText from './LeftPaneText'
 import RightPaneText from './RightPaneText'
 
-import logo from '../../assets/logo.png'
 import { makeStyles, createStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 
@@ -37,9 +36,6 @@ export default function Inicio() {
   return (
     <div className={classes.root}>
       <Grid container spacing={0}>
-        <Grid item xs={12}>
-          <img src={logo} alt='logo' />
-        </Grid>
         <Grid item xs={12}>
           <FancyTitle text='Importadora de Juguetes' />
         </Grid>

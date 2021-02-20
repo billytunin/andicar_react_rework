@@ -1,0 +1,35 @@
+.body {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 47vw;
+  outline: none;
+  border-bottom-left-radius: 8px;
+}
+.white {
+  color: white!important;
+}
+.alignRight {
+  text-align: right;
+}
+.mobileMenuLinkContainer a {
+  text-decoration: unset;
+}
+.mobileMenuLink {
+  font-family: 'Rubik';
+  background-color: white;
+  color: black;
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
+  padding: 0.5rem;
+  border-bottom: 1px solid rgba(150, 150, 150, 0.8);
+  transition: background-color 0.5s ease-in-out;
+  transition: color 0.3s ease-in-out;
+}
+.isActive {
+  background-color: rgb(66, 66, 181);
+  color: white;
+}
+.noBorderBottom {
+  border-bottom: none;
+}

@@ -1,38 +1,32 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
+import AppHeaderMobile from './AppHeaderMobile'
+import AppHeaderDesktop from './AppHeaderDesktop'
+
 import { getIsMobileVersion } from '../../userStateSlice'
 
-import HeaderNavLink from './HeaderNavLink'
-import styles from './AppHeader.module.css'
-
-import Grid from '@material-ui/core/Grid'
-
 export default function AppHeader() {
-  const isMobileVersion = useSelector(getIsMobileVersion)
+  const mobileVersion = useSelector(getIsMobileVersion)
+  const pathArray: Array<PathObject> = [
+    {
+      path: '/',
+      text: 'INICIO',
+      shouldBeExactPath: true
+    },
+    {
+      path: '/productos',
+      text: 'PRODUCTOS'
+    },
+    {
+      path: '/contacto',
+      text: 'CONTACTO'
+    },
+    {
+      path: '/session',
+      text: 'SESIÓN'
+    }
+  ]
 
-  return (
-    <div className={styles.headerContainer}>
-      <Grid container>
-        <Grid item xs></Grid>
-        <Grid item xs={isMobileVersion ? 12 : 7}>
-          <Grid container>
-            <Grid item xs={3}>
-              <HeaderNavLink text='INICIO' path='/' shouldBeExactPath={true} />
-            </Grid>
-            <Grid item xs={3}>
-              <HeaderNavLink text='PRODUCTOS' path='/productos' />
-            </Grid>
-            <Grid item xs={3}>
-              <HeaderNavLink text='CONTACTO' path='/contacto' />
-            </Grid>
-            <Grid item xs={3}>
-              <HeaderNavLink text='SESIÓN' path='/session' />
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid item xs></Grid>
-      </Grid>
-    </div>
-  )
+  return mobileVersion ? <AppHeaderMobile pathArray={pathArray} /> : <AppHeaderDesktop pathArray={pathArray} />
 }
