@@ -5,32 +5,35 @@ import Carousel from 'react-material-ui-carousel'
 import Pic from './Pic'
 import MobilePic from './MobilePic'
 
-import { getInitialCheckState } from '../../../userStateSlice'
+import { getInitialCheckState, getIsMobileVersion } from '../../../userStateSlice'
 
 import { makeStyles, createStyles } from '@material-ui/core/styles'
 
 const picContainerWidth = 1000
 const picContainerHeight = 230
-
-const useStyles = makeStyles(() =>
-  createStyles({
-    root: {
-      width: `${picContainerWidth}px`,
-      height: `${picContainerHeight + 30}px`,
-      margin: 'auto',
-      '& .picContainer': {
-        position: 'relative',
-        width: `${picContainerWidth}px`,
-        height: `${picContainerHeight}px`,
-        overflow: 'hidden'
-      }
-    }
-  })
-)
+const mobilePicContainerWidth = window.innerWidth - 5
+const mobilePicContainerHeight = 120
 
 export default function Slider() {
+  const isMobileVersion = useSelector(getIsMobileVersion)
+
+  const useStyles = makeStyles(() =>
+    createStyles({
+      root: {
+        width: `${isMobileVersion ? mobilePicContainerWidth : picContainerWidth}px`,
+        height: `${isMobileVersion ? (mobilePicContainerHeight + 30) : (picContainerHeight + 30)}px`,
+        margin: 'auto',
+        '& .picContainer': {
+          position: 'relative',
+          width: `${isMobileVersion ? mobilePicContainerWidth : picContainerWidth}px`,
+          height: `${isMobileVersion ? mobilePicContainerHeight : picContainerHeight}px`,
+          overflow: 'hidden'
+        }
+      }
+    })
+  )
+
   const classes = useStyles()
-  const isMobile = window.innerWidth < 769
   const picNumbers = [1, 2, 3, 4]
 
   // This is a workaround to avoid "Can't perform a React state update on an unmounted component." warning.
@@ -46,7 +49,7 @@ export default function Slider() {
     <div className={classes.root}>
       <Carousel interval={8000}>
         {picNumbers.map(
-          picNumber => isMobile ? <MobilePic key={picNumber} picNumber={picNumber} /> : <Pic key={picNumber} picNumber={picNumber} />
+          picNumber => isMobileVersion ? <MobilePic key={picNumber} picNumber={picNumber} /> : <Pic key={picNumber} picNumber={picNumber} />
         )}
       </Carousel>
     </div>

@@ -1,6 +1,12 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
+
+import { getIsMobileVersion } from '../../userStateSlice'
+
+import styles from './Inicio.module.css'
 
 import FancyTitle from './FancyTitle'
+import FancyTitleMobile from './FancyTitleMobile'
 import Slider from './slider/Slider'
 import DoubleBox from '../double-box/DoubleBox'
 
@@ -8,55 +14,41 @@ import DoubleBox from '../double-box/DoubleBox'
 import LeftPaneText from './LeftPaneText'
 import RightPaneText from './RightPaneText'
 
-import { makeStyles, createStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 
-const useStyles = makeStyles(() =>
-  createStyles({
-    root: {
-      textAlign: 'center',
-      '& .paneText': {
-        textAlign: 'left',
-        'line-height': 1.5,
-        'margin-top': 0,
-        '& .highlight': {
-          color: 'rgba(185, 10, 10, 0.85)'
-        }
-      }
-    },
-    subtitle: {
-      fontSize: '1.5rem'
-    }
-  })
-)
-
 export default function Inicio() {
-  const classes = useStyles()
+  const isMobileVersion = useSelector(getIsMobileVersion)
 
   return (
-    <div className={classes.root}>
+    <div className={styles.root}>
       <Grid container spacing={0}>
-        <Grid item xs={12}>
-          <FancyTitle text='Importadora de Juguetes' />
+        <Grid item xs={12} className={styles.paddingTop}>
+          {
+            isMobileVersion ?
+              <FancyTitleMobile />
+              :
+              <FancyTitle />
+          }
         </Grid>
         <Grid item xs={12}>
-          <h3 className={classes.subtitle}>30 años</h3>
+          <span className={styles.subtitle}>30 años</span>
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={12} className={styles.paddingTop}>
           <Slider />
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={12} className={`${styles.paddingTop} ${styles.padSides}`}>
           <Grid container spacing={0}>
-            <Grid item xs={6}>
-              <span>¿Quienes somos?</span>
+            <Grid item xs={6} className={styles.textRight}>
+              <span className={styles.paneTextTitle}>¿Quienes somos?</span>
             </Grid>
-            <Grid item xs={6}>
-              <span>El sitio web</span>
+            <Grid item xs={6} className={styles.textRight}>
+              <span className={styles.paneTextTitle}>El sitio web</span>
             </Grid>
             <Grid item xs={12}>
               <DoubleBox
                 leftPane={<LeftPaneText />}
                 rightPane={<RightPaneText />}
+                flatTopRightBorderRadius={true}
               />
             </Grid>
           </Grid>

@@ -1,5 +1,6 @@
 .grid {
   height: 100%;
+  padding-top: 5rem;
 }
 .appFooter {
   background-color: rgba(120, 120, 185, 0.8);

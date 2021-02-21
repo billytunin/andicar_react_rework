@@ -1,17 +1,12 @@
 import React from 'react'
 import styles from './FancyTitle.module.css'
-import './FancyLines.css'
 
-interface FancyTitleProps {
-  text: string
-}
-
-export default function FancyTitle(props: FancyTitleProps) {
+export default function FancyTitle() {
   return (
     <div className={styles.container}>
-      <div className='fancyLines left'></div>
-      <span className={styles.text}>{props.text}</span>
-      <div className='fancyLines right'></div>
+      <div className={`${styles.fancyLines} ${styles.left}`}></div>
+      <span className={styles.text}>Importadora de Juguetes</span>
+      <div className={`${styles.fancyLines} ${styles.right}`}></div>
     </div>
   )
 }

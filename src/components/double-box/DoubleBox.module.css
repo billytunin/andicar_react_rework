@@ -1,7 +1,10 @@
 .doubleBoxContainer {
-  background-color: rgba(210, 210, 210, 0.5);
+  background-color: rgba(178, 201, 235, 0.7);
   border-radius: 15px;
   padding: 15px 0 15px 0;
+}
+.flatTopRightBorderRadius {
+  border-top-right-radius: 0;
 }
 .doubleBoxPane {
   padding: 0 20px 0 20px;

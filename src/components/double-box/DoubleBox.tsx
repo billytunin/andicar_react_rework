@@ -7,11 +7,13 @@ interface DoubleBoxProps {
   leftPane: JSX.Element,
   rightPane: JSX.Element,
   rightPaneHasBorder?: boolean
+  flatTopRightBorderRadius?: boolean
 }
 
 export default function DoubleBox(props: DoubleBoxProps) {
+  const doubleBoxContainerStyle = `${styles.doubleBoxContainer} ${props.flatTopRightBorderRadius ? styles.flatTopRightBorderRadius : ''}`
   return (
-    <Grid container spacing={0} className={styles.doubleBoxContainer}>
+    <Grid container spacing={0} className={doubleBoxContainerStyle}>
       <Grid item xs={6} className={`${styles.doubleBoxPane} ${props.rightPaneHasBorder ? '' : styles.rightBorder}`}>
         {props.leftPane}
       </Grid>

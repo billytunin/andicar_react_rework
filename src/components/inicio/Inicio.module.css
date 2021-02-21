@@ -1,0 +1,39 @@
+.root {
+  text-align: center;
+}
+.paddingTop {
+  padding-top: 2rem;
+}
+.padSides {
+  padding-left: 10vw;
+  padding-right: 10vw;
+}
+.textRight {
+  text-align: right;
+}
+.paneTextTitle {
+  font-size: 24px;
+  background-color: rgba(178, 201, 235, 0.7);
+  padding: 0.5rem 0.7rem 0 2rem;
+  border-top-left-radius: 5rem;
+  border-top-right-radius: 15px;
+}
+.paneText {
+  text-align: left;
+  line-height: 1.5;
+  margin-top: 0;
+}
+.highlight {
+  color: rgba(185, 10, 10, 0.85);
+}
+.subtitle {
+  font-size: 1.5rem;
+  font-style: italic;
+}
+@media (max-width: 768px) {
+  .subtitle {
+    display: block;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+  }
+}

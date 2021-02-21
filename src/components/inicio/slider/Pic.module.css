@@ -15,3 +15,20 @@
     top: 0px;
   }
 }
+@keyframes floatBubbleMobile {
+  0% {
+    top: 0px;
+  }
+  50% {
+    top: -100px;
+  }
+  100% {
+    top: 0px;
+  }
+}
+
+@media (max-width: 768px) {
+  .image {
+    animation: floatBubbleMobile 12s infinite  normal ease-out;
+  }
+}
