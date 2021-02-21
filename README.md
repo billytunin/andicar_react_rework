@@ -62,7 +62,6 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 
 - ¿Donde me quede?
-- - Hacer una animacion para que el sidebar entre por izquierda, en vez de que sea por opacity solo
 
 
 

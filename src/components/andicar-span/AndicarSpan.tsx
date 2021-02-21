@@ -3,7 +3,7 @@ import styles from './AndicarSpan.module.css';
 
 export default function AndicarSpan() {
   return (
-    <span>
+    <span className={styles.mainSpan}>
       <span className={styles.andiColor}>Andi</span>
       <span className={styles.carColor}>car</span>
     </span>

@@ -21,6 +21,7 @@ import Contacto from './components/contacto/Contacto'
 import SessionPage from './components/session-page/SessionPage'
 import AppFooter from './components/app-footer/AppFooter'
 import Spinner from './components/spinner/Spinner'
+import Grid from '@material-ui/core/Grid'
 
 function App() {
   const dispatch = useDispatch()
@@ -90,12 +91,21 @@ function App() {
     <div>
       <AppHeader />
       <div className="app-content">
-        <SlideRoutes location={location} duration={500} pathList={pathList}>
-          <Route path="/" component={Inicio} exact />
-          <Route path="/productos" component={Productos} />
-          <Route path="/contacto" component={Contacto} />
-          <Route path="/session" component={SessionPage} />
-        </SlideRoutes>
+        <Grid container alignItems='stretch' className='app-body-grid'>
+          <Grid item xs={12}>
+            <div className="app-content-body">
+              <SlideRoutes location={location} duration={500} pathList={pathList}>
+                <Route path="/" component={Inicio} exact />
+                <Route path="/productos" component={Productos} />
+                <Route path="/contacto" component={Contacto} />
+                <Route path="/session" component={SessionPage} />
+              </SlideRoutes>
+            </div>
+          </Grid>
+          <Grid item xs={12}>
+            <AppFooter />
+          </Grid>
+        </Grid>
       </div>
     </div>
 
@@ -105,7 +115,6 @@ function App() {
   return (
     <div className="app">
       {appBody}
-      <AppFooter />
     </div>
   )
 }
