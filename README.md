@@ -62,9 +62,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 
 - ¿Donde me quede?
-- - Terminar estilos mobile del DoubleBox
-- - - Deberia pasar el titulo de los DoubleBox que hoy están en Inicio.tsx al componente
-- - - Una vez hecho eso, laburar para que el DoubleBox sea vertical
+
 
 
 
