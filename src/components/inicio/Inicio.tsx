@@ -37,21 +37,11 @@ export default function Inicio() {
           <Slider />
         </Grid>
         <Grid item xs={12} className={`${styles.paddingTop} ${styles.padSides}`}>
-          <Grid container spacing={0}>
-            <Grid item xs={6} className={styles.textRight}>
-              <span className={styles.paneTextTitle}>¿Quienes somos?</span>
-            </Grid>
-            <Grid item xs={6} className={styles.textRight}>
-              <span className={styles.paneTextTitle}>El sitio web</span>
-            </Grid>
-            <Grid item xs={12}>
-              <DoubleBox
-                leftPane={<LeftPaneText />}
-                rightPane={<RightPaneText />}
-                flatTopRightBorderRadius={true}
-              />
-            </Grid>
-          </Grid>
+          <DoubleBox
+            leftPane={<LeftPaneText />}
+            rightPane={<RightPaneText />}
+            titles={{ leftPaneTitle: '¿Quienes somos?', rightPaneTitle: 'El sitio web' }}
+          />
         </Grid>
       </Grid>
     </div>

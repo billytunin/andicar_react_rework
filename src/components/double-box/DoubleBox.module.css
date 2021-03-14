@@ -3,8 +3,22 @@
   border-radius: 15px;
   padding: 15px 0 15px 0;
 }
+.paneTitle {
+  font-size: 24px;
+  font-weight: 700;
+  background-color: rgba(178, 201, 235, 0.7);
+  padding: 0.5rem 0.7rem 0 2rem;
+  border-top-left-radius: 5rem;
+  border-top-right-radius: 25px;
+}
+.paneTitleContainer {
+  text-align: right;
+}
 .flatTopRightBorderRadius {
   border-top-right-radius: 0;
+}
+.verticalSpace {
+  margin-top: 2rem;
 }
 .doubleBoxPane {
   padding: 0 20px 0 20px;
@@ -14,4 +28,15 @@
 }
 .rightBorder {
   border-right: 1px solid rgba(160, 160, 160, 1);
+}
+@media (max-width: 768px) {
+  .paneTitle {
+    font-size: 20px;
+  }
+  .paneTitleContainer {
+    width: 100%;
+  }
+  .doubleBoxContainer {
+    padding: 0.75rem 0.9rem 0.75rem 0.9rem;
+  }
 }
