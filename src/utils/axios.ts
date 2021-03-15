@@ -47,6 +47,9 @@ const wrapper = {
       headers: setupHeaders()
     })
     return response.data
+  },
+  getErrorBody: (error: any) => {
+    return (error && error.response && error.response.data && error.response.data.data) || {}
   }
 }
 

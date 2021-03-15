@@ -58,7 +58,7 @@ export default function ProductosGridBody() {
         dispatch(setProductos(resp.data.items))
         dispatch(setCurrentTotal(resp.data.total))
       } catch (error) {
-        const errorId = (error.error && error.error.data && error.error.data.errorId) || null
+        const { errorId = null } = axios.getErrorBody(error)
         setErrorMessage(
           errorIdIntoMessage({
             customMessage: 'Hubo un problema al intentar cargar los productos',

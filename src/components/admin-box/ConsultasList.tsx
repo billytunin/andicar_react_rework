@@ -39,11 +39,10 @@ export default function ConsultasList() {
         setConsultas(resp.data.items)
         setCurrentTotal(resp.data.total)
       } catch(error) {
-        setErrorText(
-          error.error && error.error.data ?
-            error.error.data.message :
-            'Ocurrió un error al intentar obtener las consultas. Por favor intente nuevamente'
-        )
+        const {
+          message = 'Ocurrió un error al intentar obtener las consultas. Por favor intente nuevamente'
+        } = axios.getErrorBody(error)
+        setErrorText(message)
       } finally {
         setIsLoading(false)
       }

@@ -63,7 +63,7 @@ function App() {
         dispatch(setIsAdmin(resp.data.isAdmin))
         success = true
       } catch(error) {
-        const errorId = (error.error && error.error.data && error.error.data.errorId) || null
+        const { errorId = null } = axios.getErrorBody(error)
         dispatch(setSessionErrorId(errorId))
       }
 

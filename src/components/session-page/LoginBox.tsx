@@ -50,11 +50,10 @@ export default function LoginBox() {
 
         history.push('/productos')
       } catch(error) {
-        setErrorText(
-          error.error && error.error.data ?
-            error.error.data.message :
-            'Ocurrió un error al intentar hacer login. Por favor intente nuevamente'
-        )
+        const {
+          message = 'Ocurrió un error al intentar hacer login. Por favor intente nuevamente'
+        } = axios.getErrorBody(error)
+        setErrorText(message)
         setIsLoading(false)
       }
     }
