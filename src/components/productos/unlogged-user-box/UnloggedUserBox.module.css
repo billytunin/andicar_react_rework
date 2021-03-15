@@ -1,0 +1,19 @@
+.container {
+  width: 30%;
+  margin: auto;
+  margin-top: 2rem;
+  text-align: center;
+  background-color: rgba(178, 201, 235, 0.7);
+  padding: 0.5rem 0.75rem 1rem 0.75rem;
+  border-radius: 7px;
+}
+.textContainer {
+  margin-top: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 85%;
+  }
+}

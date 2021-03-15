@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid'
 import ProductosGrid from './ProductosGrid'
 import AdminTools from './admin-tools/AdminTools'
 import CategoriaSelector from './CategoriaSelector'
-import NavigationButton from '../navigation-button/NavigationButton'
+import UnloggedUserBox from './unlogged-user-box/UnloggedUserBox'
 
 import { userState } from '../../userStateSlice'
 import { errorIdIntoMessage } from '../../utils/errorFormater'
@@ -26,12 +26,5 @@ export default function Productos() {
       </Grid>
     )
     :
-    (
-      <div>
-        <p>
-          {errorIdIntoMessage({ errorId: sessionErrorId, customMessage: 'Por favor, inicie sesión' })}
-          <NavigationButton text='INICIAR SESIÓN' url ='/session' />
-        </p>
-      </div>
-    )
+    <UnloggedUserBox message={errorIdIntoMessage({ errorId: sessionErrorId, customMessage: 'Por favor, inicie sesión' })} />
 }
