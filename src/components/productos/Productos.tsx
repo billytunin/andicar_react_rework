@@ -5,8 +5,7 @@ import Grid from '@material-ui/core/Grid'
 import ProductosGrid from './ProductosGrid'
 import AdminTools from './admin-tools/AdminTools'
 import CategoriaSelector from './CategoriaSelector'
-import { NavLink } from 'react-router-dom'
-import Button from '@material-ui/core/Button'
+import NavigationButton from '../navigation-button/NavigationButton'
 
 import { userState } from '../../userStateSlice'
 import { errorIdIntoMessage } from '../../utils/errorFormater'
@@ -31,11 +30,7 @@ export default function Productos() {
       <div>
         <p>
           {errorIdIntoMessage({ errorId: sessionErrorId, customMessage: 'Por favor, inicie sesión' })}
-          <NavLink to="/session">
-            <Button variant="contained" color='primary'>
-              INICIAR SESIÓN
-            </Button>
-          </NavLink>
+          <NavigationButton text='INICIAR SESIÓN' url ='/session' />
         </p>
       </div>
     )
