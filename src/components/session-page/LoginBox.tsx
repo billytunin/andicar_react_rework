@@ -103,12 +103,23 @@ export default function LoginBox() {
           onKeyPress={handleKeyPress}
           onChange={(value) => handleLoginDataChange('pass', value)}
         />
-        {errorText ? <Alert severity='error'>{errorText}</Alert> : ''}
         {
-          sessionErrorId && sessionErrorId === 'TokenExpiredError' ?
-            <Alert severity='warning'>
-              Su sesión ha expirado. Por favor, vuelva a iniciar sesión
-            </Alert>
+          errorText ?
+            <div className={styles.alert}>
+              <Alert severity='error'>
+                {errorText}
+              </Alert>
+            </div>
+            :
+            ''
+        }
+        {
+          !errorText && sessionErrorId && sessionErrorId === 'TokenExpiredError' ?
+            <div className={styles.alert}>
+              <Alert severity='warning'>
+                Su sesión ha expirado. Por favor, vuelva a iniciar sesión
+              </Alert>
+            </div>
             :
             ''
         }

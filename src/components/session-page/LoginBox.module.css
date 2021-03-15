@@ -1,4 +1,18 @@
 .container {
   width: 50%;
   margin: auto;
+  margin-top: 2rem;
+  background-color: rgba(178, 201, 235, 0.7);
+  padding: 0.5rem 1rem 1rem 1rem;
+  border-radius: 7px;
+}
+.alert {
+  margin-top: 0.5rem;
+  margin-bottom: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 85%;
+  }
 }
