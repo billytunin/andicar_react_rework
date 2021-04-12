@@ -3,9 +3,10 @@
   width: 20vw;
   border-radius: 8px;
   margin: 0.75rem;
-  padding: 1rem;
+  padding: 0.5rem;
 }
 .productoContainer img {
+  margin-bottom: -4px; /* TODO: If we dont apply this, the image looks a little bit off/split from the rest of the form. Why? */
   width: 100%;
   cursor: pointer;
 }
@@ -13,5 +14,15 @@
   cursor: unset;
 }
 .lineInfo {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
   background-color: rgba(200, 200, 255, 0.8);
+}
+.lastLineInfo {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+.newProductoRemoverButton {
+  text-align: center;
+  margin-top: 0.5rem;
 }

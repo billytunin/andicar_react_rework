@@ -14,7 +14,7 @@ import styles from './Producto.module.css'
 
 export default function NewProducto(props: NewProductoProps) {
   return (
-    <div className={`${styles.productoContainer} ${styles.normalCursor}`}>
+    <div className={`${styles.productoContainer} ${styles.normalCursor} nonArchivadoBackgroundColor`}>
       <UploadImageBox
         productID={props.producto.id}
         productImagen={props.producto.imagen}
@@ -63,7 +63,7 @@ export default function NewProducto(props: NewProductoProps) {
           validationGroupName={props.validationGroupName}
         />
       </div>
-      <div className={styles.lineInfo}>
+      <div className={`${styles.lineInfo} ${styles.lastLineInfo}`}>
         <FormControlLabel
           control={
             <Switch
@@ -85,12 +85,15 @@ export default function NewProducto(props: NewProductoProps) {
           label='En oferta'
         />
       </div>
-      <Button
-        variant='contained'
-        onClick={() => props.removerNewProducto(props.producto.id)}
-      >
-        Remover
-      </Button>
+      <div className={styles.newProductoRemoverButton}>
+        <Button
+          variant='contained'
+          color='primary'
+          onClick={() => props.removerNewProducto(props.producto.id)}
+        >
+          Remover
+        </Button>
+      </div>
     </div>
   )
 }

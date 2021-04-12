@@ -1,4 +1,20 @@
 .consultasContainer {
-  height: 50vh;
+  height: 60vh;
   overflow-y: scroll;
+  -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
+  scrollbar-width: none;  /* Hide scrollbar for Firefox */
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+.consultasContainer::-webkit-scrollbar {
+  display: none;
+}
+.toolbarActionButton {
+  margin-top: 0.75rem;
+}
+.estasViendoContainer {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+.estasViendo {
+  font-size: 12px;
 }

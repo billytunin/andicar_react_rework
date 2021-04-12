@@ -7,13 +7,15 @@ import {
   validationGroupHasErrors,
   setValidationGroupDirtyState,
   shakeInvalids
-} from '../validation-input/validationInputsSlice'
+} from '../../validation-input/validationInputsSlice'
 
-import NewProducto from '../productos/producto/NewProducto'
-import Spinner from '../spinner/Spinner'
-import axios from '../../utils/axios'
+import NewProducto from '../../productos/producto/NewProducto'
+import Spinner from '../../spinner/Spinner'
+import axios from '../../../utils/axios'
 
-import { someImagenLoading } from '../productos/newProductosSlice'
+import { someImagenLoading } from '../../productos/newProductosSlice'
+
+import parentStyles from '../AdminBox.module.css'
 
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
@@ -134,9 +136,10 @@ export default function UploadProducts() {
         isLoading ?
           <Spinner />
           :
-          <div>
+          <div className={`${parentStyles.box} ${parentStyles.uploadProductsBox}`}>
             <Button
-              variant='contained'
+              variant='outlined'
+              className='smallMarginRight'
               color='primary'
               startIcon={<AddIcon />}
               onClick={agregarProducto}

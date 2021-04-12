@@ -80,13 +80,12 @@ export default function UploadImageBox(props: UploadImageBoxProps) {
           </div>
           :
           <label htmlFor={`icon-button-file-${props.productID}`}>
-            <IconButton
-              color='primary'
-              component='span'
-              aria-label='add-imagen'
-            >
-              <AddPhotoAlternateIcon />
-            </IconButton>
+            <div className={styles.imgPlaceholder}>
+              <AddPhotoAlternateIcon
+                className={styles.icon}
+                style={{ fontSize: 80 }}
+              />
+            </div>
           </label>
       }
     </div>

@@ -148,7 +148,7 @@ export default function Producto(props: ProductoProps) {
       </div>
       {
         isAdmin ?
-          <div className={styles.lineInfo}>
+          <div className={`${styles.lineInfo} ${styles.lastLineInfo}`}>
             <FormControlLabel
               control={
                 <Switch

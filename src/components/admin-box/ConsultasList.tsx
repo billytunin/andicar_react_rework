@@ -122,40 +122,48 @@ export default function ConsultasList() {
   }
   return (
     <div>
-      <Grid container spacing={0}>
-        <Grid item xs={6}>
-          <PaginadorComponent
-            currentPagina={pagina}
-            currentTotal={currentTotal}
-            paginado={paginado}
-            paginadorConfigModalText='¿Cuantas consultas por página desea ver?'
-            handlePageChange={handlePageChange}
-            handlePaginadoChange={handlePaginadoChange}
-          />
+      <div className='toolbarBackground'>
+        <Grid container spacing={0}>
+          <Grid item xs={4}>
+            <PaginadorComponent
+              currentPagina={pagina}
+              currentTotal={currentTotal}
+              paginado={paginado}
+              paginadorConfigModalText='¿Cuantas consultas por página desea ver?'
+              handlePageChange={handlePageChange}
+              handlePaginadoChange={handlePaginadoChange}
+            />
+          </Grid>
+          <Grid item xs={4}>
+            <div className={styles.estasViendoContainer}>
+              <span className={styles.estasViendo}>
+                Estás viendo
+              </span>
+              <div>
+                <Button
+                  variant='contained'
+                  color='primary'
+                  onClick={changeShowActiveConsultas}
+                >
+                  {showActiveConsultas ? 'ACTIVAS' : 'ARCHIVADAS'}
+                </Button>
+              </div>
+            </div>
+          </Grid>
+          <Grid item xs={4}>
+            <div className={`displayInLine rightAligned ${styles.toolbarActionButton}`}>
+              <Button
+                variant='contained'
+                color={showActiveConsultas ? 'primary' : 'secondary'}
+                onClick={actionOnConsultas}
+                disabled={selectedConsultas.length === 0}
+              >
+                {`${showActiveConsultas ? 'Archivar' : 'Eliminar'} consultas seleccionadas`}
+              </Button>
+            </div>
+          </Grid>
         </Grid>
-        <Grid item xs={6}>
-          <div className='displayInLine rightAligned'>
-            <span>
-              Estás viendo
-            </span>
-            <Button
-              variant='contained'
-              color='primary'
-              onClick={changeShowActiveConsultas}
-            >
-              {showActiveConsultas ? 'ACTIVAS' : 'ARCHIVADAS'}
-            </Button>
-            <Button
-              variant='contained'
-              color={showActiveConsultas ? 'primary' : 'secondary'}
-              onClick={actionOnConsultas}
-              disabled={selectedConsultas.length === 0}
-            >
-              {`${showActiveConsultas ? 'Archivar' : 'Eliminar'} consultas seleccionadas`}
-            </Button>
-          </div>
-        </Grid>
-      </Grid>
+      </div>
       <div className={styles.consultasContainer}>
         <Grid container spacing={0}>
           {

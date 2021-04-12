@@ -7,7 +7,7 @@ import AdminBoxPanel from './AdminBoxPanel'
 import CredentialsConfig from './CredentialsConfig'
 import ConsultasList from './ConsultasList'
 import ConfigurarCategorias from './configurar-categorias/ConfigurarCategorias'
-import UploadProducts from '../upload-products/UploadProducts'
+import UploadProducts from './upload-products/UploadProducts'
 
 export default function AdminBox() {
   const panels = [

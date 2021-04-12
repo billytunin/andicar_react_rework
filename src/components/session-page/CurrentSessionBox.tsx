@@ -26,7 +26,7 @@ export default function CurrentSessionBox() {
   }
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} toolbarBackground`}>
       <span>
         Sesión iniciada como:
         {isMobileVersion ? <br /> : undefined}
@@ -46,7 +46,7 @@ export default function CurrentSessionBox() {
             onClick={logout}
             variant='contained'
             color='primary'
-            className={styles.smallMarginRight}
+            className='smallMarginRight'
           >
             Aceptar
           </Button>

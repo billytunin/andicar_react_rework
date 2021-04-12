@@ -109,7 +109,7 @@ export default function ConfigurarCategorias() {
           color='primary'
           startIcon={<AddIcon />}
           onClick={agregarCategoria}
-          className={innerStyles.smallMarginRight}
+          className='smallMarginRight'
         >
           Agregar
         </Button>
