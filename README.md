@@ -50,7 +50,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 - Borrar los archivos fonts que no se están usando en index.css?
 
 ## TODOs que se pueden hacer post-launch
-- Modificar el logo en photoshop. Creo que está medio estiradito tipo gordito de más
+- Modificar el logo en photoshop. Creo que está medio estiradito tipo gordito de más. Chequear como se ve en desktop y como se ve en mobile. Creo que se ve un toque distinto
 - Invertir la logica de "archivados". En vez de que sea true para cuando están inactivos tanto en FE como en BE, que sea true para cuando están activos. Y la propiedad se pasaria a llamar "activo" o algo asi.
 - - Buscar en el codigo -> // TODO: Cambiar esto cuando cambie "archivado" por "activo"
 - Mejorar el ValidationInput. Cuando editas esos fields anda lento y creo que puede tener que ver con estar editando el State en cada keystroke
@@ -59,10 +59,11 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 - Meter filtros de busqueda (por fecha, por texto que abarque nombre+mail+consulta) en ConsultasList
 - Pensar que hacer con el "deprecated findDOMNode" warning (mas info [aca](https://github.com/nanxiaobei/react-slide-routes))
 - Obtener un favicon.ico mas lindo de alguna manera
+- El logo que aparece cuando compartis el link del sitio por whatsapp, por ej, es el logo de react. Implementar que sea el logo de Andicar
 
 
 - ¿Donde me quede?
-
+- - Hacer los estilos de CurrentSessionBox y AdminBox
 
 
 
