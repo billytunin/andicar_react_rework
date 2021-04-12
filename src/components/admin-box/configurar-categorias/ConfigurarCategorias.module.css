@@ -1,0 +1,15 @@
+.idCaption {
+  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+  background-color: rgba(225, 225, 225, 0.8);
+  border-radius: 5px;
+}
+.smallMarginRight {
+  margin-right: 1rem !important;
+}
+.categoriaInput {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+}
+.actionButtons {
+  margin-bottom: 0.5rem;
+}

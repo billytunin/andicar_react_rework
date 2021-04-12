@@ -1,22 +1,22 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useSnackbar } from 'notistack'
-import { cloneDeep } from 'lodash'
 
-import axios from '../../utils/axios'
+import styles from '../AdminBox.module.css'
+import innerStyles from './ConfigurarCategorias.module.css'
+
+import axios from '../../../utils/axios'
 
 import {
   validationGroupHasErrors,
   setValidationGroupDirtyState,
   shakeInvalids
-} from '../validation-input/validationInputsSlice'
-import { getCurrentCategoriasFromState, setCategorias } from '../productos/productosSlice'
-import CategoriaInput from './CategoriaInput'
-import CategoriasToAddRows from './CategoriasToAddRows'
+} from '../../validation-input/validationInputsSlice'
+import { getCurrentCategoriasFromState, setCategorias } from '../../productos/productosSlice'
 
-import Spinner from '../spinner/Spinner'
+import CategoriaInputs from './CategoriaInputs'
+import Spinner from '../../spinner/Spinner'
 import Button from '@material-ui/core/Button'
-import ButtonGroup from '@material-ui/core/ButtonGroup'
 import SaveIcon from '@material-ui/icons/Save'
 import AddIcon from '@material-ui/icons/Add'
 
@@ -32,57 +32,6 @@ export default function ConfigurarCategorias() {
 
   const categorias = useSelector(getCurrentCategoriasFromState)
   const formHasErrors = useSelector(validationGroupHasErrors(VALIDATION_GROUP_NAME))
-
-  const handleOnChange = (categoriaId: number, value: string) => {
-    let newArray: Array<Categoria> = cloneDeep(modifiedCategorias)
-
-    if (shouldRemoveModifiedCategoria(categoriaId, value)) {
-      const foundCategoriaIndex = modifiedCategorias.findIndex(categoriaObj => categoriaObj.id === categoriaId)
-      if (foundCategoriaIndex !== -1) {
-        newArray.splice(foundCategoriaIndex, 1)
-      }
-    } else {
-      const foundCategoriaIndex = modifiedCategorias.findIndex(categoriaObj => categoriaObj.id === categoriaId)
-      if (foundCategoriaIndex !== -1) {
-        newArray[foundCategoriaIndex] = {
-          titulo: value,
-          id: categoriaId
-        }
-      } else {
-        newArray.push({
-          titulo: value,
-          id: categoriaId
-        })
-      }
-    }
-
-    setModifiedCategorias(newArray)
-  }
-
-  const isModifiedCategoria = (categoriaId: number) => {
-    const foundModifiedCategoriaIndex = modifiedCategorias.findIndex(categoriaObj => categoriaObj.id === categoriaId)
-    return foundModifiedCategoriaIndex !== -1
-  }
-
-  const getCategoriaInputValue = (categoriaId: number) => {
-    let value = ''
-    if ( isModifiedCategoria(categoriaId) ) {
-      const foundCategoria = modifiedCategorias.find(c => c.id === categoriaId)
-      value = foundCategoria ? foundCategoria.titulo : ''
-    } else {
-      const foundCategoria = categorias.find(c => c.id === categoriaId)
-      value = foundCategoria ? foundCategoria.titulo : ''
-    }
-
-    return value
-  }
-
-  const shouldRemoveModifiedCategoria = (categoriaId: number, value: string) => {
-    const foundOriginalCategoriaIndex = categorias.findIndex(categoriaObj => categoriaObj.id === categoriaId)
-    if (foundOriginalCategoriaIndex !== -1) {
-      return categorias[foundOriginalCategoriaIndex].titulo === value
-    }
-  }
 
   const handleGuardarCambios = async () => {
     dispatch(setValidationGroupDirtyState({ validationGroupName: VALIDATION_GROUP_NAME, isDirty: true }))
@@ -153,26 +102,14 @@ export default function ConfigurarCategorias() {
   }
 
   return isLoading ? <Spinner /> : (
-    <div>
-      {categorias.map(categoriaObj =>
-        <CategoriaInput
-          key={categoriaObj.id}
-          categoriaId={categoriaObj.id}
-          handleOnChange={handleOnChange}
-          getCategoriaInputValue={getCategoriaInputValue}
-          VALIDATION_GROUP_NAME={VALIDATION_GROUP_NAME}
-        />
-      )}
-      <CategoriasToAddRows
-        categoriasToAdd={categoriasToAdd}
-        setCategoriasToAdd={(newArray) => setCategoriasToAdd(newArray)}
-      />
-      <ButtonGroup orientation='vertical'>
+    <div className={`${styles.box} ${styles.configurarCategoriasBox}`}>
+      <div className={innerStyles.actionButtons}>
         <Button
-          variant='contained'
+          variant='outlined'
           color='primary'
           startIcon={<AddIcon />}
           onClick={agregarCategoria}
+          className={innerStyles.smallMarginRight}
         >
           Agregar
         </Button>
@@ -185,7 +122,15 @@ export default function ConfigurarCategorias() {
         >
           Guardar cambios
         </Button>
-      </ButtonGroup>
+      </div>
+      <CategoriaInputs
+        categorias={categorias}
+        modifiedCategorias={modifiedCategorias}
+        categoriasToAdd={categoriasToAdd}
+        setCategoriasToAdd={(newArray) => setCategoriasToAdd(newArray)}
+        setModifiedCategorias={(newArray) => setModifiedCategorias(newArray)}
+        VALIDATION_GROUP_NAME={VALIDATION_GROUP_NAME}
+      />
     </div>
   )
 }

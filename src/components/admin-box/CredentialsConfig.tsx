@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import ValidationInput from '../validation-input/ValidationInput'
 import Spinner from '../spinner/Spinner'
 import axios from '../../utils/axios'
+import styles from './AdminBox.module.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { useSnackbar } from 'notistack'
 
@@ -91,41 +92,49 @@ export default function CredentialsConfig() {
         Tenga en cuenta que las sesiones expiran luego de 3 días. Por lo tanto, si usted cambia las credenciales, los clientes que ya estaban logueados aún tendrán su sesión
         activa hasta que expire para ellos. Recién ahi, se les pedirá iniciar sesión nuevamente y deberán utilizar las nuevas credenciales.
       </Alert>
-      <ValidationInput
-        id="user"
-        value={newCredentialsData.user}
-        validationGroupName={VALIDATION_GROUP_NAME}
-        required
-        maxlength={25}
-        label="Usuario"
-        icon={<AccountCircle />}
-        fullWidth
-        onChange={(value) => handleNewCredentialsDataChange('user', value)}
-      />
-      <ValidationInput
-        id="pass"
-        value={newCredentialsData.pass}
-        validationGroupName={VALIDATION_GROUP_NAME}
-        required
-        maxlength={25}
-        label="Contraseña"
-        icon={<LockIcon />}
-        fullWidth
-        onChange={(value) => handleNewCredentialsDataChange('pass', value)}
-      />
-      <Button
-        onClick={aplicarNuevasCredenciales}
-        variant="contained"
-        color="primary"
-      >
-        Aplicar nuevas credenciales
-      </Button>
-      <div>
-        <span>Credenciales actuales:</span>
-        <span>Usuario:</span>
-        <span>{isLoadingCurrentCredentials ? '(...)' : currentCredentials.user}</span>
-        <span>Contraseña:</span>
-        <span>{isLoadingCurrentCredentials ? '(...)' : currentCredentials.pass}</span>
+      <div className={`${styles.box} ${styles.credentialsConfigBox}`}>
+        <ValidationInput
+          id="user"
+          value={newCredentialsData.user}
+          validationGroupName={VALIDATION_GROUP_NAME}
+          required
+          maxlength={25}
+          label="Usuario"
+          icon={<AccountCircle />}
+          fullWidth
+          onChange={(value) => handleNewCredentialsDataChange('user', value)}
+        />
+        <ValidationInput
+          id="pass"
+          value={newCredentialsData.pass}
+          validationGroupName={VALIDATION_GROUP_NAME}
+          required
+          maxlength={25}
+          label="Contraseña"
+          icon={<LockIcon />}
+          fullWidth
+          onChange={(value) => handleNewCredentialsDataChange('pass', value)}
+        />
+        <Button
+          onClick={aplicarNuevasCredenciales}
+          variant="contained"
+          color="primary"
+        >
+          Aplicar nuevas credenciales
+        </Button>
+      </div>
+      <div className={styles.box}>
+        <div>
+          <span>Credenciales actuales:</span>
+        </div>
+        <div>
+          <span>Usuario: </span>
+          <span className={styles.credentials}>{isLoadingCurrentCredentials ? '(...)' : currentCredentials.user}</span>
+        </div>
+        <div>
+          <span>Contraseña: </span>
+          <span className={styles.credentials}>{isLoadingCurrentCredentials ? '(...)' : currentCredentials.pass}</span>
+        </div>
       </div>
     </div>
   )

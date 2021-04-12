@@ -1,6 +1,6 @@
 import React from 'react'
 
-import ValidationInput from '../validation-input/ValidationInput'
+import ValidationInput from '../../validation-input/ValidationInput'
 
 import InputAdornment from '@material-ui/core/InputAdornment'
 
@@ -15,12 +15,13 @@ interface CategoriaInputProps {
 
 export default function CategoriaInput(props: CategoriaInputProps) {
   return (
-    <div>
+    <div className={styles.categoriaInput}>
       <ValidationInput
         id={`${props.categoriaId}-text-input`}
         label='Titulo'
         required={true}
         maxlength={40}
+        fullWidth={true}
         value={props.getCategoriaInputValue(props.categoriaId)}
         validationGroupName={props.VALIDATION_GROUP_NAME}
         onChange={(value) => props.handleOnChange(props.categoriaId, value)}
