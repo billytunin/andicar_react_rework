@@ -1,5 +1,6 @@
 .consultasContainer {
   height: 60vh;
+  padding-bottom: 1rem;
   overflow-y: scroll;
   -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
   scrollbar-width: none;  /* Hide scrollbar for Firefox */
