@@ -1,21 +1,19 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
+import { useSelector } from 'react-redux'
 
 import styles from './DoubleBox.module.css'
+import { getInitialCheckState } from '../../userStateSlice'
 
 import Slide from '@material-ui/core/Slide';
 
 export default function FancyDoubleBox(props: DoubleBoxProps) {
-  const [isMounted, setIsMounted] = useState(false)
-
-  useEffect(() => {
-    setIsMounted(true)
-  }, [])
+  const initialCheck = useSelector(getInitialCheckState)
 
   return (
     <div>
       <Slide
         direction='right'
-        in={isMounted}
+        in={initialCheck}
         mountOnEnter
         unmountOnExit
         timeout={1000}
@@ -33,7 +31,7 @@ export default function FancyDoubleBox(props: DoubleBoxProps) {
       </Slide>
       <Slide
         direction='left'
-        in={isMounted}
+        in={initialCheck}
         mountOnEnter
         unmountOnExit
         timeout={1000}
