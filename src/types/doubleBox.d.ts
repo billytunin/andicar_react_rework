@@ -2,6 +2,7 @@ interface DoubleBoxProps {
   leftPane: JSX.Element
   rightPane: JSX.Element
   titles?: DoubleBoxTitlesProps
+  isFancy?: boolean
 }
 
 interface DoubleBoxTitlesProps {

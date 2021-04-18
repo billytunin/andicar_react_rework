@@ -38,6 +38,7 @@ export default function Inicio() {
         </Grid>
         <Grid item xs={12} className={`${styles.paddingTop} ${styles.padSides}`}>
           <DoubleBox
+            isFancy={true}
             leftPane={<LeftPaneText />}
             rightPane={<RightPaneText />}
             titles={{ leftPaneTitle: '¿Quienes somos?', rightPaneTitle: 'El sitio web' }}

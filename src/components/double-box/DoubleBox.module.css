@@ -9,6 +9,12 @@
   border-top-left-radius: 5rem;
   border-top-right-radius: 25px;
 }
+.leftFancyPaneTitle {
+  padding-left: 0.7rem;
+  padding-right: 2.5rem;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 5rem;
+}
 .paneTitleContainer {
   text-align: right;
   margin-bottom: 8px;
@@ -27,6 +33,18 @@
 }
 .rightBorder {
   border-right: 1px solid rgba(160, 160, 160, 1);
+}
+.fancyBox {
+  width: 65%;
+}
+.fancyBoxContainer {
+  padding: 0.75rem 1rem 1rem 1rem;
+}
+.fancyBoxOne {
+  margin-left: 10%;
+}
+.fancyBoxTwo {
+  margin-left: 30%;
 }
 @media (max-width: 768px) {
   .paneTitle {

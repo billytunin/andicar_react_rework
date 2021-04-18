@@ -8,11 +8,16 @@ import Grid from '@material-ui/core/Grid'
 
 import MobileDoubleBox from './MobileDoubleBox'
 import DoubleBoxTitles from './DoubleBoxTitles'
+import FancyDoubleBox from './FancyDoubleBox'
 
 export default function DoubleBox(props: DoubleBoxProps) {
   const isMobileVersion = useSelector(getIsMobileVersion)
   if (isMobileVersion) {
     return <MobileDoubleBox {...props} />
+  }
+
+  if (props.isFancy) {
+    return <FancyDoubleBox {...props} />
   }
 
   const doubleBoxContainerStyle = `commonBackground ${styles.doubleBoxContainer} ${props.titles ? styles.flatTopRightBorderRadius : ''}`

@@ -99,6 +99,9 @@ code {
 .textAlignCenter {
   text-align: center;
 }
+.textAlignLeft {
+  text-align: left !important;
+}
 .smallMarginRight {
   margin-right: 0.75rem !important;
 }
