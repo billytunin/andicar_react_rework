@@ -74,7 +74,7 @@ export default function LoginBox() {
     return <Spinner />
   } else {
     return (
-      <div className={styles.container}>
+      <div className={`commonBackground ${styles.container}`}>
         <ValidationInput
           id="user"
           value={loginData.user}

@@ -8,10 +8,10 @@ export default function DoubleBoxTitles(props: DoubleBoxTitlesProps) {
   return (
     <Grid container spacing={0} className={styles.paneTitleContainer}>
       <Grid item xs={6}>
-        <span className={styles.paneTitle}>{props.leftPaneTitle}</span>
+        <span className={`commonBackground ${styles.paneTitle}`}>{props.leftPaneTitle}</span>
       </Grid>
       <Grid item xs={6}>
-        <span className={styles.paneTitle}>{props.rightPaneTitle}</span>
+        <span className={`commonBackground ${styles.paneTitle}`}>{props.rightPaneTitle}</span>
       </Grid>
     </Grid>
   )

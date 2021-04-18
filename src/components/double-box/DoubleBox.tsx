@@ -15,7 +15,7 @@ export default function DoubleBox(props: DoubleBoxProps) {
     return <MobileDoubleBox {...props} />
   }
 
-  const doubleBoxContainerStyle = `${styles.doubleBoxContainer} ${props.titles ? styles.flatTopRightBorderRadius : ''}`
+  const doubleBoxContainerStyle = `commonBackground ${styles.doubleBoxContainer} ${props.titles ? styles.flatTopRightBorderRadius : ''}`
   return (
     <div>
       {props.titles ? <DoubleBoxTitles leftPaneTitle={props.titles.leftPaneTitle} rightPaneTitle={props.titles.rightPaneTitle} /> : null}

@@ -10,7 +10,7 @@ interface UnloggedUserBoxProps {
 
 export default function UnloggedUserBox(props: UnloggedUserBoxProps) {
   return (
-    <div className={styles.container}>
+    <div className={`commonBackground ${styles.container}`}>
       <div className={styles.textContainer}>
         <span>{props.message}</span>
       </div>
