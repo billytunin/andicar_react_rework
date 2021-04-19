@@ -8,6 +8,7 @@ import {
   setValidationGroupDirtyState,
   shakeInvalids
 } from '../../validation-input/validationInputsSlice'
+import { getIsMobileVersion } from '../../../userStateSlice'
 
 import NewProducto from '../../productos/producto/NewProducto'
 import Spinner from '../../spinner/Spinner'
@@ -39,6 +40,8 @@ const PRODUCTO_EMPTY_BODY: Producto = {
 export default function UploadProducts() {
   const dispatch = useDispatch()
   const { enqueueSnackbar } = useSnackbar()
+
+  const isMobileVersion = useSelector(getIsMobileVersion)
 
   const [isLoading, setIsLoading] = useState(false)
   const [newProducts, setNewProducts] = useState<Array<Producto>>([])
@@ -158,7 +161,7 @@ export default function UploadProducts() {
             </Button>
             <Grid container spacing={0}>
               {newProducts.map(newProduct =>
-                <Grid item xs key={newProduct.id}>
+                <Grid item xs={isMobileVersion ? 12 : 3} key={newProduct.id}>
                   <NewProducto
                     producto={newProduct}
                     validationGroupName={VALIDATION_GROUP_NAME}

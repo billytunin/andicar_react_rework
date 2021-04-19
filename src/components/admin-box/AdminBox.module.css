@@ -26,3 +26,10 @@
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+@media (max-width: 768px) {
+  .uploadProductsBox {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}

@@ -1,5 +1,8 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { cloneDeep } from 'lodash'
+
+import { getIsMobileVersion } from '../../../userStateSlice'
 
 import Grid from '@material-ui/core/Grid'
 import CategoriaInput from './CategoriaInput'
@@ -14,6 +17,7 @@ interface CategoriaInputsProps {
 }
 
 export default function CategoriaInputs(props: CategoriaInputsProps) {
+  const isMobileVersion = useSelector(getIsMobileVersion)
 
   const handleOnChange = (categoriaId: number, value: string) => {
     let newArray: Categoria[] = cloneDeep(props.modifiedCategorias)
@@ -84,7 +88,7 @@ export default function CategoriaInputs(props: CategoriaInputsProps) {
     <Grid container>
       {
         props.categorias.map(categoriaObj =>
-          <Grid item xs={3} key={categoriaObj.id}>
+          <Grid item xs={isMobileVersion ? 12 : 3} key={categoriaObj.id}>
             <CategoriaInput
               categoriaId={categoriaObj.id}
               handleOnChange={handleOnChange}
@@ -96,7 +100,7 @@ export default function CategoriaInputs(props: CategoriaInputsProps) {
       }
       {
         props.categoriasToAdd.map(categoriaObj =>
-          <Grid item xs={3} key={categoriaObj.id}>
+          <Grid item xs={isMobileVersion ? 12 : 3} key={categoriaObj.id}>
             <CategoriaInput
               categoriaId={categoriaObj.id}
               handleOnChange={handleNewCategoriaChange}

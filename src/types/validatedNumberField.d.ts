@@ -1,11 +1,6 @@
-interface CallToActionButtonProps {
-  isDisabled?: boolean
-  handleClick: () => void
-  errorOnInternalValue: boolean
-}
-
 interface ValidatedNumberFieldProps {
-  handleClick: (value: number) => void
+  bindedValueChanged: (newValue: string, isInvalid: boolean) => void
+  enterKeyPressed?: () => void
   maxNumber: number
   bindedValue: string
   isDisabled?: boolean

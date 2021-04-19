@@ -26,3 +26,11 @@
   text-align: center;
   margin-top: 0.5rem;
 }
+
+@media (max-width: 768px) {
+  .productoContainer {
+    width: 94%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}

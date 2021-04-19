@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { useSnackbar } from 'notistack'
 import axios from '../../utils/axios'
 import { DEFAULT_PAGINADO } from '../../utils/constants'
+
+import { getIsMobileVersion } from '../../userStateSlice'
 
 import Spinner from '../spinner/Spinner'
 import ConsultaBox from './ConsultaBox'
@@ -13,6 +16,8 @@ import Button from '@material-ui/core/Button'
 
 export default function ConsultasList() {
   const { enqueueSnackbar } = useSnackbar()
+
+  const isMobileVersion = useSelector(getIsMobileVersion)
 
   const [isLoading, setIsLoading] = useState(false)
   const [isLoadingActionOnConsultas, setIsLoadingActionOnConsultas] = useState(false)
@@ -124,7 +129,7 @@ export default function ConsultasList() {
     <div>
       <div className='toolbarBackground'>
         <Grid container spacing={0}>
-          <Grid item xs={4}>
+          <Grid item xs={isMobileVersion ? 12 : 4}>
             <PaginadorComponent
               currentPagina={pagina}
               currentTotal={currentTotal}
@@ -134,7 +139,7 @@ export default function ConsultasList() {
               handlePaginadoChange={handlePaginadoChange}
             />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={isMobileVersion ? 12 : 4}>
             <div className={styles.estasViendoContainer}>
               <span className={styles.estasViendo}>
                 Estás viendo
@@ -150,7 +155,7 @@ export default function ConsultasList() {
               </div>
             </div>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={isMobileVersion ? 12 : 4}>
             <div className={`displayInLine rightAligned ${styles.toolbarActionButton}`}>
               <Button
                 variant='contained'
@@ -169,7 +174,7 @@ export default function ConsultasList() {
           {
             consultas.map(
               consultaObj =>
-                <Grid key={consultaObj.id} item xs={4}>
+                <Grid key={consultaObj.id} item xs={isMobileVersion ? 12 : 4}>
                   <ConsultaBox
                     {...consultaObj}
                     showActiveConsultasMode={showActiveConsultas}

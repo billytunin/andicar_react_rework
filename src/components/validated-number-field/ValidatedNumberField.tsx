@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react'
-
-import CallToActionButton from './CallToActionButton'
+import React, { useState } from 'react'
 
 import styles from './ValidatedNumberField.module.css'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
@@ -12,7 +10,8 @@ const useStyles = makeStyles(() =>
   createStyles({
     textField: {
       '& .MuiInputBase-input': {
-        width: '40px'
+        width: '40px',
+        padding: '5px'
       }
     },
     inputAdornment: {
@@ -22,41 +21,32 @@ const useStyles = makeStyles(() =>
 )
 
 /**
- * This component controls a call to action based on an input. Call to action will be
- * enabled only if the input is a positive integer. No rational numbers, no negative numbers
- * and no alphanumeric characters allowed.
- * Call to action is also disabled if the input number exceeds the maxNumber prop, or if "isDisabled" prop is true
+ * This component controls an input. No rational numbers, no negative numbers and no alphanumeric characters allowed. Input can't exceed maxNumber prop either
+ * Everytime input changes, it fires an event to its parent indicating the new value and if its valid or not according to that criteria.
+ * An optional "isDisabled" prop can be provided to disable the TextInput
+ * An optional "enterKeyPressed" prop function can be provided in order to catch "ENTER" key presses
  * @param props - as specified by ValidatedNumberFieldProps interface
  */
 export default function ValidatedNumberField(props: ValidatedNumberFieldProps) {
   const classes = useStyles()
 
-  const [internalValue, setInternalValue] = useState(props.bindedValue)
-  const [errorOnInternalValue, setErrorOnInternalValue] = useState(false)
-
-  const handleCallToActionClick = (newValue: string) => {
-    props.handleClick(Number(newValue))
-  }
+  const [isInvalid, setIsInvalid] = useState(false)
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.key === 'Enter' && !errorOnInternalValue) {
-      handleCallToActionClick(internalValue)
+    if (event.key === 'Enter' && !isInvalid && props.enterKeyPressed) {
+      props.enterKeyPressed()
     }
   }
 
-  useEffect(() => {
-    setInternalValue(props.bindedValue)
-    setErrorOnInternalValue(false)
-  }, [props.bindedValue])
-
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value
-    setInternalValue(newValue)
     const onlyPositiveIntegersRegExp = /^\d*[1-9]\d*$/
     if (onlyPositiveIntegersRegExp.test(newValue) && Number(newValue) <= props.maxNumber) {
-      setErrorOnInternalValue(false)
+      setIsInvalid(false)
+      props.bindedValueChanged(newValue, false)
     } else {
-      setErrorOnInternalValue(true)
+      setIsInvalid(true)
+      props.bindedValueChanged(newValue, true)
     }
   }
 
@@ -64,19 +54,15 @@ export default function ValidatedNumberField(props: ValidatedNumberFieldProps) {
     <div className={styles.root}>
       <TextField
         onChange={handleInputChange}
-        error={errorOnInternalValue}
+        error={isInvalid}
         className={classes.textField}
-        value={internalValue}
+        value={props.bindedValue}
         disabled={props.isDisabled}
+        variant="outlined"
         InputProps={{
           endAdornment: <InputAdornment position="end" className={classes.inputAdornment}>/ {props.maxNumber}</InputAdornment>
         }}
         onKeyPress={handleKeyPress}
-      />
-      <CallToActionButton
-        isDisabled={props.isDisabled}
-        handleClick={() => handleCallToActionClick(internalValue)}
-        errorOnInternalValue={errorOnInternalValue}
       />
     </div>
   )
