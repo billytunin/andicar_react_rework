@@ -65,8 +65,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 
 - ¿Donde me quede?
-- - Para terminar el estilo de ConsultasList, tengo que tocar el PaginadorComponente. Que se usa en Productos tmb. Asi que ahi tengo que pensar como quiero que quede en ambos lugares.
-- - Revisar como se ve toda la pagina de admin en mobile. Es probable que se vea muy mal y que no valga la pena laburar para que se vea bien. En tal caso, meter un warning abajo de CurrentSessionBox que diga "sos admin y esta seccion no está preparada para manejarse desde el celular o un dispositivo movil"
+- - Estilos de la seccion Productos
 
 
 
