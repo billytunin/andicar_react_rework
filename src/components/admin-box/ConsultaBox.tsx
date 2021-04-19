@@ -1,8 +1,13 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import moment from 'moment'
 import styles from './ConsultaBox.module.css'
 
+import { getIsMobileVersion } from '../../userStateSlice'
+
 export default function ConsultaBox(props: ConsultaBoxProps) {
+  const isMobileVersion = useSelector(getIsMobileVersion)
+
   const [consultaSelected, setConsultaSelected] = useState(false)
 
   const selectConsulta = () => {
@@ -25,23 +30,43 @@ export default function ConsultaBox(props: ConsultaBoxProps) {
     >
       <div>
         <span className={styles.caption}>Nombre completo</span>
-        <span className='rightAligned'>{props.nombreCompleto}</span>
+        {
+          isMobileVersion ?
+          <div className={styles.mobileConsultaRow}>{props.nombreCompleto}</div> :
+          <span className='rightAligned'>{props.nombreCompleto}</span>
+        }
       </div>
       <div>
         <span className={styles.caption}>Email</span>
-        <span className='rightAligned'>{props.email}</span>
+        {
+          isMobileVersion ?
+          <div className={styles.mobileConsultaRow}>{props.email}</div> :
+          <span className='rightAligned'>{props.email}</span>
+        }
       </div>
       <div>
         <span className={styles.caption}>Telefono</span>
-        <span className='rightAligned'>{props.telefono || '-'}</span>
+        {
+          isMobileVersion ?
+          <div className={styles.mobileConsultaRow}>{props.telefono || '-'}</div> :
+          <span className='rightAligned'>{props.telefono || '-'}</span>
+        }
       </div>
       <div>
         <span className={styles.caption}>Fecha</span>
-        <span className='rightAligned'>{moment(props.fecha).format('DD/MM/YYYY')}</span>
+        {
+          isMobileVersion ?
+          <div className={styles.mobileConsultaRow}>{moment(props.fecha).format('DD/MM/YYYY')}</div> :
+          <span className='rightAligned'>{moment(props.fecha).format('DD/MM/YYYY')}</span>
+        }
       </div>
       <div>
         <span className={styles.caption}>Hora</span>
-        <span className='rightAligned'>{moment(props.fecha).format('HH:mm[hs]')}</span>
+        {
+          isMobileVersion ?
+          <div className={styles.mobileConsultaRow}>{moment(props.fecha).format('HH:mm[hs]')}</div> :
+          <span className='rightAligned'>{moment(props.fecha).format('HH:mm[hs]')}</span>
+        }
       </div>
       <div>
         <p>{props.consulta}</p>

@@ -11,9 +11,23 @@
 .containerSelected {
   border: 2px solid black;
 }
+.mobileConsultaRow {
+  word-wrap: break-word;
+  word-break: break-all;
+  margin-bottom: 0.5rem;
+}
 .containerSelectedForDelete {
   border: 2px solid rgba(210, 30, 30, 1);
 }
 .caption {
   font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .container {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
 }
