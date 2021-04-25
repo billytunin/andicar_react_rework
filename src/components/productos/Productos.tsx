@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import Grid from '@material-ui/core/Grid'
 import ProductosGrid from './ProductosGrid'
 import AdminTools from './admin-tools/AdminTools'
-import CategoriaSelector from './CategoriaSelector'
+import CategoriaSelector from './categoria-selector/CategoriaSelector'
 import UnloggedUserBox from './unlogged-user-box/UnloggedUserBox'
 
 import { userState } from '../../userStateSlice'
