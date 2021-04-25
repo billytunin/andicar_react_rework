@@ -31,6 +31,7 @@ export default function PaginadorProductos(props: PaginadorProductosProps) {
     <PaginadorComponent
       isDisabled={props.isDisabled}
       currentPagina={currentPagina}
+      paddingTop='1.3vh'
       handlePageChange={handlePageChange}
       paginado={currentPaginado}
       currentTotal={currentTotal}

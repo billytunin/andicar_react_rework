@@ -134,6 +134,7 @@ export default function ConsultasList() {
               currentPagina={pagina}
               currentTotal={currentTotal}
               paginado={paginado}
+              paddingTop={16}
               paginadorConfigModalText='¿Cuantas consultas por página desea ver?'
               handlePageChange={handlePageChange}
               handlePaginadoChange={handlePaginadoChange}

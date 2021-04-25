@@ -1,5 +1,5 @@
 .productosGrid {
-  height: 82vh;
+  height: 86vh;
   flex-grow: 1;
   overflow-y: scroll;
   -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
@@ -13,5 +13,4 @@
 
 .productosTools {
   height: 6vh;
-  background-color: white;
 }

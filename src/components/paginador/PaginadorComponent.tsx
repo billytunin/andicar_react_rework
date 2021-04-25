@@ -9,25 +9,25 @@ import IconButton from '@material-ui/core/IconButton'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
 
-const useStyles = makeStyles(() =>
-  createStyles({
-    root: {
-      paddingTop: 16,
-      '& .MuiIconButton-root.Mui-disabled, .MuiButton-root.Mui-disabled': {
-        cursor: 'not-allowed'
-      },
-      '& .MuiInputBase-input': {
-        width: '40px'
-      },
-      '& .MuiIconButton-root': {
-        padding: '2px 0 0 0',
-        'vertical-align': 'unset'
-      }
-    }
-  })
-)
-
 export default function PaginadorComponent(props: PaginadorComponentProps) {
+  const useStyles = makeStyles(() =>
+    createStyles({
+      root: {
+        paddingTop: props.paddingTop,
+        '& .MuiIconButton-root.Mui-disabled, .MuiButton-root.Mui-disabled': {
+          cursor: 'not-allowed'
+        },
+        '& .MuiInputBase-input': {
+          width: '40px'
+        },
+        '& .MuiIconButton-root': {
+          padding: '2px 0 0 0',
+          'vertical-align': 'unset'
+        }
+      }
+    })
+  )
+
   const classes = useStyles()
   const lastPage = Math.ceil(props.currentTotal / props.paginado)
   const [internalValue, setInternalValue] = useState('')

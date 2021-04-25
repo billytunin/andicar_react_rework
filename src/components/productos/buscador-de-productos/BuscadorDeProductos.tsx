@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
+import styles from './BuscadorDeProductos.module.css'
+
 import { getSearchFilter, setSearchFilter } from '../productosSlice'
 
 import BuscadorDeProductosModal from './BuscadorDeProductosModal'
@@ -27,7 +29,7 @@ export default function BuscadorDeProductos(props: BuscadorDeProductosProps) {
   }, [searchFilter])
 
   return (
-    <div>
+    <div className={styles.container}>
       <TextField
         placeholder='Buscar'
         value={searchText}

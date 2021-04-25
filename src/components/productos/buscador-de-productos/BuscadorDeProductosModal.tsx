@@ -5,7 +5,7 @@ import { setSearchFilter } from '../productosSlice'
 
 import AndicarModal from '../../andicar-modal/AndicarModal'
 
-import styles from './BuscadorDeProductosModal.module.css'
+import styles from './BuscadorDeProductos.module.css'
 import IconButton from '@material-ui/core/IconButton'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
@@ -55,8 +55,9 @@ export default function BuscadorDeProductosModal(props: BuscadorDeProductosModal
   }
 
   return (
-    <div className={styles.container}>
+    <div className={styles.modalContainer}>
       <IconButton
+        className={styles.moreIcon}
         aria-label="buscador-de-productos-modal"
         onClick={handleOpen}
         disabled={props.isDisabled}

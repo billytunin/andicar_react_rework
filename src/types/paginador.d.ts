@@ -10,6 +10,7 @@ interface PaginadorComponentProps extends PaginadorConfigModalProps {
   currentPagina: number
   handlePageChange: (pageNumber: number) => void
   isDisabled?: boolean
+  paddingTop?: number | string
 }
 
 interface PaginadorProductosProps {

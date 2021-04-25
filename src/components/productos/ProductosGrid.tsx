@@ -16,14 +16,16 @@ export default function ProductosGrid() {
 
   return (
     <div>
-      <Grid container spacing={0} className={styles.productosTools}>
-        <Grid item xs>
-          <PaginadorProductos isDisabled={isLoadingProducts || modificarProductosLoading} />
+      <div className={`${styles.productosTools} toolbarBackground`}>
+        <Grid container spacing={0}>
+          <Grid item xs>
+            <PaginadorProductos isDisabled={isLoadingProducts || modificarProductosLoading} />
+          </Grid>
+          <Grid item xs>
+            <BuscadorDeProductos isDisabled={isLoadingProducts || modificarProductosLoading} />
+          </Grid>
         </Grid>
-        <Grid item xs>
-          <BuscadorDeProductos isDisabled={isLoadingProducts || modificarProductosLoading} />
-        </Grid>
-      </Grid>
+      </div>
       <div className={styles.productosGrid}>
         <ProductosGridBody />
       </div>
