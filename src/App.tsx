@@ -102,9 +102,12 @@ function App() {
               </SlideRoutes>
             </div>
           </Grid>
-          <Grid item xs={12}>
-            <AppFooter />
-          </Grid>
+          {
+            location.pathname === '/productos' ? undefined :
+            <Grid item xs={12}>
+              <AppFooter />
+            </Grid>
+          }
         </Grid>
       </div>
     </div>

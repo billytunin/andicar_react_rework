@@ -1,6 +1,8 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
+import styles from './Productos.module.css'
+
 import Grid from '@material-ui/core/Grid'
 import ProductosGrid from './ProductosGrid'
 import AdminTools from './admin-tools/AdminTools'
@@ -17,8 +19,10 @@ export default function Productos() {
     (
       <Grid container spacing={0}>
         <Grid item xs={2}>
-          <CategoriaSelector />
-          {isAdmin ? <AdminTools /> : undefined}
+          <div className={styles.leftHandContainer}>
+            <CategoriaSelector />
+            {isAdmin ? <AdminTools /> : undefined}
+          </div>
         </Grid>
         <Grid item xs={10}>
           <ProductosGrid />

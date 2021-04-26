@@ -8,8 +8,6 @@ import {
   resetPaginacion
 } from './../productosSlice'
 
-import styles from './CategoriaSelector.module.css'
-
 import CategoriaSelectorButton from './CategoriaSelectorButton'
 
 export default function CategoriaSelector() {
@@ -23,7 +21,7 @@ export default function CategoriaSelector() {
   }
 
   return (
-    <div className={styles.container}>
+    <div>
       <div>
         <CategoriaSelectorButton
           onClick={() => changeCategoria(0)}

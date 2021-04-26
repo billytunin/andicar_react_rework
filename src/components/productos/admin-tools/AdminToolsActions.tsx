@@ -98,17 +98,21 @@ export default function AdminToolsActions() {
 
   return (
     <div>
-      <p>Acciones:</p>
-      <Button
-        variant='contained'
-        color='primary'
-        startIcon={<SaveIcon />}
-        disabled={modifiedProductos.length === 0 && productoIdsToDelete.length === 0}
-        onClick={handleGuardarCambios}
-      >
-        Guardar cambios
-      </Button>
-      {modifiedProductosHaveErrors ? <span className={styles.modifiedProductsError}>Uno o más productos modificados tiene un problema de validación</span> : undefined}
+      <div className={styles.sectionTitleContainer}>
+        <span className={styles.sectionTitle}>Acciones</span>
+      </div>
+      <div>
+        <Button
+          variant='contained'
+          color='primary'
+          startIcon={<SaveIcon />}
+          disabled={modifiedProductos.length === 0 && productoIdsToDelete.length === 0}
+          onClick={handleGuardarCambios}
+        >
+          Guardar cambios
+        </Button>
+        {modifiedProductosHaveErrors ? <span className={styles.modifiedProductsError}>Uno o más productos modificados tiene un problema de validación</span> : undefined}
+      </div>
     </div>
   )
 }

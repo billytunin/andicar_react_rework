@@ -1,0 +1,12 @@
+.leftHandContainer {
+  padding-top: 1vh;
+  height: 91vh;
+  overflow-y: scroll;
+  -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
+  scrollbar-width: none;  /* Hide scrollbar for Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.leftHandContainer::-webkit-scrollbar {
+  display: none;
+}

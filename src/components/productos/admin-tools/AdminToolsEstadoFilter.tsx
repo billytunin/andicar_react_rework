@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import styles from './AdminTools.module.css'
 
 import {
   getProductosStatusFilter,
@@ -30,7 +31,9 @@ export default function AdminToolsEstadoFilter() {
 
   return (
     <div>
-      <p>Filtro de estado:</p>
+      <div className={styles.sectionTitleContainer}>
+        <span className={styles.sectionTitle}>Filtro de Estado</span>
+      </div>
       <ButtonGroup>
         <Button
           variant='contained'

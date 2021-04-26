@@ -1,3 +1,36 @@
+.container {
+  background-color: white;
+  box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+  width: 95%;
+  margin: auto;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  border-radius: 7px;
+  text-align: center;
+  padding: 0 0 0.5rem;
+}
+.mainDivs {
+  margin-bottom: 1rem;
+}
+.filtroDeEstadoContainer {
+  background-color: rgba(245, 245, 245, 1);
+  padding: 0.75rem 0 1.2rem;
+}
+.adminTitle {
+  background-color: rgba(178, 201, 235, 0.7);
+  border-bottom: 2px solid rgba(245, 245, 245, 1);
+  padding: 0.5rem 0 0.3rem;
+}
+.sectionTitleContainer {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+.sectionTitle {
+  background-color: rgba(10, 10, 10, 0.5);
+  color: white;
+  padding: 0.2rem 1rem 0.2rem;
+  border-radius: 15px;
+}
 .leyendaBox {
   width: 100%;
   height: 18px;
@@ -7,7 +40,11 @@
 .leyendaText {
   margin-left: 1rem;
 }
+.smallPaddingLeft {
+  padding-left: 0.2rem;
+}
 .modifiedProductsError {
   color: red;
   display: block;
+  margin-top: 0.5rem;
 }

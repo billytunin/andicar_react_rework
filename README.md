@@ -65,7 +65,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 
 - ¿Donde me quede?
-- - Estilos de BuscadorDeProductosModal
+- - Falta el estilo de los Producto containers y estamos! Revisar en mobile la pagina de productos
 
 
 
