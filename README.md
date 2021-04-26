@@ -65,7 +65,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 
 - ¿Donde me quede?
-- - Estilos de la seccion Productos
+- - Estilos de BuscadorDeProductosModal
 
 
 

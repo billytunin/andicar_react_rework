@@ -5,9 +5,18 @@
 .modalContainer {
   display: inline;
 }
+.addChipContainer {
+  margin-top: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+.chipContainer {
+  margin-bottom: 0.75rem;
+}
 .moreIcon {
-  padding: 5px 5px 5px 5px !important;
   vertical-align: unset !important;
+}
+.smallPaddingIcon {
+  padding: 5px 5px 5px 5px !important;
 }
 .chip {
   margin: 0.3rem 0.6rem 0.3rem 0;

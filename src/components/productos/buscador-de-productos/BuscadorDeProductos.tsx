@@ -40,6 +40,7 @@ export default function BuscadorDeProductos(props: BuscadorDeProductosProps) {
           endAdornment:
             <InputAdornment position='end'>
               <IconButton
+                className={styles.smallPaddingIcon}
                 disabled={props.isDisabled || !searchText}
                 onClick={() => dispatch(setSearchFilter(searchText))}
               >
