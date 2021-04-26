@@ -8,6 +8,9 @@
   padding-left: 10vw;
   padding-right: 10vw;
 }
+.padBottom {
+  padding-bottom: 5rem;
+}
 .infoText {
   text-align: left;
   line-height: 1.5;

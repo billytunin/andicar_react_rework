@@ -36,7 +36,7 @@ export default function Inicio() {
         <Grid item xs={12} className={styles.paddingTop}>
           <Slider />
         </Grid>
-        <Grid item xs={12} className={`${styles.paddingTop} ${styles.padSides}`}>
+        <Grid item xs={12} className={`${styles.paddingTop} ${styles.padSides} ${styles.padBottom}`}>
           <DoubleBox
             isFancy={true}
             leftPane={<LeftPaneText />}
