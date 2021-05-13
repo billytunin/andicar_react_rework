@@ -23,6 +23,9 @@ const CustomButton = withStyles((theme: Theme) => ({
     backgroundColor: blue[600],
     borderRadius: 15,
     '&:hover': {
+      backgroundColor: blue[300]
+    },
+    '&.is-active': {
       backgroundColor: blue[800]
     }
   }
@@ -42,8 +45,7 @@ export default function CategoriaSelectorButton(props: CategoriaSelectorButtonPr
   return (
     <CustomButton
       variant="contained"
-      color={props.isActive ? 'primary' : undefined}
-      className={classes.margin}
+      className={`${classes.margin} ${props.isActive ? 'is-active' : ''}`}
       onClick={props.onClick}
     >
       {props.children}
