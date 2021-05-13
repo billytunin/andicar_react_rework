@@ -64,7 +64,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 
 - ¿Donde me quede?
-
+- - El sitio quedó mal para el ipad. El sitio debería considerar ser "mobile mode" en un ancho mas grande me parece. Para que tome los ipads como mobile mode tmb. Cambiar el isMobileVersion y todos los "768px" de los "@media" en CSS
 
 
 
