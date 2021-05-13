@@ -1,8 +1,7 @@
 .productoContainer {
   position: relative;
-  width: 20vw;
   border-radius: 8px;
-  margin: 0.75rem;
+  margin: 0.5rem;
   padding: 0.5rem;
 }
 .productoContainer img {
@@ -14,13 +13,31 @@
   cursor: unset;
 }
 .lineInfo {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
   background-color: rgba(200, 200, 255, 0.8);
+}
+.smallPaddingBottom {
+  padding-bottom: 0.5rem;
 }
 .lastLineInfo {
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
+}
+.lightGrey {
+  background-color: rgba(240, 240, 240, 1);
+}
+.fclContainer {
+  text-align: center;
+  margin-top: 0.2rem;
+  padding-left: 1rem;
+}
+.lightRightBorder {
+  border-right: 1px solid rgba(225, 225, 225, 1);
+}
+.rowAsClient {
+  background-color: rgba(255, 255, 255, 0.8);
+  margin-top: 0.5rem;
+  padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+  border-radius: 4px;
 }
 .newProductoRemoverButton {
   text-align: center;

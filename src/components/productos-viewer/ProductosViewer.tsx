@@ -127,43 +127,47 @@ export default function ProductosViewer() {
       <Fade in={isOpen}>
         <Grid container className={classes.container} alignItems='center'>
           <Grid item xs>
-            <Grid container alignItems='center'>
-              <Grid item xs={1}>
-                <IconButton
-                  aria-label="go-left-productos-viewer"
-                  className={classes.navigationButtons}
-                  onClick={() => dispatch(prev())}
-                  disabled={isFirstProducto()}
-                >
-                  <ArrowBack />
-                </IconButton>
-              </Grid>
-              <Grid item xs className={classes.imgGrid}>
-                <animated.div {...dragBinding()} style={{ touchAction: 'none', x }}>
-                  <div className='imageContainer'>
-                    <img src={PHOTOS_URL + productos[productoIndex].imagen} alt='juguete' />
-                    {productos[productoIndex].en_oferta ? <EnOfertaSpan isOnProductosViewer={true} /> : undefined}
-                  </div>
+            {
+              productos.length === 0 || !productos[productoIndex] ?
+              <span className='commonBackground'>No hay productos</span> :
+              <Grid container alignItems='center'>
+                <Grid item xs={1}>
                   <IconButton
-                    className={classes.closeButton}
-                    aria-label="close-productos-viewer"
-                    onClick={handleClose}
+                    aria-label="go-left-productos-viewer"
+                    className={classes.navigationButtons}
+                    onClick={() => dispatch(prev())}
+                    disabled={isFirstProducto()}
                   >
-                    <CancelIcon />
+                    <ArrowBack />
                   </IconButton>
-                </animated.div>
+                </Grid>
+                <Grid item xs className={classes.imgGrid}>
+                  <animated.div {...dragBinding()} style={{ touchAction: 'none', x }}>
+                    <div className='imageContainer'>
+                      <img src={PHOTOS_URL + productos[productoIndex].imagen} alt='juguete' />
+                      {productos[productoIndex].en_oferta ? <EnOfertaSpan isOnProductosViewer={true} /> : undefined}
+                    </div>
+                    <IconButton
+                      className={classes.closeButton}
+                      aria-label="close-productos-viewer"
+                      onClick={handleClose}
+                    >
+                      <CancelIcon />
+                    </IconButton>
+                  </animated.div>
+                </Grid>
+                <Grid item xs={1}>
+                  <IconButton
+                    aria-label="go-right-productos-viewer"
+                    className={classes.navigationButtons + ' isRightButton'}
+                    onClick={() => dispatch(next())}
+                    disabled={isLastProducto()}
+                  >
+                    <ArrowForward />
+                  </IconButton>
+                </Grid>
               </Grid>
-              <Grid item xs={1}>
-                <IconButton
-                  aria-label="go-right-productos-viewer"
-                  className={classes.navigationButtons + ' isRightButton'}
-                  onClick={() => dispatch(next())}
-                  disabled={isLastProducto()}
-                >
-                  <ArrowForward />
-                </IconButton>
-              </Grid>
-            </Grid>
+            }
           </Grid>
         </Grid>
       </Fade>

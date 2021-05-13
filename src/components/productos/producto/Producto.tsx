@@ -21,6 +21,7 @@ import RowAsClient from './RowAsClient'
 import TextRowAsAdmin from './TextRowAsAdmin'
 import SelectRowAsAdmin from './SelectRowAsAdmin'
 import FloatNumberRowAsAdmin from './FloatNumberRowAsAdmin'
+import Grid from '@material-ui/core/Grid'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Switch from '@material-ui/core/Switch'
 import Checkbox from '@material-ui/core/Checkbox'
@@ -132,7 +133,7 @@ export default function Producto(props: ProductoProps) {
             <RowAsClient field='Alto' value={props.producto.alto} />
         }
       </div>
-      <div className={styles.lineInfo}>
+      <div className={`${styles.lineInfo} ${isAdmin ? styles.smallPaddingBottom : ''} ${isAdmin ? '' : styles.lastLineInfo}`}>
         {
           isAdmin ?
             <FloatNumberRowAsAdmin
@@ -148,37 +149,51 @@ export default function Producto(props: ProductoProps) {
       </div>
       {
         isAdmin ?
-          <div className={`${styles.lineInfo} ${styles.lastLineInfo}`}>
-            <FormControlLabel
-              control={
-                <Switch
-                  color='primary'
-                  checked={!productoPotencialmenteModificado.archivado}
-                  onChange={(event) => modificarProducto({ field: 'archivado', value: event.target.checked })}
-                />
-              }
-              label={productoPotencialmenteModificado.archivado ? 'Archivado' : 'Activo'}
-            />
-            <FormControlLabel
-              control={
-                <Switch
-                  color='primary'
-                  checked={productoPotencialmenteModificado.en_oferta}
-                  onChange={(event) => modificarProducto({ field: 'en_oferta', value: event.target.checked })}
-                />
-              }
-              label='En oferta'
-            />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  color='secondary'
-                  checked={isProductoToDelete}
-                  onChange={(event) => event.target.checked ? dispatch(addProductoToDelete(props.producto.id)) : dispatch(removeProductoToDelete(props.producto.id))}
-                />
-              }
-              label='Eliminar'
-            />
+          <div className={`${styles.lineInfo} ${styles.lastLineInfo} ${styles.lightGrey}`}>
+            <Grid container spacing={0}>
+              <Grid item xs={4}>
+                <div className={`${styles.fclContainer} ${styles.lightRightBorder}`}>
+                  <FormControlLabel
+                    control={
+                      <Switch
+                        color='primary'
+                        checked={!productoPotencialmenteModificado.archivado}
+                        onChange={(event) => modificarProducto({ field: 'archivado', value: event.target.checked })}
+                      />
+                    }
+                    label={productoPotencialmenteModificado.archivado ? 'Archivado' : 'Activo'}
+                  />
+                </div>
+              </Grid>
+              <Grid item xs={4}>
+                <div className={`${styles.fclContainer} ${styles.lightRightBorder}`}>
+                  <FormControlLabel
+                    control={
+                      <Switch
+                        color='primary'
+                        checked={productoPotencialmenteModificado.en_oferta}
+                        onChange={(event) => modificarProducto({ field: 'en_oferta', value: event.target.checked })}
+                      />
+                    }
+                    label='En oferta'
+                  />
+                </div>
+              </Grid>
+              <Grid item xs={4}>
+                <div className={styles.fclContainer}>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        color='secondary'
+                        checked={isProductoToDelete}
+                        onChange={(event) => event.target.checked ? dispatch(addProductoToDelete(props.producto.id)) : dispatch(removeProductoToDelete(props.producto.id))}
+                      />
+                    }
+                    label='Eliminar'
+                  />
+                </div>
+              </Grid>
+            </Grid>
           </div>
           :
           undefined
