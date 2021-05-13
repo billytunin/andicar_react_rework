@@ -17,9 +17,9 @@
 
 @media (max-width: 768px) {
   .productosGrid {
-    height: 67vh;
+    height: 75vh;
   }
   .productosTools {
-    height: 25vh;
+    height: 140px;
   }
 }
