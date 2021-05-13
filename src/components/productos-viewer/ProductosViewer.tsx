@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useSpring, animated } from 'react-spring'
 import { getProductsFromState } from '../productos/productosSlice'
 import { toggleProductosViewer, productosViewerState, next, prev } from './productosViewerSlice'
+import { getIsMobileVersion } from '../../userStateSlice'
 
 import { PHOTOS_URL } from '../../utils/constants'
 
@@ -47,6 +48,9 @@ const useStyles = makeStyles(() =>
       },
       '&.Mui-disabled': {
         backgroundColor: 'rgba(255, 255, 255, 0.3)'
+      },
+      '&.mobileMode .MuiSvgIcon-root': {
+        'font-size': '25px'
       }
     },
     closeButton: {
@@ -60,7 +64,10 @@ const useStyles = makeStyles(() =>
       textAlign: 'center',
       '& .imageContainer': {
         position: 'relative',
-        display: 'inline'
+        display: 'inline',
+        '& img.isMobile': {
+          marginTop: '1rem'
+        }
       }
     }
   })
@@ -71,6 +78,8 @@ export default function ProductosViewer() {
   const dispatch = useDispatch()
 
   const [{ x }, setSpringObj] = useSpring(() => ({ x: 0 }))
+
+  const isMobileVersion = useSelector(getIsMobileVersion)
 
   const productos = useSelector(getProductsFromState)
   const { isOpen, productoIndex } = useSelector(productosViewerState)
@@ -125,48 +134,87 @@ export default function ProductosViewer() {
       }}
     >
       <Fade in={isOpen}>
-        <Grid container className={classes.container} alignItems='center'>
+        <Grid container className={`${classes.container} ${isMobileVersion ? 'mobileMode' : ''}`} alignItems='center'>
           <Grid item xs>
             {
               productos.length === 0 || !productos[productoIndex] ?
               <span className='commonBackground'>No hay productos</span> :
-              <Grid container alignItems='center'>
-                <Grid item xs={1}>
-                  <IconButton
-                    aria-label="go-left-productos-viewer"
-                    className={classes.navigationButtons}
-                    onClick={() => dispatch(prev())}
-                    disabled={isFirstProducto()}
-                  >
-                    <ArrowBack />
-                  </IconButton>
-                </Grid>
-                <Grid item xs className={classes.imgGrid}>
-                  <animated.div {...dragBinding()} style={{ touchAction: 'none', x }}>
-                    <div className='imageContainer'>
-                      <img src={PHOTOS_URL + productos[productoIndex].imagen} alt='juguete' />
-                      {productos[productoIndex].en_oferta ? <EnOfertaSpan isOnProductosViewer={true} /> : undefined}
-                    </div>
+              <div>
+                {
+                  isMobileVersion ?
+                  <div>
                     <IconButton
-                      className={classes.closeButton}
-                      aria-label="close-productos-viewer"
-                      onClick={handleClose}
+                      aria-label="go-left-productos-viewer"
+                      className={classes.navigationButtons + ' mobileMode'}
+                      onClick={() => dispatch(prev())}
+                      disabled={isFirstProducto()}
                     >
-                      <CancelIcon />
+                      <ArrowBack />
                     </IconButton>
-                  </animated.div>
+                    <IconButton
+                      aria-label="go-right-productos-viewer"
+                      className={classes.navigationButtons + ' isRightButton mobileMode'}
+                      onClick={() => dispatch(next())}
+                      disabled={isLastProducto()}
+                    >
+                      <ArrowForward />
+                    </IconButton>
+                  </div>
+                  :
+                  undefined
+                }
+                <Grid container alignItems='center'>
+                  {
+                    isMobileVersion ?
+                    undefined
+                    :
+                    <Grid item xs={1}>
+                      <IconButton
+                        aria-label="go-left-productos-viewer"
+                        className={classes.navigationButtons}
+                        onClick={() => dispatch(prev())}
+                        disabled={isFirstProducto()}
+                      >
+                        <ArrowBack />
+                      </IconButton>
+                    </Grid>
+                  }
+                  <Grid item xs className={classes.imgGrid}>
+                    <animated.div {...dragBinding()} style={{ touchAction: 'none', x }}>
+                      <div className='imageContainer'>
+                        <img
+                          className={isMobileVersion ? 'isMobile' : ''}
+                          src={PHOTOS_URL + productos[productoIndex].imagen}
+                          alt='juguete'
+                        />
+                        {productos[productoIndex].en_oferta ? <EnOfertaSpan isOnProductosViewer={true} /> : undefined}
+                      </div>
+                      <IconButton
+                        className={classes.closeButton}
+                        aria-label="close-productos-viewer"
+                        onClick={handleClose}
+                      >
+                        <CancelIcon />
+                      </IconButton>
+                    </animated.div>
+                  </Grid>
+                  {
+                    isMobileVersion ?
+                    undefined
+                    :
+                    <Grid item xs={1}>
+                      <IconButton
+                        aria-label="go-right-productos-viewer"
+                        className={classes.navigationButtons + ' isRightButton'}
+                        onClick={() => dispatch(next())}
+                        disabled={isLastProducto()}
+                      >
+                        <ArrowForward />
+                      </IconButton>
+                    </Grid>
+                  }
                 </Grid>
-                <Grid item xs={1}>
-                  <IconButton
-                    aria-label="go-right-productos-viewer"
-                    className={classes.navigationButtons + ' isRightButton'}
-                    onClick={() => dispatch(next())}
-                    disabled={isLastProducto()}
-                  >
-                    <ArrowForward />
-                  </IconButton>
-                </Grid>
-              </Grid>
+              </div>
             }
           </Grid>
         </Grid>

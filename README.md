@@ -44,7 +44,6 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## TODOs
-- Terminar el style del sitio en desktop/mobile
 - Ver como se ve el sitio en ipad
 - Borrar la carpeta features/counter cuando no la necesite más
 - Revisar si se están usando los especificadores globales de index.css (tipo "rightAligned", "displayBlock", etc)
@@ -65,7 +64,6 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 
 - ¿Donde me quede?
-- - Falta el estilo de los Producto containers y estamos! Revisar en mobile la pagina de productos
 
 
 
