@@ -43,6 +43,7 @@ interface ProductosBackendResponse {
 }
 
 interface BuscadorDeProductosProps {
+  fullWidth?: boolean
   isDisabled?: boolean
 }
 interface BuscadorDeProductosModalProps {

@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 import { setSearchFilter } from '../productosSlice'
+import { getIsMobileVersion } from '../../../userStateSlice'
 
 import AndicarModal from '../../andicar-modal/AndicarModal'
 
@@ -17,6 +18,7 @@ import AddIcon from '@material-ui/icons/Add'
 
 export default function BuscadorDeProductosModal(props: BuscadorDeProductosModalProps) {
   const dispatch = useDispatch()
+  const isMobileVersion = useSelector(getIsMobileVersion)
   const [open, setOpen] = useState(false)
   const [codigosArray, setCodigosArray] = useState<Array<string>>([])
   const [codigoToAdd, setCodigoToAdd] = useState('')
@@ -70,7 +72,7 @@ export default function BuscadorDeProductosModal(props: BuscadorDeProductosModal
       <AndicarModal
         isOpen={open}
         handleClose={handleClose}
-        width='33vw'
+        width={isMobileVersion ? '100vw' : '33vw'}
       >
         <Alert severity="info">
           ¿Desea buscar multiples productos por código? Ingrese los códigos de a uno y presione "Buscar"

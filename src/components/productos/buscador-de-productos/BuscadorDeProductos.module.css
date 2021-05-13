@@ -21,3 +21,9 @@
 .chip {
   margin: 0.3rem 0.6rem 0.3rem 0;
 }
+
+@media (max-width: 768px) {
+  .container {
+    text-align: center;
+  }
+}

@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
+
+import { getIsMobileVersion } from '../../userStateSlice'
 
 import PaginadorConfigModal from '../paginador-config-modal/PaginadorConfigModal'
 import ValidatedNumberField from '../validated-number-field/ValidatedNumberField'
@@ -10,9 +13,12 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
 
 export default function PaginadorComponent(props: PaginadorComponentProps) {
+  const isMobileVersion = useSelector(getIsMobileVersion)
+
   const useStyles = makeStyles(() =>
     createStyles({
       root: {
+        textAlign: isMobileVersion ? 'center' : 'left',
         paddingTop: props.paddingTop,
         '& .MuiIconButton-root.Mui-disabled, .MuiButton-root.Mui-disabled': {
           cursor: 'not-allowed'

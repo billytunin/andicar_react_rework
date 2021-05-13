@@ -14,3 +14,12 @@
 .productosTools {
   height: 6vh;
 }
+
+@media (max-width: 768px) {
+  .productosGrid {
+    height: 67vh;
+  }
+  .productosTools {
+    height: 25vh;
+  }
+}

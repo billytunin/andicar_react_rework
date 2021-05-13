@@ -1,6 +1,8 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
+import { getIsMobileVersion } from '../../../userStateSlice'
+
 import {
   getCurrentCategoriaIdFromState,
   getCurrentCategoriasFromState,
@@ -9,15 +11,27 @@ import {
 } from './../productosSlice'
 
 import CategoriaSelectorButton from './CategoriaSelectorButton'
+import CategoriaSelectorMobile from './CategoriaSelectorMobile'
 
 export default function CategoriaSelector() {
   const dispatch = useDispatch()
+  const isMobileVersion = useSelector(getIsMobileVersion)
   const currentCategoria = useSelector(getCurrentCategoriaIdFromState)
   const categorias = useSelector(getCurrentCategoriasFromState)
 
   const changeCategoria = (categoria: number) => {
     dispatch(setCategoria(categoria))
     dispatch(resetPaginacion())
+  }
+
+  if (isMobileVersion) {
+    return (
+      <CategoriaSelectorMobile
+        categorias={categorias}
+        currentCategoriaId={currentCategoria}
+        changeCategoria={changeCategoria}
+      />
+    )
   }
 
   return (

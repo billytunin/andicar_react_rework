@@ -13,18 +13,21 @@ import { userState } from '../../userStateSlice'
 import { errorIdIntoMessage } from '../../utils/errorFormater'
 
 export default function Productos() {
-  const { isLoggedIn, sessionErrorId, isAdmin } = useSelector(userState)
+  const { isLoggedIn, sessionErrorId, isAdmin, isMobileVersion } = useSelector(userState)
 
   return isLoggedIn ?
     (
       <Grid container spacing={0}>
-        <Grid item xs={2}>
-          <div className={styles.leftHandContainer}>
-            <CategoriaSelector />
-            {isAdmin ? <AdminTools /> : undefined}
-          </div>
-        </Grid>
-        <Grid item xs={10}>
+        {
+          isMobileVersion ? undefined :
+          <Grid item xs={2}>
+            <div className={styles.leftHandContainer}>
+              <CategoriaSelector />
+              {isAdmin ? <AdminTools /> : undefined}
+            </div>
+          </Grid>
+        }
+        <Grid item xs={isMobileVersion ? 12 : 10}>
           <ProductosGrid />
         </Grid>
       </Grid>

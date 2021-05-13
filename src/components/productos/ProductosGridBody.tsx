@@ -16,16 +16,21 @@ import {
   getSearchFilter
 } from './productosSlice'
 
+import { userState } from '../../userStateSlice'
+
 import axios from '../../utils/axios'
 import { errorIdIntoMessage } from '../../utils/errorFormater'
 
 import Grid from '@material-ui/core/Grid'
 import Spinner from '../spinner/Spinner'
 import Producto from './producto/Producto'
+import AdminTools from './admin-tools/AdminTools'
 import ProductosViewer from '../productos-viewer/ProductosViewer'
 
 export default function ProductosGridBody() {
   const dispatch = useDispatch()
+
+  const { isMobileVersion, isAdmin } = useSelector(userState)
 
   const [errorLoadingProducts, setErrorLoadingProducts] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
@@ -93,11 +98,14 @@ export default function ProductosGridBody() {
       <Grid container spacing={0}>
         {productos.map((producto, index) => {
           return (
-            <Grid item xs={4} key={producto.id}>
+            <Grid item xs={isMobileVersion ? 12 : 4} key={producto.id}>
               <Producto producto={producto} productIndex={index} />
             </Grid>
           )
         })}
+        {
+          isAdmin && isMobileVersion ? <AdminTools /> : undefined
+        }
       </Grid>
       <ProductosViewer />
     </div>

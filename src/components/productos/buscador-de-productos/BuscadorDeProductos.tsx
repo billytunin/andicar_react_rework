@@ -36,6 +36,7 @@ export default function BuscadorDeProductos(props: BuscadorDeProductosProps) {
         disabled={props.isDisabled}
         onChange={(event) => setSearchText(event.target.value)}
         onKeyPress={handleKeyPress}
+        fullWidth={props.fullWidth}
         InputProps={{
           endAdornment:
             <InputAdornment position='end'>
@@ -46,10 +47,10 @@ export default function BuscadorDeProductos(props: BuscadorDeProductosProps) {
               >
                 <SearchIcon />
               </IconButton>
+              <BuscadorDeProductosModal isDisabled={props.isDisabled} />
             </InputAdornment>
         }}
       />
-      <BuscadorDeProductosModal isDisabled={props.isDisabled} />
     </div>
   )
 }
