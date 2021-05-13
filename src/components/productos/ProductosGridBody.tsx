@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import styles from './Productos.module.css'
 
 import {
   setProductos,
@@ -81,10 +82,10 @@ export default function ProductosGridBody() {
     return <Spinner />
   }
   if (errorLoadingProducts) {
-    return <div>{errorMessage}</div>
+    return <div className={`commonBackground ${styles.emptyBody}`}>{errorMessage}</div>
   }
   if (productos.length === 0) {
-    return <div>No se encontraron productos</div>
+    return <div className={`commonBackground ${styles.emptyBody}`}>No se encontraron productos</div>
   }
 
   return (

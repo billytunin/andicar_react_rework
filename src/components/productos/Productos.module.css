@@ -10,3 +10,12 @@
 .leftHandContainer::-webkit-scrollbar {
   display: none;
 }
+
+.emptyBody {
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 2.5rem;
+  width: 70%;
+  margin: auto;
+  margin-top: 2rem;
+}
