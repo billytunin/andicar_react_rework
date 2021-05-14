@@ -30,5 +30,6 @@
 @media (max-width: 1075px) {
   .image {
     animation: floatBubbleMobile 12s infinite  normal ease-out;
+    width: 100%;
   }
 }
