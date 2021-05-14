@@ -15,7 +15,7 @@
   height: 6vh;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1075px) {
   .productosGrid {
     height: 75vh;
   }

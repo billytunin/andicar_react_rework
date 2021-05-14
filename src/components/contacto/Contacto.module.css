@@ -2,7 +2,7 @@
   padding-top: 1rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1075px) {
   .container {
     padding: 0.75rem 0.9rem 0.75rem 0.9rem;
   }

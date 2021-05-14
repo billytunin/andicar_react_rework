@@ -46,7 +46,7 @@
 .fancyBoxTwo {
   margin-left: 30%;
 }
-@media (max-width: 768px) {
+@media (max-width: 1075px) {
   .paneTitle {
     font-size: 20px;
   }

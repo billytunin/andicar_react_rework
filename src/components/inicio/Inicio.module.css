@@ -24,7 +24,7 @@
   font-size: 1.5rem;
   font-style: italic;
 }
-@media (max-width: 768px) {
+@media (max-width: 1075px) {
   .subtitle {
     display: block;
     font-size: 1rem;

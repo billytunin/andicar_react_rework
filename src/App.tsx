@@ -45,7 +45,7 @@ function App() {
         await getCategoriasArray()
       }
 
-      if (window.innerWidth <= 768) {
+      if (window.innerWidth <= 1075) {
         dispatch(setIsMobileVersion(true))
       } else {
         dispatch(setIsMobileVersion(false))

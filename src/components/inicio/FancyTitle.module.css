@@ -18,7 +18,7 @@
 .right {
   margin-left: 1vw;
 }
-@media (max-width: 768px) {
+@media (max-width: 1075px) {
   .text {
     font-size: 1.5rem;
     text-align: center;

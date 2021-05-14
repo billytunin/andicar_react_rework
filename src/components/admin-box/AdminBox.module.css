@@ -27,7 +27,7 @@
   border-top-right-radius: 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1075px) {
   .uploadProductsBox {
     padding-left: 0.5rem;
     padding-right: 0.5rem;

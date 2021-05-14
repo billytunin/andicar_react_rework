@@ -14,7 +14,7 @@
   padding: 0.2rem 0.7rem 0.2rem 0.7rem;
   border-radius: 8px;
 }
-@media (max-width: 768px) {
+@media (max-width: 1075px) {
   .mainSpan {
     background-color: unset;
     font-size: 12px;

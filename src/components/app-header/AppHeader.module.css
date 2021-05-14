@@ -33,7 +33,7 @@
   color: black;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1075px) {
   .headerContainer img {
     width: 38%;
   }
