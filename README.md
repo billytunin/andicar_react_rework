@@ -44,7 +44,7 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## TODOs
-- El logo que aparece cuando compartis el link del sitio por whatsapp, por ej, es el logo de react. Implementar que sea el logo de Andicar
+
 
 ## TODOs que se pueden hacer post-launch
 - [DE ESTILOS] Cuando navego las consultas list que tienen su toolbar. Porque los items de la grilla tapan la sombra bottom de ese toolbar?
