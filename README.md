@@ -44,10 +44,7 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## TODOs
-- Ver como se ve el sitio en ipad
-- Borrar la carpeta features/counter cuando no la necesite más
-- Revisar si se están usando los especificadores globales de index.css (tipo "rightAligned", "displayBlock", etc)
-- Borrar los archivos fonts que no se están usando en index.css?
+
 
 ## TODOs que se pueden hacer post-launch
 - [DE ESTILOS] Cuando navego las consultas list que tienen su toolbar. Porque los items de la grilla tapan la sombra bottom de ese toolbar?

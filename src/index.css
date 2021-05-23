@@ -81,9 +81,6 @@ code {
 .displayInLine {
   display: inline;
 }
-.displayBlock {
-  display: block;
-}
 .archivadoBackgroundColor {
   background-color: rgba(160, 160, 160, 0.6);
 }
@@ -95,9 +92,6 @@ code {
 }
 .isMarkedAsDeleteBackgroundColor {
   background-color: rgba(247, 104, 104, 0.904);
-}
-.textAlignCenter {
-  text-align: center;
 }
 .textAlignLeft {
   text-align: left !important;
