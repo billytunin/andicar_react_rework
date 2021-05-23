@@ -48,7 +48,6 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## TODOs que se pueden hacer post-launch
 - [DE ESTILOS] Cuando navego las consultas list que tienen su toolbar. Porque los items de la grilla tapan la sombra bottom de ese toolbar?
-- Modificar el logo en photoshop. Creo que está medio estiradito tipo gordito de más. Chequear como se ve en desktop y como se ve en mobile. Creo que se ve un toque distinto
 - Invertir la logica de "archivados". En vez de que sea true para cuando están inactivos tanto en FE como en BE, que sea true para cuando están activos. Y la propiedad se pasaria a llamar "activo" o algo asi.
 - - Buscar en el codigo -> // TODO: Cambiar esto cuando cambie "archivado" por "activo"
 - Mejorar el ValidationInput. Cuando editas esos fields anda lento y creo que puede tener que ver con estar editando el State en cada keystroke
