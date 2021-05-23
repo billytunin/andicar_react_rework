@@ -2,17 +2,11 @@
   height: 86vh;
   flex-grow: 1;
   overflow-y: scroll;
-  -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
-  scrollbar-width: none;  /* Hide scrollbar for Firefox */
-}
-
-/* Hide scrollbar for Chrome, Safari and Opera */
-.productosGrid::-webkit-scrollbar {
-  display: none;
 }
 
 .productosTools {
   height: 6vh;
+  margin-bottom: 2px;
 }
 
 @media (max-width: 1075px) {
