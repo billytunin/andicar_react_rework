@@ -58,7 +58,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 
 - ¿Donde me quede?
-
+- - hacer el CREATE y el DELETE de user
 
 
 
