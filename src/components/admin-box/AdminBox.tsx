@@ -4,7 +4,7 @@ import styles from './AdminBox.module.css'
 
 import AdminBoxPanel from './AdminBoxPanel'
 
-import CredentialsConfig from './CredentialsConfig'
+import UsersConfig from './users-config/UsersConfig'
 import ConsultasList from './ConsultasList'
 import ConfigurarCategorias from './configurar-categorias/ConfigurarCategorias'
 import UploadProducts from './upload-products/UploadProducts'
@@ -12,8 +12,8 @@ import UploadProducts from './upload-products/UploadProducts'
 export default function AdminBox() {
   const panels = [
     {
-      text: 'Configurar Credenciales',
-      component: <CredentialsConfig />
+      text: 'Configurar Usuarios',
+      component: <UsersConfig />
     },
     {
       text: 'Configurar Categorias',

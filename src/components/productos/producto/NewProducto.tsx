@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button'
 
 import TextRowAsAdmin from './TextRowAsAdmin'
 import SelectRowAsAdmin from './SelectRowAsAdmin'
-import FloatNumberRowAsAdmin from './FloatNumberRowAsAdmin'
+import ValidatedFloatNumberField from '../../validated-number-field/ValidatedFloatNumberField'
 
 import styles from './Producto.module.css'
 
@@ -37,7 +37,8 @@ export default function NewProducto(props: NewProductoProps) {
         />
       </div>
       <div className={styles.lineInfo}>
-        <FloatNumberRowAsAdmin
+        <ValidatedFloatNumberField
+          entityName='producto'
           uniqueId={props.producto.id}
           label='Ancho'
           value={props.producto.ancho}
@@ -46,7 +47,8 @@ export default function NewProducto(props: NewProductoProps) {
         />
       </div>
       <div className={styles.lineInfo}>
-        <FloatNumberRowAsAdmin
+        <ValidatedFloatNumberField
+          entityName='producto'
           uniqueId={props.producto.id}
           label='Alto'
           value={props.producto.alto}
@@ -55,7 +57,8 @@ export default function NewProducto(props: NewProductoProps) {
         />
       </div>
       <div className={styles.lineInfo}>
-        <FloatNumberRowAsAdmin
+        <ValidatedFloatNumberField
+          entityName='producto'
           uniqueId={props.producto.id}
           label='Largo'
           value={props.producto.largo}

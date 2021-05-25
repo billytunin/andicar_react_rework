@@ -20,7 +20,7 @@ import EnOfertaSpan from './EnOfertaSpan'
 import RowAsClient from './RowAsClient'
 import TextRowAsAdmin from './TextRowAsAdmin'
 import SelectRowAsAdmin from './SelectRowAsAdmin'
-import FloatNumberRowAsAdmin from './FloatNumberRowAsAdmin'
+import ValidatedFloatNumberField from '../../validated-number-field/ValidatedFloatNumberField'
 import Grid from '@material-ui/core/Grid'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Switch from '@material-ui/core/Switch'
@@ -108,7 +108,8 @@ export default function Producto(props: ProductoProps) {
       <div className={styles.lineInfo}>
         {
           isAdmin ?
-            <FloatNumberRowAsAdmin
+            <ValidatedFloatNumberField
+              entityName='producto'
               uniqueId={props.producto.id}
               label='Ancho'
               value={productoPotencialmenteModificado.ancho}
@@ -122,7 +123,8 @@ export default function Producto(props: ProductoProps) {
       <div className={styles.lineInfo}>
         {
           isAdmin ?
-            <FloatNumberRowAsAdmin
+            <ValidatedFloatNumberField
+              entityName='producto'
               uniqueId={props.producto.id}
               label='Alto'
               value={productoPotencialmenteModificado.alto}
@@ -136,7 +138,8 @@ export default function Producto(props: ProductoProps) {
       <div className={`${styles.lineInfo} ${isAdmin ? styles.smallPaddingBottom : ''} ${isAdmin ? '' : styles.lastLineInfo}`}>
         {
           isAdmin ?
-            <FloatNumberRowAsAdmin
+            <ValidatedFloatNumberField
+              entityName='producto'
               uniqueId={props.producto.id}
               label='Largo'
               value={productoPotencialmenteModificado.largo}

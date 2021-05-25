@@ -1,10 +1,11 @@
 import React from 'react'
 
-import { FLOAT_NUMBER_REGEXP } from '../../../utils/constants'
+import { FLOAT_NUMBER_REGEXP } from '../../utils/constants'
 
-import ValidationInput from '../../validation-input/ValidationInput'
+import ValidationInput from '../validation-input/ValidationInput'
 
-interface FloatNumberRowAsAdminProps {
+interface ValidatedFloatNumberFieldProps {
+  entityName: string
   uniqueId: number
   label: string
   value: string | number
@@ -12,7 +13,7 @@ interface FloatNumberRowAsAdminProps {
   onChange: (value: string | number) => void
 }
 
-export default function FloatNumberRowAsAdmin(props: FloatNumberRowAsAdminProps) {
+export default function ValidatedFloatNumberField(props: ValidatedFloatNumberFieldProps) {
   const internalValue: string = typeof props.value === 'string' ? props.value : props.value.toString()
 
   const onChange = (value: string) => {
@@ -21,7 +22,7 @@ export default function FloatNumberRowAsAdmin(props: FloatNumberRowAsAdminProps)
   }
   return (
     <ValidationInput
-      id={`producto-${props.uniqueId}-${props.label}`}
+      id={`${props.entityName}-${props.uniqueId}-${props.label}`}
       value={internalValue}
       label={props.label}
       onChange={onChange}

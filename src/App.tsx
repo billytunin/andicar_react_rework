@@ -7,7 +7,6 @@ import {
   getInitialCheckState,
   setInitialCheck,
   userStateLogin,
-  setIsAdmin,
   setSessionErrorId,
   setIsMobileVersion
 } from './userStateSlice'
@@ -59,8 +58,14 @@ function App() {
       let success = false
       try {
         const resp: IsValidTokenBackendResponse = await axios.get('/auth/isValidToken')
-        dispatch(userStateLogin(resp.data.token))
-        dispatch(setIsAdmin(resp.data.isAdmin))
+        dispatch(userStateLogin(
+          {
+            token: resp.data.token,
+            isAdmin: resp.data.isAdmin,
+            priceVisibility: resp.data.priceVisibility,
+            priceModifier: resp.data.priceModifier
+          }
+        ))
         success = true
       } catch(error) {
         const { errorId = null } = axios.getErrorBody(error)

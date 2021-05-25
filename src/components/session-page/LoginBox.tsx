@@ -14,7 +14,7 @@ import {
   shakeInvalids
 } from '../validation-input/validationInputsSlice'
 import { setCategorias } from '../productos/productosSlice'
-import { userStateLogin, setIsAdmin, userState } from '../../userStateSlice'
+import { userStateLogin, userState } from '../../userStateSlice'
 import styles from './LoginBox.module.css'
 
 const VALIDATION_GROUP_NAME = 'loginForm'
@@ -41,8 +41,14 @@ export default function LoginBox() {
           user: loginData.user,
           pass: loginData.pass
         })
-        dispatch(userStateLogin(resp.data.token))
-        dispatch(setIsAdmin(resp.data.isAdmin))
+        dispatch(userStateLogin(
+          {
+            token: resp.data.token,
+            isAdmin: resp.data.isAdmin,
+            priceVisibility: resp.data.priceVisibility,
+            priceModifier: resp.data.priceModifier
+          }
+        ))
 
         // Get categorias after logging in
         const getCategoriasResp: CategoriasBackendResponse = await axios.get('/auth/getCategorias')

@@ -1,7 +1,9 @@
 interface LoginBackendResponse {
   data: {
     token: string,
-    isAdmin: boolean
+    isAdmin: boolean,
+    priceModifier: number,
+    priceVisibility: boolean
   }
 }
 
