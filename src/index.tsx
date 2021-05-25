@@ -15,6 +15,7 @@ ReactDOM.render(
         <SnackbarProvider
           maxSnack={3}
           anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+          autoHideDuration={3000}
           className='notiStackContainer'
         >
           <App />

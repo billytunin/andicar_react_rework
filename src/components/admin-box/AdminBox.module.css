@@ -16,6 +16,11 @@
   margin-bottom: 0.5rem;
   text-align: center;
 }
+.usersConfigBoxButtonContainer {
+  text-align: left;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+}
 .credentials {
   font-weight: 700;
 }

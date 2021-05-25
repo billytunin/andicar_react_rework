@@ -6,7 +6,7 @@ import ValidationInput from '../validation-input/ValidationInput'
 
 interface ValidatedFloatNumberFieldProps {
   entityName: string
-  uniqueId: number
+  uniqueId: string | number
   label: string
   value: string | number
   validationGroupName: string

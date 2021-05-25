@@ -1,5 +1,5 @@
 interface User {
-  id?: number,
+  id: number | string,
   user: string,
   password: string,
   priceVisibility: boolean
@@ -11,7 +11,10 @@ interface GetUsersBackendResponse {
 }
 
 interface UserCredentialsProps {
-  user: User,
-  arrayIndex: number,
-  finishedSaving?: () => void
+  user: User
+  markedAsDelete?: boolean
+  isCreateUser?: boolean
+  validationGroupName: string
+  modifyUser: (userObj: User) => void
+  deleteUser: (userId: string | number) => void
 }
