@@ -34,7 +34,8 @@ const PRODUCTO_EMPTY_BODY: Producto = {
   alto: 0,
   largo: 0,
   archivado: false,
-  en_oferta: false
+  en_oferta: false,
+  precio: 0
 }
 
 export default function UploadProducts() {

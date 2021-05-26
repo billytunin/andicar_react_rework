@@ -96,6 +96,21 @@ export default function Producto(props: ProductoProps) {
       <div className={styles.lineInfo}>
         {
           isAdmin ?
+            <ValidatedFloatNumberField
+              entityName='producto'
+              uniqueId={props.producto.id}
+              label='Precio'
+              value={productoPotencialmenteModificado.precio}
+              onChange={(value) => modificarProducto({ field: 'precio', value })}
+              validationGroupName={PRODUCTS_MODIFICATIONS_VALIDATION_GROUP_NAME}
+            />
+            :
+            <RowAsClient field='Precio' value={props.producto.precio} isPriceField />
+        }
+      </div>
+      <div className={styles.lineInfo}>
+        {
+          isAdmin ?
             <SelectRowAsAdmin
               label='Categoría'
               value={productoPotencialmenteModificado.categoriaId}

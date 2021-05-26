@@ -8,6 +8,7 @@ interface Producto {
   en_oferta: boolean
   id: number
   imagen: string
+  precio: number
 }
 
 interface ProductoProps {

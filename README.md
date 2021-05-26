@@ -43,6 +43,9 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
+### Consideraciones
+- Estoy teniendo que mantener Producto.tsx y NewProducto.tsx . Son dos componentes que quizas se podrían mergear de alguna manera. Pero tiene sus quirks
+
 ## TODOs
 
 
@@ -58,7 +61,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 
 - ¿Donde me quede?
-- - hacer el CREATE y el DELETE de user
+
 
 
 

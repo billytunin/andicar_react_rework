@@ -30,6 +30,16 @@ export default function NewProducto(props: NewProductoProps) {
         />
       </div>
       <div className={styles.lineInfo}>
+        <ValidatedFloatNumberField
+          entityName='producto'
+          uniqueId={props.producto.id}
+          label='Precio'
+          value={props.producto.precio}
+          onChange={(value) => props.modificarNewProducto({ field: 'precio', value, id: props.producto.id })}
+          validationGroupName={props.validationGroupName}
+        />
+      </div>
+      <div className={styles.lineInfo}>
         <SelectRowAsAdmin
           label='Categoría'
           value={props.producto.categoriaId}

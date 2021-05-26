@@ -1,6 +1,9 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import ValidationInput from '../../validation-input/ValidationInput'
 import ValidatedFloatNumberField from '../../validated-number-field/ValidatedFloatNumberField'
+
+import { userState } from '../../../userStateSlice'
 
 import Grid from '@material-ui/core/Grid'
 import Switch from '@material-ui/core/Switch'
@@ -10,6 +13,8 @@ import AccountCircle from '@material-ui/icons/AccountCircle'
 import LockIcon from '@material-ui/icons/Lock'
 
 export default function UserCredentials(props: UserCredentialsProps) {
+  const { isMobileVersion } = useSelector(userState)
+
   return (
     <Grid container spacing={0}>
       <Grid item xs={3}>
@@ -21,7 +26,7 @@ export default function UserCredentials(props: UserCredentialsProps) {
           maxlength={25}
           label=''
           fullWidth
-          icon={<AccountCircle />}
+          icon={isMobileVersion ? undefined : <AccountCircle />}
           onChange={(value) => props.modifyUser({ ...props.user, user: value })}
         />
       </Grid>
@@ -34,7 +39,7 @@ export default function UserCredentials(props: UserCredentialsProps) {
           maxlength={25}
           label=''
           fullWidth
-          icon={<LockIcon />}
+          icon={isMobileVersion ? undefined : <LockIcon />}
           onChange={(value) => props.modifyUser({ ...props.user, password: value })}
         />
       </Grid>

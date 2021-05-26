@@ -3,6 +3,7 @@ import { cloneDeep } from 'lodash'
 import { useSelector, useDispatch } from 'react-redux'
 import { useSnackbar } from 'notistack'
 import Spinner from '../../spinner/Spinner'
+import UsersConfigTableHeader from './UsersConfigTableHeader'
 import axios from '../../../utils/axios'
 import styles from '../AdminBox.module.css'
 
@@ -14,7 +15,6 @@ import {
 
 import UserCredentials from './UserCredentials'
 
-import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 
 import AddIcon from '@material-ui/icons/Add'
@@ -200,23 +200,7 @@ export default function UsersConfig() {
                 Guardar cambios
               </Button>
             </div>
-            <Grid container spacing={0}>
-              <Grid item xs={3}>
-                Usuario
-              </Grid>
-              <Grid item xs={3}>
-                Contraseña
-              </Grid>
-              <Grid item xs>
-                Precios visibles
-              </Grid>
-              <Grid item xs>
-                Modificador de precio
-              </Grid>
-              <Grid item xs>
-                Eliminar
-              </Grid>
-            </Grid>
+            <UsersConfigTableHeader />
             {
               users.map(
                 (user, index) =>
