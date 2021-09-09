@@ -47,14 +47,16 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 - Estoy teniendo que mantener Producto.tsx y NewProducto.tsx . Son dos componentes que quizas se podrían mergear de alguna manera. Pero tiene sus quirks
 
 ## TODOs
-
+- Ordenar las categorias alfabeticamente en Productos
+- Agregar que se pueda meter un "offset de precio" por cada producto POR usuario
+- Agregar un switch que sea tipo "redondear este precio?"
+- Implementar delete para categorias? Si asi fuera, implementar una categoria DEFAULT. Cuando borras una categoria, todos los productos que quedarían "categoria-less" pasarian a ser de la categoria DEFAULT.
 
 ## TODOs que se pueden hacer post-launch
 - Invertir la logica de "archivados". En vez de que sea true para cuando están inactivos tanto en FE como en BE, que sea true para cuando están activos. Y la propiedad se pasaria a llamar "activo" o algo asi.
 - - Buscar en el codigo -> // TODO: Cambiar esto cuando cambie "archivado" por "activo"
 - Mejorar el ValidationInput. Cuando editas esos fields anda lento y creo que puede tener que ver con estar editando el State en cada keystroke
 - Usar lo de CDN Edge URL para el photos.andicar.com.ar
-- Implementar delete para categorias? Si asi fuera, implementar una categoria DEFAULT. Cuando borras una categoria, todos los productos que quedarían "categoria-less" pasarian a ser de la categoria DEFAULT.
 - Meter filtros de busqueda (por fecha, por texto que abarque nombre+mail+consulta) en ConsultasList
 - Pensar que hacer con el "deprecated findDOMNode" warning (mas info [aca](https://github.com/nanxiaobei/react-slide-routes))
 - Obtener un favicon.ico mas lindo de alguna manera

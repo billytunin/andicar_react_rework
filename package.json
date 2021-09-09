@@ -38,7 +38,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "dev-sync": "aws s3 sync ./build/ s3://dev.andicar.com.ar --acl public-read --cache-control max-age=1 --exclude '.DS_Store'",
-    "deploy-dev": "yarn build && yarn dev-sync"
+    "prod-sync": "aws s3 sync ./build/ s3://andicar.com.ar --acl public-read --cache-control max-age=1 --exclude '.DS_Store'",
+    "deploy-dev": "yarn build && yarn dev-sync",
+    "deploy-prod": "yarn build && yarn prod-sync"
   },
   "eslintConfig": {
     "extends": "react-app"
