@@ -19,7 +19,7 @@ interface CategoriaSelectorButtonProps {
 const CustomButton = withStyles((theme: Theme) => ({
   root: {
     color: theme.palette.getContrastText(blue[600]),
-    width: '93%',
+    width: '97.5%',
     backgroundColor: blue[600],
     borderRadius: 15,
     '&:hover': {

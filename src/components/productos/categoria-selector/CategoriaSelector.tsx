@@ -1,5 +1,8 @@
-import React from 'react'
+import { cloneDeep } from 'lodash'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+
+import styles from './CategoriaSelector.module.css'
 
 import { getIsMobileVersion } from '../../../userStateSlice'
 
@@ -19,9 +22,28 @@ export default function CategoriaSelector() {
   const currentCategoria = useSelector(getCurrentCategoriaIdFromState)
   const categorias = useSelector(getCurrentCategoriasFromState)
 
+  const [sortedCategorias, setSortedCategorias] = useState<Categoria[]>([])
+
+  useEffect(() => {
+    const clonedCategorias = cloneDeep(categorias)
+    setSortedCategorias(
+      clonedCategorias.sort(sortCategoriasFunction)
+    )
+  }, [categorias])
+
   const changeCategoria = (categoria: number) => {
     dispatch(setCategoria(categoria))
     dispatch(resetPaginacion())
+  }
+
+  const sortCategoriasFunction = (a: Categoria, b: Categoria) => {
+    if (a.titulo.toLowerCase() > b.titulo.toLowerCase()) {
+      return 1
+    }
+    if (b.titulo.toLowerCase() > a.titulo.toLowerCase()) {
+      return -1
+    }
+    return 0
   }
 
   if (isMobileVersion) {
@@ -36,7 +58,7 @@ export default function CategoriaSelector() {
 
   return (
     <div>
-      <div>
+      <div className={styles.bottomBorder}>
         <CategoriaSelectorButton
           onClick={() => changeCategoria(0)}
           isActive={!currentCategoria}
@@ -44,7 +66,7 @@ export default function CategoriaSelector() {
           Todos
         </CategoriaSelectorButton>
       </div>
-      {categorias.map(
+      {sortedCategorias.map(
         categoria =>
           <div key={categoria.id}>
             <CategoriaSelectorButton

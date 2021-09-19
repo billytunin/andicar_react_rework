@@ -1,0 +1,5 @@
+.bottomBorder {
+  border-bottom: 1px solid rgba(210, 210, 210, 0.8);
+  padding-bottom: 0.25rem;
+  margin-bottom: 0.25rem;
+}

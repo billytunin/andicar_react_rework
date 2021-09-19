@@ -1,5 +1,6 @@
 .leftHandContainer {
   padding-top: 1vh;
+  padding-right: 1vw;
   height: 91vh;
   overflow-y: scroll;
   -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
