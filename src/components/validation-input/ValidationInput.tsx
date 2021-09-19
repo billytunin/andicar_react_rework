@@ -189,7 +189,7 @@ export default function ValidationInput(props: ValidationInputProps) {
         setFieldValidationMessage({
           name: props.validationGroupName,
           field: props.id,
-          value: `Solo números positivos enteros o decimales son permitidos en este campo`
+          value: `Solo números enteros o decimales son permitidos en este campo`
         })
       )
     }

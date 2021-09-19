@@ -4,6 +4,7 @@ import productosViewerReducer from '../components/productos-viewer/productosView
 import productosReducer from '../components/productos/productosSlice'
 import newProductosReducer from '../components/productos/newProductosSlice'
 import userStateReducer from '../userStateSlice'
+import precioOffsetModalReducer from '../components/precio-offset-modal/precioOffsetModalSlice'
 
 export const store = configureStore({
   reducer: {
@@ -11,7 +12,8 @@ export const store = configureStore({
     productos: productosReducer,
     productosViewer: productosViewerReducer,
     userState: userStateReducer,
-    newProductos: newProductosReducer
+    newProductos: newProductosReducer,
+    precioOffsetModal: precioOffsetModalReducer
   }
 })
 

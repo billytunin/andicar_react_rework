@@ -3,6 +3,7 @@ import { cloneDeep, isEqual } from 'lodash'
 import { useSelector, useDispatch } from 'react-redux'
 import { toggleProductosViewer } from '../../productos-viewer/productosViewerSlice'
 import { userState } from '../../../userStateSlice'
+import { toggleModal } from '../../precio-offset-modal/precioOffsetModalSlice'
 
 import { PHOTOS_URL, PRODUCTS_MODIFICATIONS_VALIDATION_GROUP_NAME } from '../../../utils/constants'
 import styles from './Producto.module.css'
@@ -22,6 +23,7 @@ import TextRowAsAdmin from './TextRowAsAdmin'
 import SelectRowAsAdmin from './SelectRowAsAdmin'
 import ValidatedFloatNumberField from '../../validated-number-field/ValidatedFloatNumberField'
 import Grid from '@material-ui/core/Grid'
+import Button from '@material-ui/core/Button'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Switch from '@material-ui/core/Switch'
 import Checkbox from '@material-ui/core/Checkbox'
@@ -110,17 +112,29 @@ export default function Producto(props: ProductoProps) {
       </div>
       {
         isAdmin ?
-          <div className={styles.lineInfo}>
-            <FormControlLabel
-              control={
-                <Switch
-                  color='primary'
-                  checked={productoPotencialmenteModificado.redondear}
-                  onChange={(event) => modificarProducto({ field: 'redondear', value: event.target.checked })}
-                />
-              }
-              label='Redondear precio'
-            />
+          <div>
+            <div className={styles.lineInfo}>
+              <FormControlLabel
+                control={
+                  <Switch
+                    color='primary'
+                    checked={productoPotencialmenteModificado.redondear}
+                    onChange={(event) => modificarProducto({ field: 'redondear', value: event.target.checked })}
+                  />
+                }
+                label='Redondear precio'
+              />
+            </div>
+            <div className={`${styles.lineInfo} ${styles.precioOffsetsButtonContainer}`}>
+              <Button 
+                variant="contained"
+                color="primary"
+                fullWidth
+                onClick={() => dispatch(toggleModal({ isOpen: true, productId: props.producto.id }))}
+              >
+                Ver precio offsets
+              </Button>
+            </div>
           </div>
           :
           undefined

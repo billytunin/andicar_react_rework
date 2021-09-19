@@ -15,6 +15,10 @@
 .lineInfo {
   background-color: rgba(200, 200, 255, 0.8);
 }
+.precioOffsetsButtonContainer {
+  padding-top: 0.15rem;
+  padding-bottom: 0.75rem;
+}
 .smallPaddingBottom {
   padding-bottom: 0.5rem;
 }
