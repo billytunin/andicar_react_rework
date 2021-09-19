@@ -9,6 +9,7 @@ interface Producto {
   id: number
   imagen: string
   precio: number
+  redondear: boolean
 }
 
 interface ProductoProps {

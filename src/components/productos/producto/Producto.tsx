@@ -108,6 +108,23 @@ export default function Producto(props: ProductoProps) {
             <RowAsClient field='Precio' value={props.producto.precio} isPriceField />
         }
       </div>
+      {
+        isAdmin ?
+          <div className={styles.lineInfo}>
+            <FormControlLabel
+              control={
+                <Switch
+                  color='primary'
+                  checked={productoPotencialmenteModificado.redondear}
+                  onChange={(event) => modificarProducto({ field: 'redondear', value: event.target.checked })}
+                />
+              }
+              label='Redondear precio'
+            />
+          </div>
+          :
+          undefined
+      }
       <div className={styles.lineInfo}>
         {
           isAdmin ?
