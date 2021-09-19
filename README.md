@@ -47,7 +47,6 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 - Estoy teniendo que mantener Producto.tsx y NewProducto.tsx . Son dos componentes que quizas se podrían mergear de alguna manera. Pero tiene sus quirks
 
 ## TODOs
-- Ordenar las categorias alfabeticamente en Productos
 - Agregar que se pueda meter un "offset de precio" por cada producto POR usuario
 - Agregar un switch que sea tipo "redondear este precio?"
 - Implementar delete para categorias? Si asi fuera, implementar una categoria DEFAULT. Cuando borras una categoria, todos los productos que quedarían "categoria-less" pasarian a ser de la categoria DEFAULT.
