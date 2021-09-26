@@ -6,8 +6,11 @@ import AndicarModal from '../andicar-modal/AndicarModal'
 import Spinner from '../spinner/Spinner'
 import { modalState, toggleModal } from './precioOffsetModalSlice'
 
+import styles from './PrecioOffsetModal.module.css'
+
 import Button from '@material-ui/core/Button'
 import SaveIcon from '@material-ui/icons/Save'
+import Grid from '@material-ui/core/Grid'
 
 import ValidatedFloatNumberField from '../validated-number-field/ValidatedFloatNumberField'
 
@@ -116,26 +119,39 @@ export default function PrecioOffsetModal() {
       {
         loading ? <Spinner /> :
         <div>
-          {rows.map(row => <div key={row.userId}>
-            <span>{row.userName}</span>
-            <ValidatedFloatNumberField
-              entityName='precio-offset'
-              uniqueId={row.userId}
-              label='Offset'
-              value={row.offset}
-              onChange={(value) => modificarOffset(value, row.userId)}
-              validationGroupName={VALIDATION_GROUP_NAME}
-            />
-          </div>)}
-          <Button
-            variant='contained'
-            color='primary'
-            startIcon={<SaveIcon />}
-            onClick={handleGuardarCambios}
-            disabled={!rowsToSave.length}
-          >
-            Guardar cambios
-          </Button>
+          {rows.map(row =>
+            <Grid
+              container
+              key={row.userId}
+              alignItems='center'
+              className={styles.rowContainer}
+            >
+              <Grid item xs>
+                <span>{row.userName}</span>
+              </Grid>
+              <Grid item xs>
+                <ValidatedFloatNumberField
+                  entityName='precio-offset'
+                  uniqueId={row.userId}
+                  label='Offset'
+                  value={row.offset}
+                  onChange={(value) => modificarOffset(value, row.userId)}
+                  validationGroupName={VALIDATION_GROUP_NAME}
+                />
+              </Grid>
+            </Grid>
+          )}
+          <div className={styles.saveButtonContainer}>
+            <Button
+              variant='contained'
+              color='primary'
+              startIcon={<SaveIcon />}
+              onClick={handleGuardarCambios}
+              disabled={!rowsToSave.length}
+            >
+              Guardar cambios
+            </Button>
+          </div>
         </div>
       }
     </AndicarModal>

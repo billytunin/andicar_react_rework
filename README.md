@@ -60,7 +60,6 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 
 - ¿Donde me quede?
-- - Acomodar un poquito visualmente el modal de precio offsets
 - - Calcular como quedaria el price para cada usuario considerando el nuevo redondear y el nuevo precio offset -> me parece que lo mejor va a ser empezar a calcular todo en el BE. Si no, es un quilombo el FE. Asi que en el BE tmb podria calcular lo de priceModifier + price offset + redondear. Y deberia tener un endpoint para getProductsAsAdmin y otro para getProducts de clientes?
 - - Comentarle a fede que lo de precio offsets solo se puede hacer con el producto creado (yendo a modificarlo) + que se que hay un bug cuando tratas de escribir "-" al principio de un precio. Por ahora, se puede solucionar escribiendo el numero y despues yendo a ponerle el "-"
 
