@@ -34,7 +34,7 @@ export default function NewProducto(props: NewProductoProps) {
           entityName='producto'
           uniqueId={props.producto.id}
           label='Precio'
-          value={props.producto.precio}
+          value={props.producto.precio !== undefined ? props.producto.precio : 0}
           onChange={(value) => props.modificarNewProducto({ field: 'precio', value, id: props.producto.id })}
           validationGroupName={props.validationGroupName}
         />

@@ -4,8 +4,6 @@ import axios from './utils/axios'
 
 const initialState: UserState = {
   isLoggedIn: false,
-  priceModifier: 1,
-  priceVisibility: false,
   isAdmin: false,
   sessionErrorId: null,
   initialCheck: false,
@@ -21,15 +19,11 @@ export const userStateSlice = createSlice({
     },
     userStateLogin: (state, action: PayloadAction<UserStateLoginPayload>) => {
       state.isLoggedIn = true
-      state.priceModifier = action.payload.priceModifier
-      state.priceVisibility = action.payload.priceVisibility
       state.isAdmin = action.payload.isAdmin
       axios.setAuthToken(action.payload.token)
     },
     userStateLogout: (state) => {
       state.isLoggedIn = false
-      state.priceModifier = 1
-      state.priceVisibility = false
       state.isAdmin = false
       axios.removeAuthToken()
     },

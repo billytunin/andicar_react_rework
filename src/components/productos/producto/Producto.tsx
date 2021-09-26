@@ -102,12 +102,15 @@ export default function Producto(props: ProductoProps) {
               entityName='producto'
               uniqueId={props.producto.id}
               label='Precio'
-              value={productoPotencialmenteModificado.precio}
+              value={productoPotencialmenteModificado.precio !== undefined ? productoPotencialmenteModificado.precio : 0}
               onChange={(value) => modificarProducto({ field: 'precio', value })}
               validationGroupName={PRODUCTS_MODIFICATIONS_VALIDATION_GROUP_NAME}
             />
             :
-            <RowAsClient field='Precio' value={props.producto.precio} isPriceField />
+            props.producto.precio ?
+              <RowAsClient field='Precio' value={props.producto.precio} isPriceField />
+              :
+              undefined
         }
       </div>
       {

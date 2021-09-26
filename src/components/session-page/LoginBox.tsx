@@ -44,9 +44,7 @@ export default function LoginBox() {
         dispatch(userStateLogin(
           {
             token: resp.data.token,
-            isAdmin: resp.data.isAdmin,
-            priceVisibility: resp.data.priceVisibility,
-            priceModifier: resp.data.priceModifier
+            isAdmin: resp.data.isAdmin
           }
         ))
 
