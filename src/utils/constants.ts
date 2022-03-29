@@ -1,5 +1,5 @@
 // PROD URL
-export const BASE_URL = 'https://catslab.herokuapp.com/andicar'
+export const BASE_URL = 'http://catslab.com.ar/andicar'
 // For DEV purposes:
 // export const BASE_URL = 'http://localhost:5000/andicar'
 
