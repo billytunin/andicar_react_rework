@@ -1,0 +1,15 @@
+.saveButtonContainer {
+  margin-top: 1.5rem;
+}
+.rowContainer {
+  border-bottom: 2px solid rgba(235, 235, 235, 0.9);
+}
+.productConfigPorUsuarioTableHeader {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.switchContainer {
+  text-align: center;
+}

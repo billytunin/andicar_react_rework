@@ -3,7 +3,7 @@ import { cloneDeep, isEqual } from 'lodash'
 import { useSelector, useDispatch } from 'react-redux'
 import { toggleProductosViewer } from '../../productos-viewer/productosViewerSlice'
 import { userState } from '../../../userStateSlice'
-import { toggleModal } from '../../precio-offset-modal/precioOffsetModalSlice'
+import { toggleModal } from '../../product-config-por-usuario/productConfigPorUsuarioModalSlice'
 
 import { PHOTOS_URL, PRODUCTS_MODIFICATIONS_VALIDATION_GROUP_NAME } from '../../../utils/constants'
 import styles from './Producto.module.css'
@@ -128,14 +128,14 @@ export default function Producto(props: ProductoProps) {
                 label='Redondear precio'
               />
             </div>
-            <div className={`${styles.lineInfo} ${styles.precioOffsetsButtonContainer}`}>
+            <div className={`${styles.lineInfo} ${styles.productConfigPorUsuarioButtonContainer}`}>
               <Button 
                 variant="contained"
                 color="primary"
                 fullWidth
                 onClick={() => dispatch(toggleModal({ isOpen: true, productId: props.producto.id }))}
               >
-                Ver precio offsets
+                Ver configuración por usuario
               </Button>
             </div>
           </div>

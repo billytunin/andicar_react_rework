@@ -3,14 +3,16 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useSnackbar } from 'notistack'
 import axios from '../../utils/axios'
 import AndicarModal from '../andicar-modal/AndicarModal'
+import ProductConfigPorUsuarioTableHeader from './ProductConfigPorUsuarioTableHeader'
 import Spinner from '../spinner/Spinner'
-import { modalState, toggleModal } from './precioOffsetModalSlice'
+import { modalState, toggleModal } from './productConfigPorUsuarioModalSlice'
 
-import styles from './PrecioOffsetModal.module.css'
+import styles from './ProductConfigPorUsuario.module.css'
 
 import Button from '@material-ui/core/Button'
 import SaveIcon from '@material-ui/icons/Save'
 import Grid from '@material-ui/core/Grid'
+import Switch from '@material-ui/core/Switch'
 
 import ValidatedFloatNumberField from '../validated-number-field/ValidatedFloatNumberField'
 
@@ -20,17 +22,17 @@ import {
   shakeInvalids
 } from '../validation-input/validationInputsSlice'
 
-const VALIDATION_GROUP_NAME = 'precioOffsetForm'
+const VALIDATION_GROUP_NAME = 'productConfigPorUsuarioForm'
 
-export default function PrecioOffsetModal() {
+export default function ProductConfigPorUsuarioModal() {
   const dispatch = useDispatch()
   const { enqueueSnackbar } = useSnackbar()
   const { isOpen, productId } = useSelector(modalState)
   const formHasErrors = useSelector(validationGroupHasErrors(VALIDATION_GROUP_NAME))
 
   const [loading, setLoading] = useState(false)
-  const [rows, setRows] = useState<PrecioOffsetRowData[]>([])
-  const [rowsToSave, setRowsToSave] = useState<PrecioOffsetRowData[]>([])
+  const [rows, setRows] = useState<ProductConfigPorUsuarioRowData[]>([])
+  const [rowsToSave, setRowsToSave] = useState<ProductConfigPorUsuarioRowData[]>([])
 
   const handleCloseModal = () => {
     dispatch(
@@ -43,15 +45,20 @@ export default function PrecioOffsetModal() {
     try {
       const resp: GetUsersBackendResponse = await axios.get('/auth/users')
       const users = resp.data
-      const resp2: GetPrecioOffsetForAllUsersBackendResponse = await axios.get(`/auth/getPrecioOffsetForAllUsers?productId=${productId}`)
-      const precioOffsetArray = resp2.data
+      const resp2: GetProductConfigPorUsuarioForAllUsersBackendResponse = await axios.get(`/auth/getPrecioOffsetForAllUsers?productId=${productId}`)
+      const productConfigPorUsuarioArray = resp2.data
+      console.log('delete me 1')
+      console.log(productConfigPorUsuarioArray)
       setRows(
         users.map(user => {
-          const precioOffset = precioOffsetArray.find(precioOffsetObj => precioOffsetObj.user_id === user.id)
+          const productConfigPorUsuario = productConfigPorUsuarioArray.find(productConfigPorUsuarioObj => productConfigPorUsuarioObj.user_id === user.id)
           return {
             userId: user.id,
             userName: user.user,
-            offset: precioOffset ? precioOffset.offset : 0
+            offset: productConfigPorUsuario ? productConfigPorUsuario.offset : 0,
+            // TODO gaston: este "|| false" no deberia hacer falta cuando termine el BE
+            hidden: productConfigPorUsuario ? productConfigPorUsuario.hidden || false : false,
+            modifiedRow: false
           }
         })
       )
@@ -67,6 +74,18 @@ export default function PrecioOffsetModal() {
     const foundIndex = newRows.findIndex(row => row.userId === userId)
     if (foundIndex !== -1) {
       newRows[foundIndex].offset = value
+      newRows[foundIndex].modifiedRow = true
+    }
+
+    setRows(newRows)
+  }
+
+  const modificarHidden = (value: boolean, userId: string | number) => {
+    const newRows = [...rows]
+    const foundIndex = newRows.findIndex(row => row.userId === userId)
+    if (foundIndex !== -1) {
+      newRows[foundIndex].hidden = value
+      newRows[foundIndex].modifiedRow = true
     }
 
     setRows(newRows)
@@ -81,7 +100,7 @@ export default function PrecioOffsetModal() {
 
   useEffect(() => {
     setRowsToSave(
-      rows.filter(row => row.offset && row.offset !== '0')
+      rows.filter(row => row.modifiedRow)
     )
   }, [rows])
 
@@ -92,6 +111,8 @@ export default function PrecioOffsetModal() {
     } else {
       setLoading(true)
       try {
+        console.log('delete me 2')
+        console.log(rowsToSave)
         await axios.post('/auth/setPrecioOffset', {
           productId,
           usersAndOffsets: rowsToSave.map(rowToSave => ({ userId: rowToSave.userId, offset: rowToSave.offset }))
@@ -115,10 +136,15 @@ export default function PrecioOffsetModal() {
   }
 
   return (
-    <AndicarModal isOpen={isOpen} handleClose={handleCloseModal}>
+    <AndicarModal
+      isOpen={isOpen}
+      handleClose={handleCloseModal}
+      width="50%"
+    >
       {
         loading ? <Spinner /> :
         <div>
+          <ProductConfigPorUsuarioTableHeader />
           {rows.map(row =>
             <Grid
               container
@@ -133,11 +159,20 @@ export default function PrecioOffsetModal() {
                 <ValidatedFloatNumberField
                   entityName='precio-offset'
                   uniqueId={row.userId}
-                  label='Offset'
+                  label=''
                   value={row.offset}
                   onChange={(value) => modificarOffset(value, row.userId)}
                   validationGroupName={VALIDATION_GROUP_NAME}
                 />
+              </Grid>
+              <Grid item xs>
+                <div className={styles.switchContainer}>
+                  <Switch
+                    color='primary'
+                    checked={row.hidden}
+                    onChange={(event) => modificarHidden(event.target.checked, row.userId)}
+                  />
+                </div>
               </Grid>
             </Grid>
           )}

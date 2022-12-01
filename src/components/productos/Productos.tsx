@@ -8,7 +8,7 @@ import ProductosGrid from './ProductosGrid'
 import AdminTools from './admin-tools/AdminTools'
 import CategoriaSelector from './categoria-selector/CategoriaSelector'
 import UnloggedUserBox from './unlogged-user-box/UnloggedUserBox'
-import PrecioOffsetModal from '../precio-offset-modal/PrecioOffsetModal'
+import ProductConfigPorUsuarioModal from '../product-config-por-usuario/ProductConfigPorUsuarioModal'
 
 import { userState } from '../../userStateSlice'
 import { errorIdIntoMessage } from '../../utils/errorFormater'
@@ -30,7 +30,7 @@ export default function Productos() {
         }
         <Grid item xs={isMobileVersion ? 12 : 10}>
           <ProductosGrid />
-          <PrecioOffsetModal />
+          <ProductConfigPorUsuarioModal />
         </Grid>
       </Grid>
     )
