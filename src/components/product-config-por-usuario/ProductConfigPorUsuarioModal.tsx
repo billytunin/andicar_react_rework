@@ -45,10 +45,8 @@ export default function ProductConfigPorUsuarioModal() {
     try {
       const resp: GetUsersBackendResponse = await axios.get('/auth/users')
       const users = resp.data
-      const resp2: GetProductConfigPorUsuarioForAllUsersBackendResponse = await axios.get(`/auth/getPrecioOffsetForAllUsers?productId=${productId}`)
+      const resp2: GetProductConfigPorUsuarioForAllUsersBackendResponse = await axios.get(`/auth/getProductConfigForAllUsers?productId=${productId}`)
       const productConfigPorUsuarioArray = resp2.data
-      console.log('delete me 1')
-      console.log(productConfigPorUsuarioArray)
       setRows(
         users.map(user => {
           const productConfigPorUsuario = productConfigPorUsuarioArray.find(productConfigPorUsuarioObj => productConfigPorUsuarioObj.user_id === user.id)
@@ -56,8 +54,7 @@ export default function ProductConfigPorUsuarioModal() {
             userId: user.id,
             userName: user.user,
             offset: productConfigPorUsuario ? productConfigPorUsuario.offset : 0,
-            // TODO gaston: este "|| false" no deberia hacer falta cuando termine el BE
-            hidden: productConfigPorUsuario ? productConfigPorUsuario.hidden || false : false,
+            hidden: productConfigPorUsuario ? productConfigPorUsuario.hidden : false,
             modifiedRow: false
           }
         })
@@ -111,22 +108,24 @@ export default function ProductConfigPorUsuarioModal() {
     } else {
       setLoading(true)
       try {
-        console.log('delete me 2')
-        console.log(rowsToSave)
-        await axios.post('/auth/setPrecioOffset', {
+        await axios.post('/auth/setProductConfig', {
           productId,
-          usersAndOffsets: rowsToSave.map(rowToSave => ({ userId: rowToSave.userId, offset: rowToSave.offset }))
+          productConfigBody: rowsToSave.map(rowToSave => ({
+            userId: rowToSave.userId,
+            offset: rowToSave.offset,
+            hidden: rowToSave.hidden
+          }))
         })
         dispatch(setValidationGroupDirtyState({ validationGroupName: VALIDATION_GROUP_NAME, isDirty: false }))
 
         enqueueSnackbar(
-          'Precio offsets cargados con éxito',
+          'Configuraciones por usuario cargados para este producto con éxito',
           { variant: 'success' }
         )
         handleCloseModal()
       } catch(error) {
         enqueueSnackbar(
-          'Hubo un problema al intentar cargar los precio offsets. Por favor intente nuevamente',
+          'Hubo un problema al intentar guardar la configuracion por usuario para este producto. Por favor intente nuevamente',
           { variant: 'error' }
         )
       } finally {
