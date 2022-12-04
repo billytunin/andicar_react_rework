@@ -27,6 +27,10 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+### `yarn deploy-dev ó yarn deploy-prod`
+
+Este command lo hice yo para hacer deploy automatico al bucket de AWS. Hace un sync exacto entre la carpeta build local del proyecto y la carpeta root del bucket de AWS.
+
 ### `yarn eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
