@@ -31,7 +31,7 @@ export default function Inicio() {
           }
         </Grid>
         <Grid item xs={12}>
-          <span className={styles.subtitle}>30 años</span>
+          <span className={styles.subtitle}>Desde 1990</span>
         </Grid>
         <Grid item xs={12} className={styles.paddingTop}>
           <Slider />
