@@ -3,6 +3,7 @@ import pic from '../../../assets/slider/mobile/pic.jpg'
 import pic2 from '../../../assets/slider/mobile/pic2.jpg'
 import pic3 from '../../../assets/slider/mobile/pic3.jpg'
 import pic4 from '../../../assets/slider/mobile/pic4.jpg'
+import pic5 from '../../../assets/slider/mobile/pic5.jpg'
 
 import styles from './Pic.module.css'
 
@@ -17,6 +18,9 @@ export default function MobilePic(props: PicProps) {
       break
     case 4:
       picToUse = pic4
+      break
+    case 5:
+      picToUse = pic5
       break
     default:
       picToUse = pic

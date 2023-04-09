@@ -3,6 +3,7 @@ import pic from '../../../assets/slider/desktop/pic.jpg'
 import pic2 from '../../../assets/slider/desktop/pic2.jpg'
 import pic3 from '../../../assets/slider/desktop/pic3.jpg'
 import pic4 from '../../../assets/slider/desktop/pic4.jpg'
+import pic5 from '../../../assets/slider/desktop/pic5.jpg'
 
 import styles from './Pic.module.css'
 
@@ -17,6 +18,9 @@ export default function Pic(props: PicProps) {
       break
     case 4:
       picToUse = pic4
+      break
+    case 5:
+      picToUse = pic5
       break
     default:
       picToUse = pic

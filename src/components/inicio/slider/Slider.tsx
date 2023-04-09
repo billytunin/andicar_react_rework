@@ -34,7 +34,7 @@ export default function Slider() {
   )
 
   const classes = useStyles()
-  const picNumbers = [1, 2, 3, 4]
+  const picNumbers = [1, 2, 3, 4, 5]
 
   // This is a workaround to avoid "Can't perform a React state update on an unmounted component." warning.
   // When App.tsx is loading checking for isValidToken, it seems Carousel component gets rendered and unrendered asynchronously with
