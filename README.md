@@ -1,3 +1,6 @@
+-- ESTE PROYECTO ESTÁ DESACTUALIZADO. MUCHOS DE LOS PAQUETES DEBERIAN SER ACTUALIZADOS Y NO SE PUEDE PORQUE HAY QUE HACER CAMBIOS Y REVISAR COSAS QUE NO HICE.
+POR ESTE MOTIVO NO SE PUEDE USAR YARN EN LOS COMANDOS DE ABAJO. SE CORREN CON NPM. LA ALTERNATIVA A USAR ES: "NPM RUN-SCRIPT *COMANDO*". LA INSTALACION Y ACTUALIZACION DE PAQUETES POR AHORA TAMBIEN SE HACEN CON NPM Y NO CON YARN.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
 ## Available Scripts
