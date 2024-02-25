@@ -166,7 +166,7 @@ export default function Producto(props: ProductoProps) {
               validationGroupName={PRODUCTS_MODIFICATIONS_VALIDATION_GROUP_NAME}
             />
             :
-            <RowAsClient field='Ancho' value={props.producto.ancho} />
+            null // Cuando habia ancho+alto+largo, iba esto: <RowAsClient field='Ancho' value={props.producto.ancho} />
         }
       </div>
       <div className={styles.lineInfo}>
@@ -181,7 +181,7 @@ export default function Producto(props: ProductoProps) {
               validationGroupName={PRODUCTS_MODIFICATIONS_VALIDATION_GROUP_NAME}
             />
             :
-            <RowAsClient field='Alto' value={props.producto.alto} />
+            null // Cuando habia ancho+alto+largo, iba esto: <RowAsClient field='Alto' value={props.producto.alto} />
         }
       </div>
       <div className={`${styles.lineInfo} ${isAdmin ? styles.smallPaddingBottom : ''} ${isAdmin ? '' : styles.lastLineInfo}`}>
@@ -196,7 +196,7 @@ export default function Producto(props: ProductoProps) {
               validationGroupName={PRODUCTS_MODIFICATIONS_VALIDATION_GROUP_NAME}
             />
             :
-            <RowAsClient field='Largo' value={props.producto.largo} />
+            null // Cuando habia ancho+alto+largo, iba esto: <RowAsClient field='Largo' value={props.producto.largo} />
         }
       </div>
       {
