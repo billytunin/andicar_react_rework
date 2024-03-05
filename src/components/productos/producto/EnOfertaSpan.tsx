@@ -9,7 +9,7 @@ interface EnOfertaSpanProps {
 export default function EnOfertaSpan(props: EnOfertaSpanProps) {
   return (
     <div className={`${styles.enOfertaContainer} ${props.isOnProductosViewer ? styles.bottom : ''}`}>
-      <span>EN OFERTA</span>
+      <span>OFERTA</span>
     </div>
   )
 }
