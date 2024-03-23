@@ -28,13 +28,13 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.0",
     "react-slide-routes": "^0.13.0",
-    "react-spring": "^9.0.0-rc.3",
+    "react-spring": "^9.7.3",
     "react-use-gesture": "^8.0.1",
     "typescript": "~3.8.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts --openssl-legacy-provider start",
+    "build": "react-scripts --openssl-legacy-provider build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "dev-sync": "aws s3 sync ./build/ s3://dev.andicar.com.ar --acl public-read --cache-control max-age=1 --exclude '.DS_Store'",
@@ -45,16 +45,9 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all"
+  ]
 }
