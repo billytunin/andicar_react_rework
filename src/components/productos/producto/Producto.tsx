@@ -81,6 +81,30 @@ export default function Producto(props: ProductoProps) {
         }
       />
       {props.producto.en_oferta ? <EnOfertaSpan /> : undefined}
+      {
+        isAdmin ?
+          <div>
+            <div className={styles.lineInfo}>
+              <FormControlLabel
+                control={
+                  <Switch
+                    color='primary'
+                    checked={productoPotencialmenteModificado.entrega_inmediata}
+                    onChange={(event) => modificarProducto({ field: 'entrega_inmediata', value: event.target.checked })}
+                  />
+                }
+                label='Entrega inmediata'
+              />
+            </div>
+          </div>
+        :
+        props.producto.entrega_inmediata ?
+          <div className={`${styles.rowAsClient} ${styles.entregaInmediata}`}>
+            <span>Entrega inmediata</span>
+          </div>
+        :
+        undefined
+      }
       <div className={styles.lineInfo}>
         {
           isAdmin ?

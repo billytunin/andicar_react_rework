@@ -43,6 +43,11 @@
   padding: 0.2rem 0.5rem 0.2rem 0.5rem;
   border-radius: 4px;
 }
+.entregaInmediata {
+  font-weight: 600;
+  text-align: center;
+  font-style: italic;
+}
 .newProductoRemoverButton {
   text-align: center;
   margin-top: 0.5rem;

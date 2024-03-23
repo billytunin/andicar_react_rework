@@ -10,6 +10,7 @@ interface Producto {
   imagen: string
   precio?: number
   redondear: boolean
+  entrega_inmediata: boolean
 }
 
 interface ProductoProps {

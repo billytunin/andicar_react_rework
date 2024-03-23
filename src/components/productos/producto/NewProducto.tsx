@@ -52,6 +52,18 @@ export default function NewProducto(props: NewProductoProps) {
         />
       </div>
       <div className={styles.lineInfo}>
+        <FormControlLabel
+          control={
+            <Switch
+              color='primary'
+              checked={props.producto.entrega_inmediata}
+              onChange={(event) => props.modificarNewProducto({ field: 'entrega_inmediata', value: event.target.checked, id: props.producto.id })}
+            />
+          }
+          label='Entrega inmediata'
+        />
+      </div>
+      <div className={styles.lineInfo}>
         <SelectRowAsAdmin
           label='Categoría'
           value={props.producto.categoriaId}
