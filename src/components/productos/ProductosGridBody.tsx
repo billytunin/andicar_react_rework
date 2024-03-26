@@ -26,6 +26,8 @@ import Spinner from '../spinner/Spinner'
 import Producto from './producto/Producto'
 import AdminTools from './admin-tools/AdminTools'
 import ProductosViewer from '../productos-viewer/ProductosViewer'
+import SVGBackArrow from '../svg-arrows/BackArrow'
+import SVGNextArrow from '../svg-arrows/NextArrow'
 
 export default function ProductosGridBody() {
   const dispatch = useDispatch()
@@ -106,6 +108,21 @@ export default function ProductosGridBody() {
         {
           isAdmin && isMobileVersion ? <AdminTools /> : undefined
         }
+      </Grid>
+      <Grid container spacing={0} className={styles.backAndNextContainer}>
+        <Grid item xs={4} className={`${styles.svgBackArrowContainer} textAlignRight`}>
+          <SVGBackArrow height='8rem' width='8rem' className='animationForBackSVGArrow' />
+        </Grid>
+        <Grid item xs={4} className={`${styles.svgArrowContainerText} textAlignCenter`}>
+          <Grid container spacing={0} alignItems='center' style={{height: '100%'}}>
+            <Grid item xs={12}>
+              <span>Sigue descubriendo productos</span>
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid item xs={4} className={styles.svgNextArrowContainer}>
+          <SVGNextArrow height='8rem' width='8rem' className='animationForNextSVGArrow' />
+        </Grid>
       </Grid>
       <ProductosViewer />
     </div>

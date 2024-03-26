@@ -63,6 +63,46 @@
 }
 /* [END] Fonts declarations */
 
+/* [START] Animations declarations */
+
+@keyframes moveRightToLeftAndBack {
+  0% {
+    transform: translateX(0);
+  }
+  10% {
+    transform: translateX(-1.2rem); /* Move left */
+  }
+  20% {
+    transform: translateX(0); /* Move back to original position */
+  }
+  30% {
+    transform: translateX(-1.2rem); /* Move left */
+  }
+  40% {
+    transform: translateX(0); /* Move back to original position */
+  }
+}
+
+@keyframes moveLeftToRightAndBack {
+  0% {
+    transform: translateX(0);
+  }
+  10% {
+    transform: translateX(1.2rem); /* Move left */
+  }
+  20% {
+    transform: translateX(0); /* Move back to original position */
+  }
+  30% {
+    transform: translateX(1.2rem); /* Move left */
+  }
+  40% {
+    transform: translateX(0); /* Move back to original position */
+  }
+}
+
+/* [END] Animations declarations */
+
 body {
   margin: 0;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
@@ -99,6 +139,12 @@ code {
 .textAlignLeft {
   text-align: left !important;
 }
+.textAlignRight {
+  text-align: right !important;
+}
+.textAlignCenter {
+  text-align: center !important;
+}
 .smallMarginRight {
   margin-right: 0.75rem !important;
 }
@@ -118,4 +164,12 @@ code {
 }
 .notiStackContainer {
   font-size: 1.875rem!important;
+}
+
+.animationForBackSVGArrow {
+  animation: moveRightToLeftAndBack 4s ease-in-out infinite;
+}
+
+.animationForNextSVGArrow {
+  animation: moveLeftToRightAndBack 4s ease-in-out infinite;
 }
