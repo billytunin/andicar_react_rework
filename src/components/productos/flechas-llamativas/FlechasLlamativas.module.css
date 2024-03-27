@@ -1,0 +1,22 @@
+.backAndNextContainer {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+  
+.svgArrowContainerText {
+    font-family: 'Rubik';
+    text-transform: uppercase;
+    font-style: italic;
+    font-weight: 900;
+    font-size: 2.3rem;
+    color: #8AE9FF;
+    -webkit-text-stroke: 0.15rem #248A9C;
+}
+  
+.svgBackArrowContainer {
+    padding-left: 1rem;
+}
+  
+.svgNextArrowContainer {
+    padding-right: 1rem;
+}
